@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+
+h2{
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 1.562rem;
+    letter-spacing: 0.01em;
+    color: #F2F2F2;
+}
+
+h3{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 1.250rem;
+    letter-spacing: 0.01em;
+    color: #7C7E83;
+}
+
+body{
+    margin: 0;
+}
+
+.main-container{
+    display:flex;
+    height: 100vh;
+}
+
+.contact-wrapper{
+    width: 39%;
+    background-color: #3E3F41;
+}
+
+.chat-wrapper{
+    width: 61%;
+    background-color: #202124;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-wrapper-top-chat{
+    width:100%;
+    height: 80px;
+    background-color: #202124;
+    display: flex;
+}
+
+.contact-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.profile-image-circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #3E3F41;
+    margin-right: 24px;
+}
+.name-chat-divider{
+    background-color: #3E3F41;
+    width: 100%;
+    height: 3px;
+    margin-bottom: auto;
+}
+
+.text-input-field{
+    display: flex;
+    flex-direction: row;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 24px;
+}
+
+input[type=text]{
+    background-color: #202124;
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #7C7E83;
+    border-radius: 20px;
+    padding-left: 24px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 1.562rem;
+    letter-spacing: 0.01em;
+    color:#F2F2F2;
+}
+
+::placeholder{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 1.250rem;
+    letter-spacing: 0.01em;
+    color: #7C7E83;
+}
+
+.ph-paper-plane-tilt-fill{
+    font-size: 2.8125rem;
+    color: #2863E4;
+    margin-left: 32px;
+}
+

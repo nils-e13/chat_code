@@ -6,21 +6,29 @@ class chat {
     
 }
 
-class user {
-    constructor (firstName, lastName, profileImage) {
+class user extends chat{
+    constructor (user, message, firstName, lastName, profileImage, userID) {
+        super(user, message);
         this._fistName = firstName;
         this._lastName = lastName;
         this._profileImage = profileImage;
+        this._userID = userID;
+    }
+    fullName(){
+        return this._fistName + " " + this._lastName;
+    }
+    get userID(){
+        return this._userID;
     }
 
 
 }
 
-class message {
-    constructor (user, content, time) {
-        this._user = user;
+class message extends chat{
+    constructor (user, message, content, timeStamp) {
+        super(user, message);
         this._content = content;
-        this._time = time;
+        this._timeStamp = timeStamp;
     }
 
 

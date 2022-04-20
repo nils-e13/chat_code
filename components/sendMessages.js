@@ -1,4 +1,4 @@
-app.component('sendMessages', {
+app.component('sendMessage', {
     template:
     /*html*/
     `<div class="send-message-block">
@@ -6,7 +6,7 @@ app.component('sendMessages', {
     </div>`,
     data() {
         return {
-            
+            content: '',
             }
         },
         methods: {}

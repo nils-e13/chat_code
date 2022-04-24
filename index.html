@@ -9,6 +9,7 @@
     <title>Chat</title>
 </head>
 <body>
+<div id="app">
     <div class="main-container">
         <!-- Contact Container -->
         <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
@@ -53,6 +54,7 @@
 
             </div>
             
+            <!-- Block for chat messages -->
             <div class="message-block-scroll">
                 <div class="message-window-container"> <!--container for chat messages-->
                     <div class="send-message-block">
@@ -68,6 +70,7 @@
                 </div>
             </div>
 
+            <!-- input for text message -->
             <div class="text-input-field"> <!--input field for chat messages-->
                 <input class="message-input-field" type="text" placeholder="Message...">
                 <i class="ph-paper-plane-right-fill"></i>
@@ -76,7 +79,7 @@
 
         </div>
     </div>
-    
+</div>    
 </body>
 <!-- Import Vue js -->
 <script src="https://unpkg.com/vue@3"></script>

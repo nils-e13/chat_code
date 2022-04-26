@@ -28,8 +28,10 @@ app.component('chat-window', {
                 <p class="message-content">Tempor minim aliqua ad officia magna non laboris.</p>
             </div>
 
+            <!--Component for all sent out chat messages-->
             <send-message v-if="messages.length" :messages="messages"></send-message> <!--//adding messages props that live on messages array component-->
-        
+            
+
         </div>
     </div>
 

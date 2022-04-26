@@ -5,30 +5,33 @@ const app = Vue.createApp({
             messages: sendMessages,
         }
     },
-    methods: {}
-})
-
-app.component('send-message', {
-    template:
-    /*html*/
-    `<div class="send-message-block">
-    <p class="message-content"> {{ content }} </p>
-    </div>`,
-    data() {
-        return {
-            name: "Nils",
-
-        }
-    },
     methods: {
-        sendMessage () {
-            this.$emit('sendMessage', this.content);
-        }
-    },
-    props: ['content']
+        
+    }
 })
 
-app.mount('#app')
+// app.component('send-message', {
+//     template:
+//     /*html*/
+//     `<div class="send-message-block">
+//     <p class="message-content"> {{ content }} </p>
+//     </div>`,
+//     data() {
+//         return {
+//             name: "Nils",
+
+//         }
+//     },
+//     methods: {
+//         sendMessage () {
+//             this.$emit('sendMessage', this.content);
+//         }
+//     },
+//     props: ['content']
+// })
+
+// // Mount app, ab hier alles wieder normal JS
+// app.mount('#app')
 
 
 /*let input = document.getElementById("login-input");

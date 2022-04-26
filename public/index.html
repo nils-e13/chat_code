@@ -55,42 +55,10 @@
             </div>
         </div>
 
-        <!-- Chat Container  -->
-        <div class="chat-wrapper"> <!--right wrapper to display chat messages-->
-            <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
-                <div class="contact-block"> <!--block for current contact with profile image and name-->
-                    <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                    <h2>Full Name</h2>
-                </div>
+        <!-- Chat Container -->
+        <chat-window></chat-window>
 
-            </div>
-            <div class="name-chat-divider"> <!--divider between contact name and chat messages-->
-
-            </div>
-            
-            <!-- Block for chat messages -->
-            <div class="message-block-scroll">
-                <div class="message-window-container"> <!--container for chat messages-->
-                    <!-- <div class="send-message-block">
-                        <p class="message-content">Dolor do consequat id</p>
-                    </div> -->
-                    <send-message :content="messages"></send-message>
-                    
-                    <div class="receive-message-block">
-                        <p class="message-content">Tempor minim aliqua ad officia magna non laboris.</p>
-                    </div>
-                   
-                </div>
-            </div>
-
-            <!-- input for text message -->
-            <div class="text-input-field"> <!--input field for chat messages-->
-                <input class="message-input-field" type="text" placeholder="Message...">
-                <i class="ph-paper-plane-right-fill"></i>
-
-            </div>
-
-        </div>
+        </div> -->
     </div>
 </div>  
 
@@ -103,14 +71,18 @@
 <!-- Import App -->
 <script src="./main.js"></script>
 
-<!-- Import Components
-<script src="./components/sendMessageBlock.js"></script> -->
+<!-- Import Components -->
+<script src="./components/sendMessage.js"></script>
+
+<script src="./components/chatWindow.js"></script>
+
+<script src="./components/messageInput.js"></script>
 
 
 <!-- mount App -->
-<!-- <script> 
+<script> 
 const mountedApp = app.mount('#app')
-</script>  -->
+</script>
 
 </body>
 

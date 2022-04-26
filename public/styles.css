@@ -225,6 +225,17 @@ body{
     margin-top: 16px;
 }
 
+.text-input-form{
+    box-sizing: border-box;
+}
+
+.btn {
+   border: 0;
+   padding: 0; 
+   background: none;
+   cursor: pointer;
+}
+
 .message-input-field{
     background-color: #202124;
     width: 100%;

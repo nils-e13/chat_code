@@ -7,14 +7,10 @@ class chat {
 }
 
 class user extends chat{
-    constructor (uid, firstName, lastName, profileImage) {
+    constructor (uid, name) {
         super(uid);
-        this._fistName = firstName;
-        this._lastName = lastName;
-        this._profileImage = profileImage;
-    }
-    fullName(){
-        return this._fistName + " " + this._lastName;
+        this._name = name;
+        
     }
     getUID(){
         return this._uid;

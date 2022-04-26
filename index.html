@@ -74,7 +74,7 @@
                     <!-- <div class="send-message-block">
                         <p class="message-content">Dolor do consequat id</p>
                     </div> -->
-                    <sendMessageBlock></sendMessageBlock>
+                    <send-message :content="messages"></send-message>
                     
                     <div class="receive-message-block">
                         <p class="message-content">Tempor minim aliqua ad officia magna non laboris.</p>
@@ -93,23 +93,25 @@
         </div>
     </div>
 </div>  
+
 <!-- Import Vue js -->
 <script src="https://unpkg.com/vue@3"></script>
-
-<!-- Import App -->
-<script src="./main.js"></script>
-
-<!-- Import Components -->
-<script src="./components/sendMessageBlock.js"></script>
 
 <!-- Import Classes -->
 <script src="./classes.js"></script>
 
+<!-- Import App -->
+<script src="./main.js"></script>
+
+<!-- Import Components
+<script src="./components/sendMessageBlock.js"></script> -->
+
 
 <!-- mount App -->
-<script> 
+<!-- <script> 
 const mountedApp = app.mount('#app')
-</script> 
+</script>  -->
+
 </body>
 
 </html>

@@ -1,12 +1,34 @@
 // ViewModel
-const app = Vue.create({
+const app = Vue.createApp({
     data() {
         return {
-            name: "",
+            messages: sendMessages,
         }
     },
     methods: {}
 })
+
+app.component('send-message', {
+    template:
+    /*html*/
+    `<div class="send-message-block">
+    <p class="message-content"> {{ content }} </p>
+    </div>`,
+    data() {
+        return {
+            name: "Nils",
+
+        }
+    },
+    methods: {
+        sendMessage () {
+            this.$emit('sendMessage', this.content);
+        }
+    },
+    props: ['content']
+})
+
+app.mount('#app')
 
 
 /*let input = document.getElementById("login-input");

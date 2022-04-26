@@ -1,0 +1,26 @@
+{
+  "name": "chat_code",
+  "version": "0.0.1",
+  "description": "HfG Programmiersprachen 2 Chat App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nils-e13/chat_code.git"
+  },
+  "keywords": [
+    "chat",
+    "app"
+  ],
+  "author": "Nils Eller",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/nils-e13/chat_code/issues"
+  },
+  "homepage": "https://github.com/nils-e13/chat_code#readme",
+  "dependencies": {
+    "socket.io": "^4.5.0"
+  }
+}

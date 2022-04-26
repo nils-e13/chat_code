@@ -1,35 +1,38 @@
 class chat {
-    constructor (user, message) {
-        this._user = user;
-        this._message = message;
+    constructor (uid) {
+        this._uid = uid;
+    
     }
     
 }
 
 class user extends chat{
-    constructor (user, message, firstName, lastName, profileImage, userID) {
-        super(user, message);
+    constructor (uid, firstName, lastName, profileImage) {
+        super(uid);
         this._fistName = firstName;
         this._lastName = lastName;
         this._profileImage = profileImage;
-        this._userID = userID;
     }
     fullName(){
         return this._fistName + " " + this._lastName;
     }
-    getuserID(){
-        return this._userID;
+    getUID(){
+        return this._uid;
     }
 
 
 }
 
 class message extends chat{
-    constructor (user, message, content, timeStamp) {
-        super(user, message);
+    constructor (uid, content, timeStamp) {
+        super(uid);
         this._content = content;
         this._timeStamp = timeStamp;
     }
 
 
 }
+
+let testMessage = new message("1234", "Lorem Ipsum Test", "12:49");
+
+const sendMessages = [testMessage];

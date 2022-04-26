@@ -28,24 +28,24 @@ app.component('chat-window', {
                 <p class="message-content">Tempor minim aliqua ad officia magna non laboris.</p>
             </div>
 
-            <send-message :content="sendMessage"></send-message>
-           
+            <send-message v-if="messages.length" :messages="messages"></send-message> <!--//adding messages props that live on messages array component-->
+        
         </div>
     </div>
 
-    <!-- Block for text input field -->
-    <message-input @send-message="sendMessage"></message-input>
+    <!-- Block for text input form -->
+    <message-input @message-submitted="sendMessage"></message-input>
 
     </div>`,
     data() {
         return {
-            messages: '',
+            messages: [],
 
         }
     },
     methods:{
-        sendMessage(content) {
-            this.content.push(content);
+        sendMessage(content) { //takes in content from sendMessageBubble events payload and puts it into messages data
+            this.messages.push(content);
         }
     }
 })

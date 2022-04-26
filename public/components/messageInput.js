@@ -7,7 +7,6 @@ app.component('message-input', {
     <div class="text-input-field"> <!--input field for chat messages-->
     <input id="content" v-model="content" class="message-input-field" type="text" placeholder="Message...">
     <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
-
     </div>
     </form>`,
     data() {
@@ -20,10 +19,10 @@ app.component('message-input', {
     },
     methods: {
         onSubmit() {
-            let sendMessage = {
+            let sendMessageBubble = {
                 content: this.content,
             }
-            this.$emit('send-message', sendMessage); //send message to chatWindow
+            this.$emit('message-submitted', sendMessageBubble); //message-submitted event passing along sendMessageBubble as payload
 
             //reset input field
             this.content = '';

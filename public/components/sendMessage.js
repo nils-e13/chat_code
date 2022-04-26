@@ -1,8 +1,8 @@
 //component for sent chat messages
 app.component('send-message', {
     props: {
-        content: {
-            type: String,
+        messages: { //takes in messages from chat-window events payload
+            type: Array,
             required: true
         }
     },
@@ -10,7 +10,8 @@ app.component('send-message', {
     template:
     /*html*/
     `<div class="send-message-block">
-    <p class="message-content" v-for="(content, index) in content" :key="index"> {{ content.content }} </p>
+    <!--v-for -> print out each content from our messages array in the chat window, in ... messages has to be defined as props above-->
+    <p class="message-content" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>
     </div>`,
     
     

@@ -6,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/phosphor-icons"></script>
+
+     <!-- Socket.io einbinden -->
+     <script src="https://cdn.socket.io/4.3.0/socket.io.js"></script>
+
+     <script>
+        // Verbindung zum WebSocket-Server:
+        let socket = io("http://127.0.0.1:80");
+
+        socket.on( "greeting", (message) => {
+            console.log(message);
+
+            socket.emit( "greeting", "Hi Server!");
+
+            socket.on( "greeting", (message) => {
+                console.log(message);
+            });
+        });
+
+        function sendMessage(message) {
+            socket.emit("message", message);
+        }
+    </script>
+
     <title>Chat</title>
 </head>
 <body>
@@ -77,7 +100,6 @@
 <script src="./components/chatWindow.js"></script>
 
 <script src="./components/messageInput.js"></script>
-
 
 <!-- mount App -->
 <script> 

@@ -1,6 +1,9 @@
 class chat {
     constructor (uid) {
         this._uid = uid;
+        //this.messages
+        //this.sender
+        //this.receiver
     
     }
     

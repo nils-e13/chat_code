@@ -1,3 +1,4 @@
+/*
 // ExpressJS
 const express = require("express");
 // Kommt von Haus aus mit NodeJS, bringt nützliche Funktionen um mit dem File System zu arbeiten
@@ -24,4 +25,30 @@ io.on('connection', function (socket) {
   socket.on( "message", function( message ) {
   console.log("Message from client: " + message);
 });
+});
+
+*/
+
+
+const express = require('express');
+const path = require("path");
+
+const app = express();
+const server = require("http").createServer(app);
+let port = 3000;
+
+const io = require("socket.io")(server);
+
+
+app.use(express.static(path.join(__dirname+'/public')));
+
+io.on('connection', function (socket) {
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected')
+  });
+});
+
+server.listen(port, function () {
+  console.log('listening on port: ' + port);
 });

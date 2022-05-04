@@ -7,28 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/phosphor-icons"></script>
 
-     <!-- Socket.io einbinden -->
-     <script src="https://cdn.socket.io/4.3.0/socket.io.js"></script>
-
-     <script>
-        // Verbindung zum WebSocket-Server:
-        let socket = io("http://127.0.0.1:80");
-
-        socket.on( "greeting", (message) => {
-            console.log(message);
-
-            socket.emit( "greeting", "Hi Server!");
-
-            socket.on( "greeting", (message) => {
-                console.log(message);
-            });
-        });
-
-        function sendMessage(message) {
-            socket.emit("message", message);
-        }
-    </script>
-
     <title>Chat</title>
 </head>
 <body>
@@ -81,7 +59,7 @@
         <!-- Chat Container -->
         <chat-window></chat-window>
 
-        </div> -->
+        </div>
     </div>
 </div>  
 
@@ -104,6 +82,12 @@
 <!-- mount App -->
 <script> 
 const mountedApp = app.mount('#app')
+</script>
+
+<!-- Socket.io -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
 </script>
 
 </body>

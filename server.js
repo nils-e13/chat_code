@@ -33,10 +33,12 @@ io.on('connection', function (socket) {
 const express = require('express');
 const path = require("path");
 
+// setup express application
 const app = express();
 const server = require("http").createServer(app);
 let port = 3000;
 
+//create new socket.io instance attached to the http server
 const io = require("socket.io")(server);
 
 
@@ -51,4 +53,11 @@ io.on('connection', function (socket) {
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);
+});
+
+
+io.on('connection', function (socket) {
+  socket.on('chat message', function (msg) {
+    console.log('message: ' + msg);
+  });
 });

@@ -29,8 +29,8 @@ app.component('chat-window', {
             </div>
 
             <!--Component for all sent out chat messages-->
-            <send-message v-if="messages.length" :messages="messages"></send-message> <!--//adding messages props that live on messages array component-->
-            
+            <!--<send-message v-if="messages.length" :messages="messages"></send-message>--> <!--//adding messages props that live on messages array component-->
+            <p class="message-content send-message-block no-margin" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>
 
         </div>
     </div>

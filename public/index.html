@@ -70,7 +70,7 @@
 <script src="./classes.js"></script>
 
 <!-- Import App -->
-<script src="./main.js"></script>
+<script src="./app.js"></script>
 
 <!-- Import Components -->
 <script src="./components/sendMessage.js"></script>
@@ -89,8 +89,8 @@ const mountedApp = app.mount('#app')
 <script>
     let socket = io();
 
-    let form = document.getElementById('content');
-    let input = document.getElementById('input-btn');
+    let form = document.getElementById('form');
+    let input = document.getElementById('input');
 
     form.addEventListener('submit', function(e){
         e.preventDefault();

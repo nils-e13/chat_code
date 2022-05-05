@@ -9,22 +9,16 @@ class chat {
     
 }
 
-class user extends chat{
-    constructor (uid, name) {
-        super(uid);
+class user {
+    constructor (name) {
         this._name = name;
         
     }
-    getUID(){
-        return this._uid;
-    }
-
 
 }
 
-class message extends chat{
-    constructor (uid, content, timeStamp) {
-        super(uid);
+class message {
+    constructor (content, timeStamp) {
         this._content = content;
         this._timeStamp = timeStamp;
     }

@@ -42,11 +42,11 @@ app.component('chat-window', {
 
 
     <!-- Block for text input form -->
-    <form class="text-input-form" @submit.prevent="onSubmit">
-    <div class="text-input-field"> <!--input field for chat messages-->
-    <input id="content" v-model="content" class="message-input-field" type="text" placeholder="Message...">
-    <button class ="btn" id="input-btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
-    </div>
+    <form class="text-input-form" id="form" @submit.prevent="onSubmit">
+        <div class="text-input-field"> <!--input field for chat messages-->
+            <input id="input" v-model="content" class="message-input-field" type="text" placeholder="Message...">
+            <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
+        </div>
     </form>
 
 

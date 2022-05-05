@@ -73,4 +73,4 @@ app.component('chat-window', {
             this.content = '';
         }
     }
-})
+});

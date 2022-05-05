@@ -28,26 +28,49 @@ app.component('chat-window', {
                 <p class="message-content">Tempor minim aliqua ad officia magna non laboris.</p>
             </div>
 
-            <!--Component for all sent out chat messages-->
+            <!--Component sendMessage.js for all sent out chat messages-->
             <!--<send-message v-if="messages.length" :messages="messages"></send-message>--> <!--//adding messages props that live on messages array component-->
+            
+            <!--paragraph for send out chat messages-->
             <p class="message-content send-message-block no-margin" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>
 
         </div>
     </div>
 
+    <!-- Block for text input form component messageInput.js-->
+    <!--<message-input @message-submitted="sendMessage"></message-input>-->
+
+
     <!-- Block for text input form -->
-    <message-input @message-submitted="sendMessage"></message-input>
+    <form class="text-input-form" @submit.prevent="onSubmit">
+    <div class="text-input-field"> <!--input field for chat messages-->
+    <input id="content" v-model="content" class="message-input-field" type="text" placeholder="Message...">
+    <button class ="btn" id="input-btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
+    </div>
+    </form>
+
+
 
     </div>`,
     data() {
         return {
             messages: [],
+            content: '',
 
         }
     },
     methods:{
-        sendMessage(content) { //takes in content from sendMessageBubble events payload and puts it into messages data
-            this.messages.push(content);
+        // sendMessage(content) { //takes in content from sendMessageBubble events payload and puts it into messages data
+        //     this.messages.push(content);
+        // },
+        onSubmit() {
+            let sendMessageBubble = {
+                content: this.content,
+            }
+            //this.$emit('message-submitted', sendMessageBubble); //message-submitted event passing along sendMessageBubble as payload
+            this.messages.push(sendMessageBubble);
+            //reset input field
+            this.content = '';
         }
     }
 })

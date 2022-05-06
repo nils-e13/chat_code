@@ -44,6 +44,11 @@ const io = require("socket.io")(server);
 
 app.use(express.static(path.join(__dirname+'/public')));
 
+server.listen(port, function () {
+  console.log('listening on port: ' + port);
+});
+
+
 io.on('connection', function (socket) {
   console.log('a user connected');
   socket.on('disconnect', function(){
@@ -51,13 +56,10 @@ io.on('connection', function (socket) {
   });
 });
 
-server.listen(port, function () {
-  console.log('listening on port: ' + port);
-});
 
 
 io.on('connection', function (socket) {
-  socket.on('chat message', function (msg) {
+  socket.on('chatMessage', function (msg) {
     console.log('message: ' + msg);
   });
 });

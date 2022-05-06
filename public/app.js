@@ -8,4 +8,7 @@ const app = Vue.createApp({
     methods: {
         
     }
+    //mounted: {
+        //hier function zu uid...
+    //}
 })

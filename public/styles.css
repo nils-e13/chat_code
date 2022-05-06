@@ -46,10 +46,46 @@ body{
 .login-form{
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 20vh;
     width: 20vw;
 }
+
+.login-input-field {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #3e3f41;
+    background-color: transparent;
+    border-radius: 16px;
+    padding-left: 24px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color:#F2F2F2;
+    outline:none;
+}
+
+.login-button {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    background-color: #2863E4;
+    border-radius: 16px;
+    margin-top: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color:#F2F2F2;
+    outline:none;
+    border: none;
+    cursor: pointer;
+    
+}
+
 
 .main-container{
     display:flex;

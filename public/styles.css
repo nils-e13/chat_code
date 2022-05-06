@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+
+
+body{
+    overflow: hidden;
+    margin: 0;
+}
+
+
 h2{
     font-family: "Inter", sans-serif;
     font-weight: 600;
@@ -33,6 +41,9 @@ body{
     margin: 0;
 }
 
+.login-screen-visibility {
+    display: block;
+}
 .login-screen{
     background-color: #202124;
     height: 100vh;
@@ -44,14 +55,17 @@ body{
 }
 
 .login-form{
-    display: flex;
-    flex-direction: column;
     height: 20vh;
     width: 20vw;
+    background-color: #202124;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-input-field {
     width: 100%;
+    min-width: 240px;
     height: 40px;
     box-sizing: border-box;
     border-style: solid;
@@ -70,6 +84,7 @@ body{
 
 .login-button {
     width: 100%;
+    min-width: 240px;
     height: 40px;
     box-sizing: border-box;
     background-color: #2863E4;
@@ -86,10 +101,14 @@ body{
     
 }
 
+.main-container-visibility {
+    display: none;
+}
 
 .main-container{
-    display:flex;
+    display: flex;
     height: 100vh;
+    width: 100vw;
 }
 
 .contact-wrapper{

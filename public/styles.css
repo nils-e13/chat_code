@@ -41,9 +41,6 @@ body{
     margin: 0;
 }
 
-.login-screen-visibility {
-    display: block;
-}
 .login-screen{
     background-color: #202124;
     height: 100vh;
@@ -99,10 +96,6 @@ body{
     border: none;
     cursor: pointer;
     
-}
-
-.main-container-visibility {
-    display: none;
 }
 
 .main-container{

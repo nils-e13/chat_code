@@ -11,58 +11,48 @@
 </head>
 <body>
 <div id="app">
+    <!-- Log In Screen component-->
+    <!--<loginScreen></loginScreen>-->
     
-    <!-- Login-Screen -->
-    <div class="login-screen-visibility">
-        <div class="login-screen">
-            <form class="login-form">
-                <h2 class="login-title">Welcome</h2>
-                <input class="login-input-field" type="text" id="username" placeholder="Your Name...">
 
-                <button class="login-button">Log In</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="main-container-visibility">
-        <div class="main-container" id="mainContainer">
+    <div class="main-container" id="mainContainer">
             <!-- Contact Container -->
-            <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
-                <div class="contact-wrapper-menu">
+        <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
+            <div class="contact-wrapper-menu">
 
-                    <div class="your-profile-block">
-                        <h2 id="blue-text">Your Name</h2>
-                    </div>
-
-                    <div class="add-contact-block">
-                        <p class="subheader-2">Add Contact</p>
-                        <i class="ph-plus-bold"></i>
-                    </div>
+                <div class="your-profile-block">
+                    <h2 id="blue-text">Your Name</h2>
                 </div>
 
-                <div class="contact-block-scroll">
-                    <div class="contacts-window-container"> <!--contains the contact selection-->
-                        <div class="contact-field"> <!--selection field for the messaging contact-->
-                            <div class="contact-block"> <!--block for current contact with profile image and name-->
-                                <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                                <h2>Full Name</h2>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                </div>
-                <div class="my-profile-block">
-
+                <div class="add-contact-block">
+                    <p class="subheader-2">Add Contact</p>
+                    <i class="ph-plus-bold"></i>
                 </div>
             </div>
 
-            <!-- Chat Container -->
-            <chat-window></chat-window>
+            <div class="contact-block-scroll">
+                <div class="contacts-window-container"> <!--contains the contact selection-->
+                    <div class="contact-field"> <!--selection field for the messaging contact-->
+                        <div class="contact-block"> <!--block for current contact with profile image and name-->
+                            <!-- <div class="profile-image-circle"></div> circle for profile image -->
+                            <h2>Full Name</h2>
+                        </div>
+                            
+                    </div>
+
+                </div>
+            </div>
+            <div class="my-profile-block">
 
             </div>
         </div>
+
+        <!-- Chat Container -->
+        <chat-window></chat-window>
+
+        </div>
     </div>
+    
 </div>  
 
 <!-- Import Vue js -->
@@ -75,11 +65,10 @@
 <script src="./app.js"></script>
 
 <!-- Import Components -->
-<script src="./components/sendMessage.js"></script>
 
 <script src="./components/chatWindow.js"></script>
 
-<script src="./components/messageInput.js"></script>
+<!--<script src="./components/loginScreen.js"></script>-->
 
 <!-- mount App -->
 <script> 

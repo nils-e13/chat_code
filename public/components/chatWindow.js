@@ -54,7 +54,8 @@ app.component('chat-window', {
 
 
 
-    </div>`,
+    </div>
+    `,
     data() {
         return {
             messages: [],
@@ -63,17 +64,25 @@ app.component('chat-window', {
         }
     },
     methods:{
-        // sendMessage(content) { //takes in content from sendMessageBubble events payload and puts it into messages data
-        //     this.messages.push(content);
-        // },
         onSubmit() {
             let sendMessageBubble = {
                 content: this.content,
             }
-            //this.$emit('message-submitted', sendMessageBubble); //message-submitted event passing along sendMessageBubble as payload
             this.messages.push(sendMessageBubble);
+            
+            //emit message to server
+            emitMessage(this.content);
+            
             //reset input field
             this.content = '';
-        }
+        },
+    
+    },
+    mounted() {
     }
 });
+
+//emit message to server
+function emitMessage(content) {
+    socket.emit("chatMessage", content);
+}

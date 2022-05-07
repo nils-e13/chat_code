@@ -54,14 +54,14 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function(){
     console.log('user disconnected')
   });
-  
-  socket.on("newuser", function(username){
-    socket.broadcast.emit("update", username + " joined the chat");
+  socket.on('newuser', function(username){
+    socket.broadcast.emit('update', username + 'joined the chat');
   });
-  socket.on("exituser", function(username){
-    socket.broadcast.emit("update", username + " left the chat");
+  socket.on('exituser', function(username){
+    socket.broadcast.emit('update', username + 'left the chat');
   });
   socket.on('chatMessage', function (message) {
-    socket.broadcast.emit('chatMessage', message);
+    console.log('message: ' + message);
+    //socket.broadcast.emit('chatMessage', message);
   });
-});
+  });

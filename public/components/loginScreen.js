@@ -1,11 +1,11 @@
-app.component('chat-window', {
+app.component('login-screen', {
 
     template:
     /*html*/
     `
     <!-- Login-Screen -->
-    <div class="login-screen">
-        <form class="login-form" v-on:submit="login()">
+    <div class="login-screen" v-if="hide">
+        <form class="login-form" @submit="checkForm">
             <h2 class="login-title">Welcome</h2>
             <input class="login-input-field" type="text" id="username" v-model="input.username" placeholder="Your Name...">
 
@@ -14,6 +14,7 @@ app.component('chat-window', {
     </div>`,
     data() {
         return {
+            hide: true,
             input: {
                 username: '',
                 //password: ''
@@ -22,17 +23,20 @@ app.component('chat-window', {
         }
     },
     methods:{
-        login(){
-            if(this.input.username.length == 0) {
-                alert("Please enter a username");
-                return;
+        checkForm( event) {
+            if (this.input.username != '') {
+                this.hide = false;
             }
             else {
-                this.$emit("authenticate", true);
-                this.$router.replace({ name: 'chat' });
-
-            socket.emit("newuser", this.input.username);
+                this.checkForm = true;
             }
-        }
-    }
+            event.preventDefault();
+        
+          }
+        },
+        // mounted: function () {
+        //     this.checkForm = false;
+        // }
+        
+
 });

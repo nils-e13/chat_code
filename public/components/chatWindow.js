@@ -78,11 +78,37 @@ app.component('chat-window', {
         },
     
     },
-    mounted() {
-    }
+    
 });
+
+
+const socket = io("ws://localhost:3000");
 
 //emit message to server
 function emitMessage(content) {
     socket.emit("chatMessage", content);
 }
+
+function receiveMessage() {
+    socket.on("chatMessage", function(message) {
+        console.log("Message from server: " + message);
+
+    }
+);}
+
+// socket.on('chat message', function(msg) {
+//     var item = document.createElement('li');
+//     item.textContent = msg;
+//     messages.appendChild(item);
+//     window.scrollTo(0, document.body.scrollHeight);
+//   });
+
+// function receiveMessage () {
+// socket.on("chatMessage", (content) => {
+//     let receiveMessageBubble = {
+//         content: content,
+//     }
+//     this.messages.push(receiveMessageBubble);
+// }
+// );
+// }

@@ -61,6 +61,7 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('update', username + 'left the chat');
   });
   socket.on('chatMessage', function (message) {
+    io.emit('chatMessage', message);
     console.log('message: ' + message);
     //socket.broadcast.emit('chatMessage', message);
   });

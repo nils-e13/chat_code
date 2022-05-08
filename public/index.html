@@ -12,7 +12,7 @@
 <body>
 <div id="app">
     <!-- Log In Screen component-->
-    <loginScreen></loginScreen>
+    <login-screen></login-screen>
     
 
     <div class="main-container" id="mainContainer">
@@ -35,7 +35,7 @@
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                            <h2>Full Name</h2>
+                            <h2>global chat</h2>
                         </div>
                             
                     </div>
@@ -68,7 +68,7 @@
 
 <script src="./components/chatWindow.js"></script>
 
-<!--<script src="./components/loginScreen.js"></script>-->
+<script src="./components/loginScreen.js"></script>
 
 <!-- mount App -->
 <script> 
@@ -79,18 +79,7 @@ const mountedApp = app.mount('#app')
 <!-- Socket.io -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    let socket = io();
-
-    // let form = document.getElementById('form');
-    // let input = document.getElementById('input');
-
-    // form.addEventListener('submit', function(e){
-    //     e.preventDefault();
-    //     if (input.value) {
-    //         socket.emit('chat message', input.value);
-    //         input.value = '';
-    //     }
-    // });
+    var socket = io();
 </script>
 
 </body>

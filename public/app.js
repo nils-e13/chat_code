@@ -7,8 +7,9 @@ const app = Vue.createApp({
     },
     methods: {
         
-    }
-    //mounted: {
-        //hier function zu uid...
+    },
+    //mounted: function () {
+        //socket.on(...)
+        
     //}
 })

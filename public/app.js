@@ -11,16 +11,32 @@ const app = Vue.createApp({
             messages: [],
             users: [],
             userName: '',
-            isLogged: false, //for log in window 
+            
         }
     },
     methods: {
-        
+        sendMessage: function(message) {
+            if(message){
+                socket.emit('send-message', {message: message, user: this.userName});
+            }
+        },
+
+        setName: function(userName) {
+            this.userName = userName;
+            socket.emit('add-user', this.userName);
+        },
+
+        // This method is used to scroll the chatbox when a new message is printed
+        scrollToEnd: function() {       
+            var container = this.$el.querySelector("#messages");
+            container.scrollTop = container.scrollHeight;
+        },
     },
-    //mounted: function () {
-        //socket.on(...)
-        
-    //}
+
+    updated(){
+        this.scrollToEnd();
+    }
+ 
 });
 
 //Client socket events

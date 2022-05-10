@@ -1,5 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
+    props: ['users'],
 
     template:
     /*html*/
@@ -9,7 +10,7 @@ app.component('chat-window', {
         <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
             <div class="contact-block"> <!--block for current contact with profile image and name-->
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                <h2>Full Name</h2>
+                <h2> {{messageData.user}} </h2>
             </div>
 
         </div>
@@ -18,9 +19,9 @@ app.component('chat-window', {
         </div>
         
         <!-- Block for chat messages -->
-        <div class="message-block-scroll">
+        <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
-            <ul>
+                <ul>
                     <!--iterateing over messages-->
                     <li v-for="message in messages">
                         <!--bind each message data to message component-->
@@ -32,19 +33,19 @@ app.component('chat-window', {
                 <!--<send-message v-if="messages.length" :messages="messages"></send-message>--> <!--//adding messages props that live on messages array component-->
 
                 <!--paragraph for send out chat messages-->
-                <p class="message-content send-message-block no-margin" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>
+                <!--<p class="message-content send-message-block no-margin" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>-->
 
                 <!--paragraph for received chat messages-->
-                <p class="message-content receive-message-block no margin" v-for="(content, index) in messages" :key="index"> {{  }} </p> //content.content
+                <!--<p class="message-content receive-message-block no margin" v-for="(content, index) in messages" :key="index"> {{  }} </p> //content.content-->
 
             </div>
         </div>
 
         <!-- Block for text input form -->
-        <form class="text-input-form" id="text-input-form" @submit.prevent="onSubmit">
+        <form class="text-input-form" id="text-input-form" @submit.prevent="send">
             <div class="text-input-field"> <!--input field for chat messages-->
                 <!--when message is sent, input emits an event (send-message)-->
-                <input id="input" v-model="content" //v-on:send-message="sendMessage" class="message-input-field" type="text" placeholder="Message...">
+                <input id="input" v-model="message" class="message-input-field" type="text" placeholder="Message...">
                 <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
             </div>
         </form>
@@ -58,22 +59,28 @@ app.component('chat-window', {
     `,
     data() {
         return {
-            messages: [],
-            users: [],
-            userName: '',
+            message: '',
 
-            content: '',
+
+            //content: '',
 
         }
     },
     methods:{
-        sendMessage: function(message) {
-            if(message){
-                socket.emit('send-msg', {message: message, user: this.userName});
-            }
-        },
+        send () {
+            if(this.message.length > 0) {
+                this.$emit('send-message', this.message);
+                this.message = '';
+        }
 
-        // onSubmit() {
+
+        // sendMessage: function(message) {
+        //     if(message){
+        //         socket.emit('send-msg', {message: message, user: this.userName});
+        //     }
+        // },
+
+        // send() {
         //     let sendMessageBubble = {
         //         content: this.content,
         //     }
@@ -88,22 +95,24 @@ app.component('chat-window', {
     
     },
     
+    },
 });
 
 
-const socket = io("ws://localhost:3000");
 
-//emit message to server
-function emitMessage(content) {
-    socket.emit("chatMessage", content);
-}
+// const socket = io("ws://localhost:3000");
 
-function receiveMessage() {
-    socket.on("chatMessage", function(message) {
-        console.log("Message from server: " + message);
+// //emit message to server
+// function emitMessage(content) {
+//     socket.emit("chatMessage", content);
+// }
 
-    }
-);}
+// function receiveMessage() {
+//     socket.on("chatMessage", function(message) {
+//         console.log("Message from server: " + message);
+
+//     }
+// );}
 
 // socket.on('chat message', function(msg) {
 //     var item = document.createElement('li');

@@ -5,11 +5,11 @@ app.component('login-screen', {
     `
     <!-- Login-Screen -->
     <div class="login-screen" v-if="hide">
-        <form class="login-form" @submit="checkForm">
+        <form class="login-form" @submit.prevent="checkForm">
             <h2 class="login-title">Welcome</h2>
 
-            <!--emits username as username when user logs in-->
-            <input class="login-input-field" type="text" id="username" v-model="input.userName" placeholder="Your Name...">
+            <!--emits username as username when user logs in-->   <!--not sure if input.userName or only user.Name-->
+            <input class="login-input-field" type="text" id="username" v-model="userName" placeholder="Your Name...">
 
             <button class="login-button" >Log In</button>
         </form>
@@ -28,16 +28,15 @@ app.component('login-screen', {
     },
     methods:{
         //checks if userName is entered and if so, hides login screen and shows chat screen
-        checkForm( event ) {
-            if (this.input.userName != '') {
+        checkForm( ) {
+            if (this.userName != '') {
                 this.hide = false;
-                this.$emit('set-name', this.input.userName); //input.userName is passed as payload to set-name event
+                this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
             }
             else {
                 this.checkForm = true;
 
             }
-            event.preventDefault();
         
         },
         

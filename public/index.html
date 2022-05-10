@@ -16,38 +16,11 @@
     
 
     <div class="main-container" id="mainContainer">
-            <!-- Contact Container -->
-        <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
-            <div class="contact-wrapper-menu">
+        <!-- Contact window component-->
+        <!-- pass users names down to contact-window child component-->
+        <contact-window v-bind:users="users"></contact-window>
 
-                <div class="your-profile-block">
-                    <h2 id="blue-text"> {{ user.name}} </h2>
-                </div>
-
-                <div class="add-contact-block">
-                    <p class="subheader-2">Add Contact</p>
-                    <i class="ph-plus-bold"></i>
-                </div>
-            </div>
-
-            <div class="contact-block-scroll">
-                <div class="contacts-window-container"> <!--contains the contact selection-->
-                    <div class="contact-field"> <!--selection field for the messaging contact-->
-                        <div class="contact-block"> <!--block for current contact with profile image and name-->
-                            <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                            <h2>global chat</h2>
-                        </div>
-                            
-                    </div>
-
-                </div>
-            </div>
-            <div class="my-profile-block">
-
-            </div>
-        </div>
-
-        <!-- Chat Container -->
+        <!-- Chat window component-->
         <chat-window></chat-window>
 
         </div>
@@ -72,7 +45,7 @@
 
 <script src="./components/loginScreen.js"></script>
 
-<script src=".components/message.js"></script>
+<script src="./components/message.js"></script>
 
 <!-- mount App -->
 <script> 

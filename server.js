@@ -10,7 +10,9 @@ let port = 3000;
 //create new socket.io instance attached to the http server
 const io = require("socket.io")(server);
 
-var dateFormat = require('dateformat');
+//import dateformat
+const dateFormat = import('dateformat');
+//var dateFormat = require('dateformat');
 //const { SocketAddress } = require('net'); //not sure if needed
 
 app.use(express.static(path.join(__dirname+'/public')));

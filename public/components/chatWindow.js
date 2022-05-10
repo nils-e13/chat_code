@@ -1,6 +1,5 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['users'],
 
     template:
     /*html*/
@@ -50,10 +49,10 @@ app.component('chat-window', {
             </div>
         </form>
 
-            <!--user list-->  
-            <div>
+            <!--user list, not really needed-->  
+            <!--<div>
                 <users v-bind: users="users"></users>
-            </div>
+            </div>-->
 
     </div>
     `,

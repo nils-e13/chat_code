@@ -2,7 +2,6 @@
     var socket = io();
 
 
-
 // ViewModel
 const app = Vue.createApp({
     data() {
@@ -60,4 +59,4 @@ socket.on('update-users', function(users) {
     app.users = users;
 });
 
-})();
+});

@@ -1,35 +1,4 @@
-/*
-// ExpressJS
-const express = require("express");
-// Kommt von Haus aus mit NodeJS, bringt nützliche Funktionen um mit dem File System zu arbeiten
-const path = require("path");
-
-// Hier wird der Server auf dem Port 3000 gestartet (local)
-const app = express();
-const server = require("http").createServer(app);
-var port = 3000;
-
-const io = require("socket.io")(server);
-
-app.use(express.static(path.join(__dirname+"/public")));
-
-// Server "hört" auf den Port der oben festgelegt wurde
-server.listen(port);
-
-// Listening to connections and define the events
-io.on('connection', function (socket) {
-  console.log( "Connection from client " + socket.id );
-
-  socket.emit( "greeting", "Hello Client" );
-
-  socket.on( "message", function( message ) {
-  console.log("Message from client: " + message);
-});
-});
-
-*/
-
-
+//expressjs
 const express = require('express');
 const path = require("path");
 
@@ -41,8 +10,15 @@ let port = 3000;
 //create new socket.io instance attached to the http server
 const io = require("socket.io")(server);
 
+var dateFormat = require('dateformat');
+const { SocketAddress } = require('net');
 
 app.use(express.static(path.join(__dirname+'/public')));
+
+//store messages + users here for now, but should be moved to classes
+var messages = [];
+var users = [];
+
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);
@@ -50,19 +26,32 @@ server.listen(port, function () {
 
 
 io.on('connection', function (socket) {
-  console.log('a user connected');
+  console.log('a user connected'); //log when a user connects
   socket.on('disconnect', function(){
-    console.log('user disconnected')
+    console.log('user disconnected') //log when a user disconnects
   });
-  socket.on('newuser', function(username){
-    socket.broadcast.emit('update', username + 'joined the chat');
+
+  socket.emit('init-chat', messages); //send all messages to new user
+
+  socket.emit('update-users', users); //send all users to new user
+
+  //when a user sends a message, server pushes the info to message list and emits an event 
+  socket.on('send-message', function(data) {
+    var newMessage = { text: data.message, user : data.user, date: dateFormat(new Date (), 'shortTime')};
+    messages.push(newMessage);
+    io.emit('read-message', newMessage);
   });
-  socket.on('exituser', function(username){
-    socket.broadcast.emit('update', username + 'left the chat');
+
+  //when new user connects, server pushes the info to user list and emits an event
+  socket.on('add-user', function(user) {
+    users.push({ id: socket.id, name: user });
+    io.emit('update-users', users);
   });
-  socket.on('chatMessage', function (message) {
-    io.emit('chatMessage', message);
-    console.log('message: ' + message);
-    //socket.broadcast.emit('chatMessage', message);
+
+  socket.on('disconnect', function() {
+    users = users.filter(function(user) {
+      return user.id != socket.id;
+    });
+    io.emit('update-users', users);
   });
-  });
+});

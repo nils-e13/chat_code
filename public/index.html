@@ -12,7 +12,7 @@
 <body>
 <div id="app">
     <!-- Log In Screen component-->
-    <login-screen></login-screen>
+    <login-screen v-on: set-name="setName"></login-screen>
     
 
     <div class="main-container" id="mainContainer">
@@ -70,6 +70,8 @@
 
 <script src="./components/loginScreen.js"></script>
 
+<script src=".components/message.js"></script>
+
 <!-- mount App -->
 <script> 
 const mountedApp = app.mount('#app')
@@ -78,9 +80,6 @@ const mountedApp = app.mount('#app')
 
 <!-- Socket.io -->
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-</script>
 
 </body>
 

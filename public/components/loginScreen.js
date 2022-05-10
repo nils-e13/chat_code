@@ -7,36 +7,46 @@ app.component('login-screen', {
     <div class="login-screen" v-if="hide">
         <form class="login-form" @submit="checkForm">
             <h2 class="login-title">Welcome</h2>
-            <input class="login-input-field" type="text" id="username" v-model="input.username" placeholder="Your Name...">
 
-            <button class="login-button">Log In</button>
+            <!--emits username as username when user logs in-->
+            <input class="login-input-field" type="text" id="username" v-model="input.userName" placeholder="Your Name...">
+
+            <button class="login-button" >Log In</button>
         </form>
-    </div>`,
+    </div>
+
+    `,
     data() {
         return {
             hide: true,
             input: {
-                username: '',
+                userName: '',
                 //password: ''
             }
 
         }
     },
     methods:{
-        checkForm( event) {
-            if (this.input.username != '') {
+        //checks if userName is entered and if so, hides login screen and shows chat screen
+        checkForm( event ) {
+            if (this.input.userName != '') {
                 this.hide = false;
+                this.$emit('set-name', this.input.userName); //input.userName is passed as payload to set-name event
             }
             else {
                 this.checkForm = true;
+
             }
             event.preventDefault();
         
-          }
         },
-        // mounted: function () {
-        //     this.checkForm = false;
-        // }
+        
+          setName: function(userName) {
+            this.userName = userName;
+            socket.emit('add-user', this.userName);
+        },
+
+        },
         
 
 });

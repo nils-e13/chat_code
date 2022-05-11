@@ -8,8 +8,8 @@ app.component('contact-window', {
         <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
             <div class="contact-wrapper-menu">
 
-                <div class="your-profile-block"> <!--v-for="user in users"-->
-                    <h2 id="blue-text"> <!--{{ user.name }}--> test</h2>
+                <div class="your-profile-block" v-for="user in users"> <!--v-for="user in users"-->
+                    <h2 id="blue-text"> {{ user.name }} test</h2>
                 </div>
 
                 <div class="add-contact-block">

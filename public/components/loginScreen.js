@@ -27,9 +27,10 @@ app.component('login-screen', {
     methods:{
         //checks if userName is entered and if so, hides login screen and shows chat screen
         checkForm () {
-            if (this.userName != '') {
+            if (this.userName.length > 0 ) {
                 this.hide = false;
                 this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
+                console.log("userName: " + this.userName + "just joined");
             }
         
         },

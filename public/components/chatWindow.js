@@ -1,5 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
+    props: ['messages', 'userName'],
     template:
     /*html*/
     `

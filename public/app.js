@@ -1,6 +1,5 @@
-(function() {
-    var socket = io();
-
+let socket = io("localhost:3000");
+// let socket = io();
 
 // ViewModel
 const app = Vue.createApp({
@@ -57,6 +56,4 @@ socket.on('init-chat', function(messages) {
 //initialize user list, updates user list when the client initially connects
 socket.on('update-users', function(users) {
     app.users = users;
-});
-
 });

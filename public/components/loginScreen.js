@@ -19,31 +19,25 @@ app.component('login-screen', {
     data() {
         return {
             hide: true,
-            input: {
-                userName: '',
-                //password: ''
+            userName: '',
+            //password: ''
             }
 
-        }
-    },
+        },
     methods:{
         //checks if userName is entered and if so, hides login screen and shows chat screen
-        checkForm( ) {
+        checkForm () {
             if (this.userName != '') {
                 this.hide = false;
                 this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
             }
-            else {
-                this.checkForm = true;
-
-            }
         
         },
         
-          setName: function(userName) {
-            this.userName = userName;
-            socket.emit('add-user', this.userName);
-        },
+        //   setName (userName) {
+        //     this.userName = userName;
+        //     socket.emit('add-user', this.userName);
+        // },
 
         },
         

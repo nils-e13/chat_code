@@ -30,7 +30,7 @@ app.component('login-screen', {
             if (this.userName.length > 0 ) {
                 this.hide = false;
                 this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
-                console.log("userName: " + this.userName + "just joined");
+                console.log("userName: " + this.userName + " just joined");
             }
         
         },

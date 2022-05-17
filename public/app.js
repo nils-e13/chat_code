@@ -6,7 +6,7 @@ const app = Vue.createApp({
     data() {
         return {
             //messages: sendMessages, //not sure if needed
-            messages: ["hello"],
+            messages: [],
             users: [],
             userName: '',
         }
@@ -15,7 +15,7 @@ const app = Vue.createApp({
         sendMessage: function(message) {
             if(message){
                 socket.emit('send-message', {message: message, user: this.userName});
-                console.log("Message received in app: " + message);
+                console.log("Message received from "+ this.userName + "in app: " + message);
             }
         },
 

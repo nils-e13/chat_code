@@ -21,6 +21,8 @@ app.use(express.static(path.join(__dirname+'/public')));
 var messages = [];
 var users = [];
 
+console.log(messages);
+
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);

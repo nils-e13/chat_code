@@ -9,10 +9,6 @@
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
 
-    <!--Logrocket-->
-    <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
-    <script>window.LogRocket && window.LogRocket.init('2hwpm9/chat');</script>
-
     <title>Chat</title>
 </head>
 <body>
@@ -29,7 +25,7 @@
 
         <!-- Chat window component-->
         <!--collect send-message emit from component and pass to sendMessage method in app-->
-        <chat-window @send-message="sendMessage" :messages="messages" :user-name="userName"></chat-window>
+        <chat-window @send-message="sendMessage" :message-data="message"></chat-window>
 
         </div>
     </div>

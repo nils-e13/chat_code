@@ -24,7 +24,7 @@ app.component('chat-window', {
                     <!--iterateing over messages-->
                     <li v-for="message in messages">
                         <!--bind each message data to message component-->
-                        <message v-bind:message-data="message"></message>
+                        <message :message-data="message"></message>
                     </li>
                 </ul>
         

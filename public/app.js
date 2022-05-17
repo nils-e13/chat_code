@@ -6,7 +6,7 @@ const app = Vue.createApp({
     data() {
         return {
             //messages: sendMessages, //not sure if needed
-            messages: [],
+            messages: ["hello"],
             users: [],
             userName: '',
         }

@@ -20,6 +20,7 @@ app.component('chat-window', {
         <!-- Block for chat messages -->
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
+            <p>{{ messages }}</p>    
                 <ul>
                     <!--iterateing over messages-->
                     <li v-for="message in messages">

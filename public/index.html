@@ -29,7 +29,7 @@
 
         <!-- Chat window component-->
         <!--collect send-message emit from component and pass to sendMessage method in app-->
-        <chat-window @send-message="sendMessage"></chat-window>
+        <chat-window @send-message="sendMessage" :messages="messages" :user-name="userName"></chat-window>
 
         </div>
     </div>

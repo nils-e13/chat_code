@@ -9,7 +9,6 @@ const app = Vue.createApp({
             messages: [],
             users: [],
             userName: '',
-            
         }
     },
     methods: {
@@ -19,20 +18,22 @@ const app = Vue.createApp({
             }
         },
 
+        //receives this.userName as first value from @set-name="setName" component from parent which passes it to setName method here
         setName: function(userName) {
             this.userName = userName;
+            console.log(userName + "received in app")
             socket.emit('add-user', this.userName);
         },
 
         // This method is used to scroll the chatbox when a new message is printed
-        scrollToEnd: function() {       
-            var container = this.$el.querySelector("#messages");
-            container.scrollTop = container.scrollHeight;
-        },
+        // scrollToEnd: function() {       
+        //     var container = this.$el.querySelector("#messages");
+        //     container.scrollTop = container.scrollHeight;
+        // },
     },
 
     updated(){
-        this.scrollToEnd();
+        //this.scrollToEnd();
     }
  
 });

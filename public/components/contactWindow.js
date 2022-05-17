@@ -1,6 +1,5 @@
 app.component('contact-window', {
-    props: ['users'],
-
+    props: ['users', 'userName'],
     template:
     /*html*/
     `
@@ -8,8 +7,8 @@ app.component('contact-window', {
         <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
             <div class="contact-wrapper-menu">
 
-                <div class="your-profile-block" v-for="user in users"> <!--v-for="user in users"-->
-                    <h2 id="blue-text"> {{ user.name }} test</h2>
+                <div class="your-profile-block"> <!--v-for="user in users"-->
+                    <h2 id="blue-text"> {{ userName }} </h2>
                 </div>
 
                 <div class="add-contact-block">
@@ -23,7 +22,7 @@ app.component('contact-window', {
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                            <h2>global chat</h2>
+                            <h2> global chat</h2>
                         </div>
                             
                     </div>

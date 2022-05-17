@@ -9,18 +9,23 @@
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
 
+    <!--Logrocket-->
+    <script src="https://cdn.lr-in-prod.com/LogRocket.min.js" crossorigin="anonymous"></script>
+    <script>window.LogRocket && window.LogRocket.init('2hwpm9/chat');</script>
+
     <title>Chat</title>
 </head>
 <body>
 <div id="app">
     <!-- Log In Screen component-->
-    <login-screen v-on: set-name="setName"></login-screen>
-    
+    <!--parent listens for v-on:set-name from child component which emits userName to this, on checkForm function if true-->
+    <!--parent passes this.userName from set-name to setName method-->
+    <login-screen @set-name="setName"></login-screen>
 
     <div class="main-container" id="mainContainer">
         <!-- Contact window component-->
         <!-- pass users names down to contact-window child component-->
-        <contact-window v-bind:users="users"></contact-window>
+        <contact-window :user-name="userName" :users="users"></contact-window>
 
         <!-- Chat window component-->
         <chat-window></chat-window>

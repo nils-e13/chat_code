@@ -9,7 +9,7 @@ app.component('chat-window', {
         <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
             <div class="contact-block"> <!--block for current contact with profile image and name-->
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                <h2> test name<!--{{messageData.user}}--> </h2>
+                <h2> global chat<!--{{messageData.user}}--> </h2>
             </div>
 
         </div>
@@ -20,7 +20,7 @@ app.component('chat-window', {
         <!-- Block for chat messages -->
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
-            <p>{{ message }}</p> 
+            <!--<p>{{ message }}</p> -->
                 <ul>
                     <!--iterateing over messages-->
                     <li v-for="message in messages">
@@ -28,15 +28,6 @@ app.component('chat-window', {
                         <message :message-data="message"></message>
                     </li>
                 </ul>
-        
-                <!--Component sendMessage.js for all sent out chat messages-->
-                <!--<send-message v-if="messages.length" :messages="messages"></send-message>--> <!--//adding messages props that live on messages array component-->
-
-                <!--paragraph for send out chat messages-->
-                <!--<p class="message-content send-message-block no-margin" v-for="(content, index) in messages" :key="index"> {{ content.content }} </p>-->
-
-                <!--paragraph for received chat messages-->
-                <!--<p class="message-content receive-message-block no margin" v-for="(content, index) in messages" :key="index"> {{  }} </p> //content.content-->
 
             </div>
         </div>

@@ -22,7 +22,7 @@ const app = Vue.createApp({
         //receives this.userName as first value from @set-name="setName" component from parent which passes it to setName method here
         setName: function(userName) {
             this.userName = userName;
-            console.log(userName + "received in app")
+            console.log("userName: " + userName + " received in app")
             socket.emit('add-user', this.userName);
         },
 

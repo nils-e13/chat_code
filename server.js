@@ -21,8 +21,6 @@ app.use(express.static(path.join(__dirname+'/public')));
 var messages = [];
 var users = [];
 
-console.log(messages);
-
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);
@@ -41,8 +39,9 @@ io.on('connection', function (socket) {
 
   //when a user sends a message, server pushes the info to message list and emits an event 
   socket.on('send-message', function(data) {
-    var newMessage = { text: data.message, user : data.user, date: dateFormat(new Date (), 'shortTime')};
+    var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/};
     messages.push(newMessage);
+    console.log(newMessage);
     io.emit('read-message', newMessage);
   });
 

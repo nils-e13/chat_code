@@ -35,30 +35,34 @@ const app = Vue.createApp({
     updated(){
         //this.scrollToEnd();
     }
+    // mounted() {
+
+    // }
  
 });
 
 //Client socket events
-//When server emits message, client updates message list
+//When server emits message, client updates message list in app
 socket.on('read-message', function(message) {
-    app.messages.push({text : message.text, user : message.user, date: message.date});
+    mountedApp.messages.push({text : message.text, user : message.user, date: message.date});
+    console.log("message from server received in app");
     console.log(message);
 });
 
 //when new user connects, server emits user-connected event which updates user list
 socket.on('user-connected', function(userID) {
     app.users.push(userID);
-    console.log(userID);
+    // console.log(userID);
 });
 
 //initialize chat window, updates initial chat with current messages
 socket.on('init-chat', function(messages) {
     app.messages = messages;
-    console.log(messages);
+    // console.log(messages);
 });
 
 //initialize user list, updates user list when the client initially connects
 socket.on('update-users', function(users) {
     app.users = users;
-    console.log(users);
+    // console.log(users);
 });

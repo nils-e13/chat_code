@@ -41,7 +41,7 @@ io.on('connection', function (socket) {
   socket.on('send-message', function(data) {
     var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/};
     messages.push(newMessage);
-    console.log(newMessage);
+    // console.log(newMessage);
     io.emit('read-message', newMessage);
   });
 

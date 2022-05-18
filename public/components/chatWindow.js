@@ -1,6 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['messages', 'userName', 'users'],
+    props: ['messageData', 'userName', 'users'],
     template:
     /*html*/
     `
@@ -51,7 +51,6 @@ app.component('chat-window', {
     data() {
         return {
             message: '',
-
 
             //content: '',
 

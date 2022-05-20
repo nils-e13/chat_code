@@ -42,7 +42,7 @@ io.on('connection', function (socket) {
     var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
     messages.push(newMessage); //push message to message list
     // console.log(newMessage);
-    io.emit('read-message', newMessage); //send message to all users
+    socket.broadcast.emit('read-message', newMessage); //send message to all users except the sender
   });
 
   //when new user connects, server pushes the info to user list and emits an event

@@ -23,14 +23,20 @@ app.component('chat-window', {
             
             <!--<p>{{ message }}</p> -->
                 <ul>
-                    <!--iterateing over messages-->
-                    <!--<li v-for="message in messages">-->
+                    <!--iterating over messages-->
+                    <!--<li v-for="messageContent in messageContentFromSender">-->
                     <li>
                         <!--components for send out and received messages-->
 
                         <!-- <received-message-component></received-message-component> -->
-                        <send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>
-                        <!--<p class="message-content send-message-block no-margin" v-for="(messageContent, index) in messageContentFromSender" :key="index"> {{messageContent.messageContent}} </p>-->
+                        <!--<send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>-->
+                        
+                        <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
+                        <div v-for="(messageContent, index) in messageContentFromSender" :key="index">
+                        <p class="message-content send-message-block no-margin"> {{messageContent.messageContent}} </p>
+                        </div>
+                    
+                    
                     </li>
                 </ul>
 

@@ -12,18 +12,17 @@ const app = Vue.createApp({
         }
     },
     methods: {
-        sendMessage: function(message) {
+        sendMessage: function(message) { //receives messageContent from input field and emits it + userName to server
             if(message){
                 socket.emit('send-message', {message: message, user: this.userName}); //send message content + username to server
-                console.log("messagereceivedinapp");
+                console.log("messageContent received in App and sent to server");
             }
         },
 
-        //receives this.userName as first value from @set-name="setName" component from parent which passes it to setName method here
+        //receives this.userName as first value @set-name="setName" from loginScreencomponent from parent which passes it to setName method here
         setName: function(userName) {
             this.userName = userName;
-            console.log("userName: " + userName + " received in app")
-            socket.emit('add-user', this.userName);
+            socket.emit('add-user', this.userName); //send username to server
         },
 
         // This method is used to scroll the chatbox when a new message is printed

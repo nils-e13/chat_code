@@ -81,7 +81,7 @@ app.component('chat-window', {
             this.messageContentFromSender.push(sendMessageBubble);
             //end of test
 
-                this.$emit('send-message', this.messageContent);
+                this.$emit('send-message', this.messageContent); //emit messageContent to app.js
                 this.messageContent = ''; //reset input field
             }
 

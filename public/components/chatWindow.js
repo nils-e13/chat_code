@@ -21,24 +21,25 @@ app.component('chat-window', {
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
             
-            <!--<p>{{ message }}</p> -->
+                <!--list with components doesnt work yet-->
                 <ul>
                     <!--iterating over messages-->
-                    <!--<li v-for="messageContent in messageContentFromSender">-->
-                    <li>
+                    <li v-for="messageContent in messageContentFromSender">
+
                         <!--components for send out and received messages-->
+                        <!--but display as components doesnt work yet bec each bubble displays the entire array of messages-->
 
                         <!-- <received-message-component></received-message-component> -->
                         <!--<send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>-->
-                        
-                        <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
-                        <div v-for="(messageContent, index) in messageContentFromSender" :key="index">
-                        <p class="message-content send-message-block no-margin"> {{messageContent.messageContent}} </p>
-                        </div>
-                    
                     
                     </li>
                 </ul>
+
+                <!--div for send out chat bubbles-->
+                 <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
+                <div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
+                        <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
+                </div>
 
             </div>
         </div>

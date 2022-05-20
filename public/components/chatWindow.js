@@ -16,16 +16,18 @@ app.component('chat-window', {
         <div class="name-chat-divider"> <!--divider between contact name and chat messages-->
 
         </div>
-        
+
         <!-- Block for chat messages -->
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
+            
             <!--<p>{{ message }}</p> -->
                 <ul>
                     <!--iterateing over messages-->
-                    <li v-for="message in messages">
+                    <!--<li v-for="message in messages">-->
+                    <li>
                         <!--bind each message data to message component-->
-                        <message :message-data="message"></message>
+                        <send-message-component :message-data="message"></send-message-component>
                     </li>
                 </ul>
 
@@ -33,10 +35,10 @@ app.component('chat-window', {
         </div>
 
         <!-- Block for text input form -->
-        <form class="text-input-form" id="text-input-form" @submit.prevent="send">
+        <form class="text-input-form" id="text-input-form" @submit.prevent="sendToApp">
             <div class="text-input-field"> <!--input field for chat messages-->
                 <!--when message is sent, input emits an event (send-message)-->
-                <input id="input" v-model="message" class="message-input-field" type="text" placeholder="Message...">
+                <input id="input" v-model="messageContent" class="message-input-field" type="text" placeholder="Message...">
                 <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
             </div>
         </form>
@@ -50,17 +52,17 @@ app.component('chat-window', {
     `,
     data() {
         return {
-            message: '',
+            messageContent: '',
 
             //content: '',
 
         }
     },
     methods:{
-        send () {
-            if(this.message.length > 0) {
-                this.$emit('send-message', this.message);
-                this.message = '';
+        sendToApp () {
+            if(this.messageContent.length > 0) {
+                this.$emit('send-message', this.messageContent);
+                this.messageContent = '';
         }
     
     },

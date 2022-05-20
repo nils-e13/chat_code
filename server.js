@@ -38,9 +38,9 @@ io.on('connection', function (socket) {
   socket.emit('update-users', users); //send all users to new user
 
   //when a user sends a message, server pushes the info to message list and emits an event 
-  socket.on('send-message', function(data) {
-    var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/};
-    messages.push(newMessage);
+  socket.on('send-message', function(data) { //data is the message content, server receives send message from client and pushes to message list
+    var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
+    messages.push(newMessage); //push message to message list
     // console.log(newMessage);
     io.emit('read-message', newMessage);
   });

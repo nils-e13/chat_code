@@ -14,7 +14,8 @@ const app = Vue.createApp({
     methods: {
         sendMessage: function(message) {
             if(message){
-                socket.emit('send-message', {message: message, user: this.userName});
+                socket.emit('send-message', {message: message, user: this.userName}); //send message content + username to server
+                console.log("messagereceivedinapp");
             }
         },
 

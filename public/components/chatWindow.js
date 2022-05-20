@@ -26,8 +26,11 @@ app.component('chat-window', {
                     <!--iterateing over messages-->
                     <!--<li v-for="message in messages">-->
                     <li>
-                        <!--bind each message data to message component-->
-                        <send-message-component :message-data="message"></send-message-component>
+                        <!--components for send out and received messages-->
+
+                        <!-- <received-message-component></received-message-component> -->
+                        <send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>
+                        <!--<p class="message-content send-message-block no-margin" v-for="(messageContent, index) in messageContentFromSender" :key="index"> {{messageContent.messageContent}} </p>-->
                     </li>
                 </ul>
 
@@ -52,7 +55,8 @@ app.component('chat-window', {
     `,
     data() {
         return {
-            messageContent: '',
+            messageContent: '', //stores message content from input field until submit button is clicked
+            messageContentFromSender: [], //stores message content from input field after submit button is clicked
 
             //content: '',
 
@@ -60,11 +64,20 @@ app.component('chat-window', {
     },
     methods:{
         sendToApp () {
+
+            
             if(this.messageContent.length > 0) {
+            //test to store message content from input field and display it as chat bubble
+            let sendMessageBubble = {
+                messageContent: this.messageContent,
+            }
+            this.messageContentFromSender.push(sendMessageBubble);
+            //end of test
+
                 this.$emit('send-message', this.messageContent);
-                this.messageContent = '';
-        }
-    
+                this.messageContent = ''; //reset input field
+            }
+
     },
     
     },

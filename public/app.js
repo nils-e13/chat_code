@@ -6,7 +6,7 @@ const app = Vue.createApp({
     data() {
         return {
             //messages: sendMessages, //not sure if needed
-            messages: [],
+            messages: [], //received messages from server for all clients except sender
             users: [],
             userName: '',
         }
@@ -45,10 +45,14 @@ const app = Vue.createApp({
 //Client socket events
 //When server emits message, client updates message list in app
 socket.on('read-message', function(message) {
-    mountedApp.messages.push({text : message.text, user : message.user, date: message.date});
+    mountedApp.messages.push({text : message.text, user : message.user, date: message.date}); //once client receives message from server, push to message list array
     console.log("message from server received in app");
     console.log(message);
 });
+
+
+
+
 
 //when new user connects, server emits user-connected event which updates user list
 socket.on('user-connected', function(userID) {

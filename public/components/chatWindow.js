@@ -1,6 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['messageData', 'userName', 'users'],
+    props: ['messageFromServer', 'userName'],
     template:
     /*html*/
     `
@@ -34,10 +34,16 @@ app.component('chat-window', {
                     
                     </li>
                 </ul>
+                <p>{{messageFromServer}}</p>
 
                 <!--div for send out chat bubbles-->
                  <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
                 <div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
+                        <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
+                </div>
+
+                <!--div for received chat bubbles-->
+                <div class="receive-message-block" v-for="(messageFromServer, index) in messageFromServer" :key="index">
                         <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
                 </div>
 

@@ -41,7 +41,7 @@ io.on('connection', function (socket) {
     var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
     //let new users = new user { }... so ca für classes
     serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
-    console.log(serverMessagesArray);
+    //console.log(serverMessagesArray);
     socket.broadcast.emit('read-message', newMessage); //send message to all users except the sender
   });
 

@@ -34,7 +34,7 @@ app.component('chat-window', {
                     
                     </li>
                 </ul>
-                <p>{{messageFromServer}}</p>
+                <!--<p>{{messageFromServer}}</p>-->
 
                 <!--div for send out chat bubbles-->
                  <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
@@ -43,8 +43,8 @@ app.component('chat-window', {
                 </div>
 
                 <!--div for received chat bubbles-->
-                <div class="receive-message-block" v-for="(messageFromServer, index) in messageFromServer" :key="index">
-                        <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
+                <div class="receive-message-block" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
+                        <p class="message-content no-margin"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
                 </div>
 
             </div>

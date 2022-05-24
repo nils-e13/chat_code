@@ -18,14 +18,17 @@ class user {
 }
 
 class message {
-    constructor (content, timeStamp) {
-        this._content = content;
-        this._timeStamp = timeStamp;
+    constructor (text, user) {
+        this._text = text;
+        this._user = user;
+        //this._date = date;
     }
 
 
 }
 
-let testMessage = new message("1234", "Lorem Ipsum Test", "12:49");
+let testMessage = new message("hello from classes", "Nils");
 
-const sendMessages = [testMessage];
+//let serverMessagesArray = [];
+let messageArrayClasses = [testMessage];
+//console.log(messageArrayClasses);

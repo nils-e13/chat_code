@@ -18,9 +18,8 @@ const dateFormat = import('dateformat');
 app.use(express.static(path.join(__dirname+'/public')));
 
 //store messages + users here for now, but should be moved to classes
-var messages = [];
+let serverMessagesArray = [];
 var users = [];
-
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);
@@ -33,15 +32,16 @@ io.on('connection', function (socket) {
     console.log('user disconnected') //log when a user disconnects
   });
 
-  socket.emit('init-chat', messages); //send all messages to new user
+  socket.emit('init-chat', serverMessagesArray); //send all messages to new user
 
   socket.emit('update-users', users); //send all users to new user
 
   //when a user sends a message, server pushes the info to message list and emits an event 
   socket.on('send-message', function(data) { //data is the message content, server receives send message from client and pushes to message list
     var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
-    messages.push(newMessage); //push message to message list
-    // console.log(newMessage);
+    //let new users = new user { }... so ca für classes
+    serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
+    console.log(serverMessagesArray);
     socket.broadcast.emit('read-message', newMessage); //send message to all users except the sender
   });
 

@@ -22,9 +22,9 @@ app.component('chat-window', {
             <div class="message-window-container"> <!--container for chat messages-->
             
                 <!--list with components doesnt work yet-->
-                <ul>
+                <!--<ul>-->
                     <!--iterating over messages-->
-                    <li v-for="messageContent in messageContentFromSender">
+                    <!--<li v-for="messageContent in messageContentFromSender">-->
 
                         <!--components for send out and received messages-->
                         <!--but display as components doesnt work yet bec each bubble displays the entire array of messages-->
@@ -32,10 +32,8 @@ app.component('chat-window', {
                         <!-- <received-message-component></received-message-component> -->
                         <!--<send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>-->
                     
-                    </li>
-                </ul>
-                <!--<p>{{messageFromServer}}</p>-->
-
+                    <!--</li>-->
+                <!--</ul>-->
                 <!--div for send out chat bubbles-->
                  <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
                 <div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
@@ -44,7 +42,8 @@ app.component('chat-window', {
 
                 <!--div for received chat bubbles-->
                 <div class="receive-message-block" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
-                        <p class="message-content no-margin"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
+                    <p class="message-user-name no-margin"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
+                    <p class="message-content no-margin"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
                 </div>
 
             </div>

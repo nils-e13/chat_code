@@ -243,6 +243,7 @@ ul {
     padding-right: 16px;
 }
 
+
 .receive-message-block{
     background-color: #3E3F41;
     width: auto;
@@ -252,10 +253,12 @@ ul {
     border-radius: 16px;
     margin-right: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding-left: 16px;
     padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 
 }
 
@@ -269,7 +272,17 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+.message-user-name{
+    color: #2863e4;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
 }
 
 .text-input-field{

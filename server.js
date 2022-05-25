@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname+'/public')));
 
 
 //classes for oop
-class chat {
+class Chat {
   constructor (uid) {
       this._uid = uid;
       //this.messages
@@ -32,7 +32,7 @@ class chat {
   
 }
 
-class user {
+class User {
   constructor (name) {
       this._name = name;
       
@@ -40,20 +40,21 @@ class user {
 
 }
 
-class message {
+class Message {
   constructor (text, user) {
       this._text = text;
       this._user = user;
       //this._date = date;
   }
 
+
 }
 
-let testMessage = new message("hello from classes", "Nils");
 
-//let serverMessagesArray = [];
-let messageArrayClasses = [testMessage];
-//console.log(messageArrayClasses);
+//test with classes
+let classesMessagesArray = [];
+console.log("this is classesMessagesArray:")
+console.log(classesMessagesArray);
 
 
 
@@ -81,11 +82,18 @@ io.on('connection', function (socket) {
 
   //when a user sends a message, server pushes the info to message list and emits an event 
   socket.on('send-message', function(data) { //data is the message content, server receives send message from client and pushes to message list
-    var newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
-    //let new users = new user { }... so ca für classes
-    serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
-    //console.log(serverMessagesArray);
-    socket.broadcast.emit('read-message', newMessage); //send message to all users except the sender
+    // let newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
+    // let new users = new user { }... so ca für classes
+    // serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
+    
+    //test with classes
+    let newMessageClasses = new Message(data.message, data.user);
+    classesMessagesArray.push(newMessageClasses);
+    console.log(newMessageClasses);
+    
+
+    
+    socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
   });
 
   //when new user connects, server pushes the info to user list and emits an event

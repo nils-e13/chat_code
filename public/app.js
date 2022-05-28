@@ -9,6 +9,7 @@ const app = Vue.createApp({
             messages: [], //received messages from server for all clients except sender
             users: [],
             userName: '',
+            
         }
     },
     methods: {

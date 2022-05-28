@@ -21,29 +21,17 @@ app.component('chat-window', {
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
             
-                <!--list with components doesnt work yet-->
-                <!--<ul>-->
-                    <!--iterating over messages-->
-                    <!--<li v-for="messageContent in messageContentFromSender">-->
-
-                        <!--components for send out and received messages-->
-                        <!--but display as components doesnt work yet bec each bubble displays the entire array of messages-->
-
-                        <!-- <received-message-component></received-message-component> -->
-                        <!--<send-message-component :message-content-from-sender="messageContentFromSender" :message-data="message"></send-message-component>-->
-                    
-                    <!--</li>-->
-                <!--</ul>-->
                 <!--div for send out chat bubbles-->
                  <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
-                <div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
+                <!--<div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
                         <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
-                </div>
+                </div>-->
 
                 <!--div for received chat bubbles-->
-                <div class="receive-message-block" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
+                <div v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <p class="message-user-name no-margin"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
-                    <p class="message-content no-margin"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-if="sendMessage"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
+                    <p class="receive-message-block message-content no-margin" v-else="receiveMessage"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
                 </div>
 
             </div>

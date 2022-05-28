@@ -30,9 +30,15 @@ app.component('chat-window', {
                 <!--div for received chat bubbles-->
                 <div v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <p class="message-user-name no-margin"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
-                    <!--<p class="send-message-block message-content no-margin" v-if="clientMessage"> {{messageFromServer.text}} </p>  displays message text from messageFromServerArray-->
+                    
+                    
+                    
+                    <!--v-if conditional rendering doesnt work yet
+                    <p class="send-message-block message-content no-margin" v-if="clientMessage"> {{messageFromServer.text}} </p>  <!--displays message text from messageFromServerArray-->
                     <!--<p class="receive-message-block message-content no-margin" v-else> {{messageFromServer.text}} </p> displays message text from messageFromServerArray-->
-                    <p class="receive-message-block message-content no-margin"> {{messageFromServer.text}} </p> <!-- displays message text from messageFromServerArray-->
+                    <!--<p class="receive-message-block message-content no-margin"> {{messageFromServer.text}} </p> displays message text from messageFromServerArray-->
+                
+                
                 </div>
 
             </div>
@@ -80,8 +86,12 @@ app.component('chat-window', {
             }
 
         },
+
+        //v-if conditional rendering doesnt work yet with function
         //clientMessage () {
-            //if 
+            //if (userID === messageFromServer.userID) {
+                //return false;
+            //}
         //}
 
     

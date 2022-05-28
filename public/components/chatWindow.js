@@ -34,8 +34,8 @@ app.component('chat-window', {
                     
                     
                     <!--v-if conditional rendering doesnt work yet, problem is that message userID is not the userID of the sender but of the receiver-->
-                    <p class="send-message-block message-content no-margin" v-if="userID = messageFromServer.userID"> {{messageFromServer.text}} </p>  <!--displays message text from messageFromServerArray-->
-                    <p class="receive-message-block message-content no-margin" v-else="userID != messageFromServer.userID"> {{messageFromServer.text}} </p> <!--displays message text from messageFromServerArray-->
+                    <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer.userID"> {{messageFromServer.text}} </p>  <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-else=> {{messageFromServer.text}} </p> <!--displays message text from messageFromServerArray-->
                     <!--<p class="receive-message-block message-content no-margin"> {{messageFromServer.text}} </p> displays message text from messageFromServerArray-->
                 
                 

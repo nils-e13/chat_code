@@ -9,7 +9,7 @@ app.component('contact-window', {
 
                 <div class="your-profile-block"> <!--v-for="user in users"-->
                     <h2 id="blue-text"> {{ userName }} </h2>
-                    <p> {{ userID }} </p>
+                    <!--<p> {{ userID }} </p>-->
                 </div>
 
                 <div class="add-contact-block">

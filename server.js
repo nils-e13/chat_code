@@ -88,7 +88,7 @@ io.on('connection', function (socket) {
     // serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
     
     //test with classes
-    let newMessageClasses = new Message(data.message, data.user, socket.id);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    let newMessageClasses = new Message(data.message, data.user, data.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newMessageClasses);
     console.log(newMessageClasses);
     

@@ -16,7 +16,7 @@ const app = Vue.createApp({
     methods: {
         sendMessage: function(message) { //receives messageContent from input field and emits it + userName to server
             if(message){
-                socket.emit('send-message', {message: message, user: this.userName}); //send message content + username to server
+                socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
                 console.log("messageContent received in App and sent to server");
             }
         },

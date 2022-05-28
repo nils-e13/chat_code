@@ -93,7 +93,8 @@ io.on('connection', function (socket) {
     
 
     
-    socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
+    //socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
+    io.sockets.emit('read-message', newMessageClasses); //send message to all users including the sender
   });
 
   //when new user connects, server pushes the info to user list and emits an event

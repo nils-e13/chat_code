@@ -41,9 +41,10 @@ class User {
 }
 
 class Message {
-  constructor (text, user) {
+  constructor (text, user, uID) {
       this._text = text;
       this._user = user;
+      this._uID = uID;
       //this._date = date;
   }
 
@@ -63,7 +64,7 @@ console.log(classesMessagesArray);
 
 //store messages + users here for now, but should be moved to classes
 let serverMessagesArray = [];
-var users = [];
+var users = []; //array contains user names + ids
 
 server.listen(port, function () {
   console.log('listening on port: ' + port);
@@ -87,7 +88,7 @@ io.on('connection', function (socket) {
     // serverMessagesArray.push(newMessage); //pushes newMessage object to end of messages array
     
     //test with classes
-    let newMessageClasses = new Message(data.message, data.user);
+    let newMessageClasses = new Message(data.message, data.user, socket.id);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newMessageClasses);
     console.log(newMessageClasses);
     
@@ -100,6 +101,7 @@ io.on('connection', function (socket) {
   //when new user connects, server pushes the info to user list and emits an event
   socket.on('add-user', function(user) {
     users.push({ id: socket.id, name: user });
+    console.log(users);
     io.emit('update-users', users);
   });
 

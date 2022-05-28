@@ -21,11 +21,11 @@
     <div class="main-container" id="mainContainer">
         <!-- Contact window component-->
         <!-- pass users names down to contact-window child component-->
-        <contact-window :user-name="userName" :users="users"></contact-window>
+        <contact-window :user-name="userName" :users="users" :user-Id="userID"></contact-window>
 
         <!-- Chat window component-->
         <!--collect send-message emit from component and pass to sendMessage method in app-->
-        <chat-window @send-message="sendMessage" :message-from-server="messages"></chat-window>
+        <chat-window @send-message="sendMessage" :message-from-server="messages" :user-I-D="userID" :test-name="testName"></chat-window>
         </div>
     </div>
     

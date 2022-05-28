@@ -41,10 +41,10 @@ class User {
 }
 
 class Message {
-  constructor (text, user, uID) {
+  constructor (text, user, userID) {
       this._text = text;
       this._user = user;
-      this._uID = uID;
+      this._userID = userID;
       //this._date = date;
   }
 
@@ -98,9 +98,11 @@ io.on('connection', function (socket) {
     io.sockets.emit('read-message', newMessageClasses); //send message to all users including the sender
   });
 
+  
+
   //when new user connects, server pushes the info to user list and emits an event
   socket.on('add-user', function(user) {
-    users.push({ id: socket.id, name: user });
+    users.push({ userName: user, userID: socket.id }); //push user to users array
     console.log(users);
     io.emit('update-users', users);
   });

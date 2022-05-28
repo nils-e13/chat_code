@@ -9,6 +9,7 @@ const app = Vue.createApp({
             messages: [], //received messages from server for all clients except sender
             users: [],
             userName: '',
+            userID: '',
             
         }
     },
@@ -23,7 +24,8 @@ const app = Vue.createApp({
         //receives this.userName as first value @set-name="setName" from loginScreencomponent from parent which passes it to setName method here
         setName: function(userName) {
             this.userName = userName;
-            socket.emit('add-user', this.userName); //send username to server
+            this.userID = socket.id;
+            socket.emit('add-user', this.userName, this.userID); //send username to server
         },
 
         // This method is used to scroll the chatbox when a new message is printed
@@ -46,7 +48,7 @@ const app = Vue.createApp({
 //When server emits message, client updates message list in app
 socket.on('read-message', function(message) {
     // mountedApp.messages.push({text : message.text, user : message.user, date: message.date}); //once client receives message from server, push to message list array
-    mountedApp.messages.push({text : message._text, user : message._user, uID : message._uID/*date: message.date*/}); //once client receives message from server, push to message list array
+    mountedApp.messages.push({text : message._text, user : message._user, userID : message._userID/*date: message.date*/}); //once client receives message from server, push to message list array
     console.log("message from server received in app");
     console.log(message);
 });

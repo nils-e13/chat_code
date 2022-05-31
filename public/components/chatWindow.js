@@ -11,8 +11,8 @@ app.component('chat-window', {
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
                 <h2> global chat<!--{{messageData.user}}--> </h2>
             </div>
-
         </div>
+
         <div class="name-chat-divider"> <!--divider between contact name and chat messages-->
 
         </div>
@@ -74,14 +74,6 @@ app.component('chat-window', {
             }
 
         },
-
-        //v-if conditional rendering doesnt work yet with function
-        //clientMessage () {
-            //if (userID === messageFromServer.userID) {
-                //return false;
-            //},
-        
-
     
     },
 });

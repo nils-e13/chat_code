@@ -22,8 +22,14 @@ app.component('contact-window', {
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
-                            <!-- <div class="profile-image-circle"></div> circle for profile image -->
                             <h2> global chat</h2>
+                        </div>
+                            
+                    </div>
+
+                    <div class="contact-field"> <!--selection field for the messaging contact-->
+                        <div class="contact-block"> <!--block for current contact with profile image and name-->
+                            <h2> user chat 1</h2>
                         </div>
                             
                     </div>

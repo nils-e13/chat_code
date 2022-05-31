@@ -20,25 +20,18 @@ app.component('chat-window', {
         <!-- Block for chat messages -->
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
-            
-                <!--div for send out chat bubbles-->
-                 <!--doesnt work with component yet bec it displays entire array, but as a div without component it works for some reason-->
-                <!--<div class="send-message-block" v-for="(messageContent, index) in messageContentFromSender" :key="index">
-                        <p class="message-content no-margin"> {{messageContent.messageContent}} </p>
-                </div>-->
 
-                <!--div for received chat bubbles-->
-                <div v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
-                    <p class="message-user-name no-margin"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
+                <!--div forchat bubbles-->
+                <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     
+                    <!-- p for user name in group chats -->
+                    <p class="message-user-name no-margin" v-if="userID != messageFromServer.userID"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
                     
-                    
-                    <!--v-if conditional rendering doesnt work yet, problem is that message userID is not the userID of the sender but of the receiver-->
+                    <!-- p for send/ receive messages -->
                     <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer.userID"> {{messageFromServer.text}} </p>  <!--displays message text from messageFromServerArray-->
                     <p class="send-message-block message-content no-margin" v-else=> {{messageFromServer.text}} </p> <!--displays message text from messageFromServerArray-->
-                    <!--<p class="receive-message-block message-content no-margin"> {{messageFromServer.text}} </p> displays message text from messageFromServerArray-->
-                
-                
+                    
+
                 </div>
 
             </div>
@@ -52,11 +45,6 @@ app.component('chat-window', {
                 <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
             </div>
         </form>
-
-            <!--user list, not really needed-->  
-            <!--<div>
-                <users v-bind: users="users"></users>
-            </div>-->
 
     </div>
     `,

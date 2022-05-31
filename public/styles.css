@@ -152,6 +152,40 @@ ul {
     overflow-y: scroll;
 }
 
+.online-users-block{
+    background-color: #3E3F41;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-contact-wrapper-menu{
+    width:100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 32px;
+    padding-right: 32px;
+    box-sizing: border-box;
+}
+
+.ph-caret-left-bold{
+    font-size: 1.25rem;
+    color: #F2F2F2;
+}
+
+.online-users-title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .contacts-window-container{
     width: 100%;
     height: calc(100vh - 80px);

@@ -25,7 +25,8 @@ const app = Vue.createApp({
         setName: function(userName) {
             this.userName = userName;
             this.userID = socket.id;
-            socket.emit('add-user', this.userName, this.userID); //send username to server
+            socket.emit('add-user', {user: this.userName, userID: socket.id}); //send username to server
+            console.log("usernames emitted from app to server");
         },
 
         // This method is used to scroll the chatbox when a new message is printed
@@ -71,6 +72,6 @@ socket.on('init-chat', function(messages) {
 
 //initialize user list, updates user list when the client initially connects
 socket.on('update-users', function(users) {
-    app.users = users;
+    mountedApp.users.push({user : users._user, userID : users._userID}); //once client receives usersfrom server, push to users array
     // console.log(users);
 });

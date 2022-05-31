@@ -180,27 +180,27 @@ ul {
 
 .add-contact-screen{
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .add-contact-center{
     position: absolute;
-    background-color: #2863E4;
-    width: 50vh;
-    height: 50vh;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, +100%); /*why tf?*/
+    background-color: #7C7E83;
+    width: 350px;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 16px;
 }
 
 .add-contact-form{
     height: 20vh;
-    width: 20vw;
-    background-color: grey;
-    position: absolute;
-    z-index: 10;
+    width: 22vw;
+    min-width: 240px;
 }
 
 .chat-wrapper{

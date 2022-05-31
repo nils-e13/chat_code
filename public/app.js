@@ -28,11 +28,6 @@ const app = Vue.createApp({
             socket.emit('add-user', this.userName, this.userID); //send username to server
         },
 
-        addContactButton: function() {
-                this.hide = true;
-                console.log("addContactButton clicked");
-        },
-
         // This method is used to scroll the chatbox when a new message is printed
         // scrollToEnd: function() {       
         //     var container = this.$el.querySelector("#messages");

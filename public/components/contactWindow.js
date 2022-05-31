@@ -13,7 +13,7 @@ app.component('contact-window', {
                 </div>
 
                 <div class="add-contact-block">
-                    <p class="subheader-2">Add Contact</p>
+                    <p class="subheader-2 cursor-pointer" @click="addContactButton">Add Contact</p>
                     <i class="ph-plus-bold"></i>
                 </div>
             </div>
@@ -29,6 +29,7 @@ app.component('contact-window', {
 
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
+
                             <h2> user chat 1</h2>
                         </div>
                             

@@ -1,25 +1,27 @@
-//component to log contacts
-app.component('login-screen', {
-
+//component for adding new contact
+app.component('add-contact', {
+    props: [],
     template:
     /*html*/
     `
     <!-- Login-Screen -->
-    <div class="login-screen" v-if="hide">
-        <form class="login-form" @submit.prevent="checkForm">
-            <h2 class="login-title">Welcome</h2>
+    <div class="add-contact-screen" v-if="hide">
+    <div class="add-contact-center">
+        <form class="add-contact-form" @submit.prevent="checkForm">
+            <h2 class="login-title">Add contact</h2>
 
             <!--emits username as username when user logs in-->   <!--not sure if input.userName or only user.Name-->
-            <input class="login-input-field" type="text" id="username" v-model="userName" placeholder="Your Name...">
+            <input class="login-input-field" type="text" id="username" v-model="userName" placeholder="Contact Name...">
 
-            <button class="login-button" >Log In</button>
+            <button class="login-button" >Add</button>
         </form>
+    </div>
     </div>
 
     `,
     data() {
         return {
-            hide: true,
+            hide: false,
             userName: '',
             //password: ''
             }

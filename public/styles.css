@@ -45,6 +45,10 @@ ul {
     margin: 0;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
+
 .login-screen{
     background-color: #202124;
     height: 100vh;
@@ -173,6 +177,31 @@ ul {
 /*.contact-field:hover{
     background-color: #7C7E83;
 }*/
+
+.add-contact-screen{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-contact-center{
+    position: absolute;
+    background-color: #2863E4;
+    width: 50vh;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-contact-form{
+    height: 20vh;
+    width: 20vw;
+    background-color: grey;
+    position: absolute;
+    z-index: 10;
+}
 
 .chat-wrapper{
     width: 61%;

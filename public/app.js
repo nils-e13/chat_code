@@ -49,12 +49,11 @@ const app = Vue.createApp({
 //When server emits message, client updates message list in app
 socket.on('read-message', function(message) {
     // mountedApp.messages.push({text : message.text, user : message.user, date: message.date}); //once client receives message from server, push to message list array
-    mountedApp.messages.push({text : message._text, user : message._user, userID : message._userID/*date: message.date*/}); //once client receives message from server, push to message list array
+    mountedApp.messages = message;
+    //mountedApp.messages.push({text : message._text, user : message._user, userID : message._userID/*date: message.date*/}); //once client receives message from server, push to message list array
     console.log("message from server received in app");
     console.log(message);
 });
-
-
 
 
 
@@ -66,8 +65,10 @@ socket.on('user-connected', function(userID) {
 
 //initialize chat window, updates initial chat with current messages
 socket.on('init-chat', function(messages) {
-    app.messages = messages;
-    // console.log(messages);
+    //update messages array with messages from server
+    mountedApp.messages = messages;
+    console.log("initial chat from server received in app");
+    console.log(messages);
 });
 
 //initialize user list, updates user list when the client initially connects

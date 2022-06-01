@@ -25,11 +25,11 @@ app.component('chat-window', {
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     
                     <!-- p for user name in group chats -->
-                    <p class="message-user-name no-margin" v-if="userID != messageFromServer.userID"> {{messageFromServer.user}} </p> <!-- displays user name from messageFromServerArray-->    
+                    <p class="message-user-name no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
-                    <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer.userID"> {{messageFromServer.text}} </p>  <!--displays message text from messageFromServerArray-->
-                    <p class="send-message-block message-content no-margin" v-else=> {{messageFromServer.text}} </p> <!--displays message text from messageFromServerArray-->
+                    <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-else=> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
                     
 
                 </div>

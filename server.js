@@ -63,12 +63,6 @@ console.log("this is classesUsersArray:")
 console.log(classesUsersArray);
 
 
-
-
-//store messages + users here for now, but should be moved to classes
-let serverMessagesArray = [];
-var users = []; //array contains user names + ids
-
 server.listen(port, function () {
   console.log('listening on port: ' + port);
 });
@@ -80,7 +74,12 @@ io.on('connection', function (socket) {
     console.log('user disconnected') //log when a user disconnects
   });
 
-  //socket.emit('init-chat', serverMessagesArray); //send all messages to new user
+
+
+  socket.emit('init-chat', classesMessagesArray); //send all messages to new user
+  
+  socket.emit('update-users', classesUsersArray); //send all users to new user
+
 
 
   //when a user sends a message, server pushes the info to message list and emits an event 
@@ -90,9 +89,11 @@ io.on('connection', function (socket) {
     //test with classes
     let newMessageClasses = new Message(data.message, data.user, data.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newMessageClasses);
+    //console.log(newMessageClasses);
     
     //socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
-    io.sockets.emit('read-message', newMessageClasses); //send message to all users including the sender
+    io.sockets.emit('read-message', classesMessagesArray);
+    //io.sockets.emit('read-message', newMessageClasses); //send message to all users including the sender
   });
 
   
@@ -105,10 +106,11 @@ io.on('connection', function (socket) {
     io.sockets.emit('update-users', newUsersClasses); //users array is updated and pushed to all users
   });
 
-  // socket.on('disconnect', function() {
-  //   users = users.filter(function(user) {
-  //     return user.id != socket.id;
-  //   });
-  //   //io.emit('update-users', users);
-  // });
+  //when user disconnects, server pushes the info to user list and emits an event
+  socket.on('disconnect', function() {
+    classesUsersArray = classesUsersArray.filter(function(user) {
+      return classesUsersArray.userID != socket.id;
+    });
+    io.emit('update-users', classesUsersArray);
+  });
 });

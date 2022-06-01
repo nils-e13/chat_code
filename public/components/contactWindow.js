@@ -16,7 +16,7 @@ app.component('contact-window', {
             </div>
 
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
-                <p> {{usersFromServer.user}} </p>
+                <p> {{usersFromServer._user}} </p>
             </div>
 
         </div>

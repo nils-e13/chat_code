@@ -71,8 +71,16 @@ socket.on('init-chat', function(messages) {
     console.log(messages);
 });
 
+//initialize user list, updates initial user list with current users
+socket.on('init-users', function(users) {
+    //update messages array with messages from server
+    mountedApp.users = users;
+    console.log("initial users from server received in app");
+    console.log(users);
+});
+
 //initialize user list, updates user list when the client initially connects
 socket.on('update-users', function(users) {
-    mountedApp.users.push({user : users._user, userID : users._userID}); //once client receives usersfrom server, push to users array
-    // console.log(users);
+    //mountedApp.users.push({user : users._user, userID : users._userID}); //once client receives usersfrom server, push to users array
+    mountedApp.users = users;
 });

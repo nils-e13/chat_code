@@ -78,7 +78,7 @@ io.on('connection', function (socket) {
 
   socket.emit('init-chat', classesMessagesArray); //send all messages to new user
   
-  socket.emit('update-users', classesUsersArray); //send all users to new user
+  socket.emit('init-users', classesUsersArray); //send all users to new user
 
 
 
@@ -102,15 +102,15 @@ io.on('connection', function (socket) {
   socket.on('add-user', function(data) {
     let newUsersClasses = new User(data.user, data.userID); //create new user object
     classesUsersArray.push(newUsersClasses);
-    console.log(newUsersClasses);
-    io.sockets.emit('update-users', newUsersClasses); //users array is updated and pushed to all users
+    //console.log(newUsersClasses);
+    io.sockets.emit('update-users', classesUsersArray); //users array is updated and pushed to all users
   });
 
   //when user disconnects, server pushes the info to user list and emits an event
-  socket.on('disconnect', function() {
-    classesUsersArray = classesUsersArray.filter(function(user) {
-      return classesUsersArray.userID != socket.id;
-    });
-    io.emit('update-users', classesUsersArray);
-  });
+  // socket.on('disconnect', function() {
+  //   classesUsersArray = classesUsersArray.filter(function(user) {
+  //     return classesUsersArray.userID != socket.id;
+  //   });
+  //   io.emit('update-users', classesUsersArray);
+  // });
 });

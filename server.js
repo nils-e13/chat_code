@@ -52,15 +52,11 @@ class Message {
 }
 
 
-//test with classes
+//array to store messages
 let classesMessagesArray = [];
-console.log("this is classesMessagesArray:")
-console.log(classesMessagesArray);
 
 //array to store all users
 let classesUsersArray = [];
-console.log("this is classesUsersArray:")
-console.log(classesUsersArray);
 
 
 server.listen(port, function () {
@@ -106,11 +102,11 @@ io.on('connection', function (socket) {
     io.sockets.emit('update-users', classesUsersArray); //users array is updated and pushed to all users
   });
 
-  //when user disconnects, server pushes the info to user list and emits an event
-  // socket.on('disconnect', function() {
-  //   classesUsersArray = classesUsersArray.filter(function(user) {
-  //     return classesUsersArray.userID != socket.id;
-  //   });
-  //   io.emit('update-users', classesUsersArray);
-  // });
+  //when user disconnects, server updates user list and removes user
+  socket.on('disconnect', function() {
+    classesUsersArray = classesUsersArray.filter(function(user) {
+      return user._userID != socket.id;
+    });
+    io.emit('update-users', classesUsersArray);
+  });
 });

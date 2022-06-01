@@ -9,14 +9,16 @@ app.component('contact-window', {
         <!-- list with all online users that can be added-->
         <div class="online-users-block" v-if="hide">
             <div class="add-contact-wrapper-menu">
-                <i class="ph-caret-left-bold cursor-pointer" @click="hideContactList"></i>
-                <div class="online-users-title">
-                    <h2> Online Users </h2>
-                </div>
+                
+                    <i class="ph-caret-left-bold cursor-pointer" @click="hideContactList"></i>
+                    <div class="online-users-title">
+                        <h2> Online Users </h2>
+                    </div>
+                
             </div>
 
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
-                <p> {{usersFromServer._user}} </p>
+                <p class="message-content"> {{usersFromServer._user}} </p>
             </div>
 
         </div>

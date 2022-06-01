@@ -155,10 +155,12 @@ ul {
 .online-users-block{
     background-color: #3E3F41;
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-right: 32px;
+    padding-left: 32px;
+    padding-bottom: 16px;
 }
 
 .add-contact-wrapper-menu{
@@ -168,8 +170,6 @@ ul {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 32px;
-    padding-right: 32px;
     box-sizing: border-box;
 }
 
@@ -183,6 +183,15 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.online-users-list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 32px;
+    box-sizing: border-box;
 }
 
 

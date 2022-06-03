@@ -110,7 +110,7 @@ app.component('contact-window', {
             }
         },
         //selecting contact stores contact details in selectedUserDetails array
-        //not sure if its better to push it into app.js and store details of selected contact there, probably better
+        //not sure if its better to push it into app.js and store details of selected contact also there, probably better
         selectContact: function (userName, userID) {
             let addSelectedUserDetails = {
                 privateContact: userName,
@@ -118,6 +118,9 @@ app.component('contact-window', {
             }
             this.selectedUserDetails.splice(0); //clear array
             this.selectedUserDetails.push(addSelectedUserDetails); //store only selected details of contact into selectedUserDetails array
+            
+            //doesnt work yet
+            this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
         }
 
             

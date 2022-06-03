@@ -19,7 +19,7 @@ app.component('contact-window', {
 
             <!-- all online users that can be added-->
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
-                <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID" v-model="privateContact" @click="addContactFromList"> {{usersFromServer._user}} </p>
+                <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID" @click="addContactFromList"> {{usersFromServer._user}} </p>
             </div>
 
         </div>
@@ -47,12 +47,12 @@ app.component('contact-window', {
                         </div>
                             
                     </div>
-                    <div v-for="privateContact in messageContacts">
+                    <div v-for="item in messageContacts">
 
                         <div class="contact-field"> <!--selection field for the messaging contact-->
                             <div class="contact-block"> <!--block for current contact with profile image and name-->
 
-                                <h2>{{privateContact.userName}}</h2>
+                                <h2>{{item.privateContact}}</h2>
                             </div>
                                 
                         </div>
@@ -90,7 +90,8 @@ app.component('contact-window', {
         addContactFromList: function (contacts) {
 
             let addPrivateContact = {
-                privateContacts: this.messageContent,
+                //privateContacts: this.messageContent,
+                privateContact: "test",
             }
             this.messageContacts.push(addPrivateContact);
             console.log("contact added: " + this.privateContact);

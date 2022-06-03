@@ -92,6 +92,7 @@ app.component('contact-window', {
             this.hide = false;
             }
         },
+        //adds online user to messageContacts array and displays in contact list
         addContact: function (userName, userID) {
             
             let addPrivateContact = {
@@ -108,6 +109,8 @@ app.component('contact-window', {
                 this.hide = false;
             }
         },
+        //selecting contact stores contact details in selectedUserDetails array
+        //not sure if its better to push it into app.js and store details of selected contact there, probably better
         selectContact: function (userName, userID) {
             let addSelectedUserDetails = {
                 privateContact: userName,

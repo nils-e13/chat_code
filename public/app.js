@@ -31,9 +31,11 @@ const app = Vue.createApp({
 
         //doesnt work yet
         selectedContact: function(selectedUserDetails){
+            console.log("selectedUserDetails");
+            console.log(selectedUserDetails);
+            //mountedApp.selectedContact = selectedUserDetails;
             this.selectedContact = selectedUserDetails;
-            this.selectedContact = "test";
-            console.log("App selectedUserDetails: ");
+            //console.log("App selectedUserDetails: "+ this.selectedContact);
 
         }
 

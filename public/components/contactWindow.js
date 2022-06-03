@@ -118,9 +118,11 @@ app.component('contact-window', {
             }
             this.selectedUserDetails.splice(0); //clear array
             this.selectedUserDetails.push(addSelectedUserDetails); //store only selected details of contact into selectedUserDetails array
-            
+            // console.log("addSelectedUserDetails");
+            // console.log(this.selectedUserDetails);
             //doesnt work yet
-            this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
+            this.$emit('select-contact', this.selectedUserDetails);
+            // this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
         }
 
             

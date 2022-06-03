@@ -19,7 +19,11 @@ app.component('contact-window', {
 
             <!-- all online users that can be added-->
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
-                <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID" @click="addContactFromList"> {{usersFromServer._user}} </p>
+                <!--store online users and make them clickable to add them to data contact list-->
+                <div @click="addContact(usersFromServer._userID, usersFromServer._user)">
+                    <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
+                </div>
+
             </div>
 
         </div>
@@ -68,7 +72,7 @@ app.component('contact-window', {
     data() {
         return {
             hide: false,
-            privateContact: '',
+            //privateContact: '',
             messageContacts: [],
             //input: {
                
@@ -87,19 +91,19 @@ app.component('contact-window', {
             this.hide = false;
             }
         },
-        addContactFromList: function (contacts) {
-
+        addContact: function (userID, userName) {
             let addPrivateContact = {
-                //privateContacts: this.messageContent,
-                privateContact: "test",
+                privateContact: userName,
+                userID: userID,
+
             }
             this.messageContacts.push(addPrivateContact);
-            console.log("contact added: " + this.privateContact);
+            console.log("contact added: " + "userName:" + userName + "userID: "+ userID);
 
-            if (contacts) {
+            if (userName) {
                 this.hide = false;
             }
-        },
+        }
         
     },
 });

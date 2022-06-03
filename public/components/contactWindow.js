@@ -20,7 +20,7 @@ app.component('contact-window', {
             <!-- all online users that can be added-->
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
                 <!--store online users and make them clickable to add them to data contact list-->
-                <div @click="addContact(usersFromServer._userID, usersFromServer._user)">
+                <div @click="addContact(usersFromServer._user, usersFromServer._userID)">
                     <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
                 </div>
 
@@ -55,10 +55,12 @@ app.component('contact-window', {
                     <!--contact list-->
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
-                        <div class="contact-field"> <!--selection field for the messaging contact-->
-                            <div class="contact-block"> <!--block for current contact with profile image and name-->
+                        <!--<div class="contact-field">--> <!--selection field for the messaging contact-->
+                        <div class="contact-field cursor-pointer" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
+                            <div class="contact-block"> <!--block for current contact-->
 
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
+                                <!--<span>{{item.privateUserID}}</span>--> <!--displays contact id from messageContactsArray-->
                             </div>
                                 
                         </div>
@@ -76,7 +78,7 @@ app.component('contact-window', {
         return {
             hide: false,
             messageContacts: [], //array to store contacts that have been added from online users
-
+            selectedUserDetails: [], //array to store the selected contact + details
         }
     },
     methods:{
@@ -90,19 +92,32 @@ app.component('contact-window', {
             this.hide = false;
             }
         },
-        addContact: function (userID, userName) {
+        addContact: function (userName, userID) {
+            
             let addPrivateContact = {
                 privateContact: userName,
-                userID: userID,
+                privateUserID: userID,
 
             }
+             
             this.messageContacts.push(addPrivateContact);
+            console.log(this.messageContacts);
             console.log("contact added: " + "userName:" + userName + "userID: "+ userID);
-
+            
             if (userName) {
                 this.hide = false;
             }
+        },
+        selectContact: function (userName, userID) {
+            let addSelectedUserDetails = {
+                privateContact: userName,
+                privateUserID: userID,
+            }
+            this.selectedUserDetails.splice(0); //clear array
+            this.selectedUserDetails.push(addSelectedUserDetails); //store only selected details of contact into selectedUserDetails array
         }
+
+            
         
     },
 });

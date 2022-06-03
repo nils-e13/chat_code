@@ -34,6 +34,22 @@ const app = Vue.createApp({
         //     var container = this.$el.querySelector("#messages");
         //     container.scrollTop = container.scrollHeight;
         // },
+
+        //private messaging function
+        // privateMessage: function(message) {
+        //     if (this.selectedUser) {
+        //       socket.emit("private message", {
+        //         message,
+        //         to: this.selectedUser.userID,
+        //       });
+        //       this.selectedUser.messages.push({
+        //         message,
+        //         fromSelf: true,
+        //       });
+        //     }
+        //   }
+
+
     },
 
     updated(){
@@ -84,3 +100,24 @@ socket.on('update-users', function(users) {
     //mountedApp.users.push({user : users._user, userID : users._userID}); //once client receives usersfrom server, push to users array
     mountedApp.users = users;
 });
+
+
+
+//private messaging
+//receive private message from server
+// socket.on("private message", ({ message, from }) => {
+//   for (let i = 0; i < this.users.length; i++) {
+//     const user = this.users[i];
+//     if (user.userID === from) {
+//       user.messages.push({
+//         message,
+//         fromSelf: false,
+//       });
+//       if (user !== this.selectedUser) {
+//         user.hasNewMessages = true;
+//       }
+//       break;
+//     }
+//   }
+// });
+

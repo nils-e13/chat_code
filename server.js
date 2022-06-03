@@ -99,7 +99,8 @@ io.on('connection', function (socket) {
     let newUsersClasses = new User(data.user, data.userID); //create new user object
     classesUsersArray.push(newUsersClasses);
     //console.log(newUsersClasses);
-    io.sockets.emit('update-users', classesUsersArray); //users array is updated and pushed to all users
+    //io.sockets.emit('update-users', classesUsersArray); //users array is updated and pushed to all users
+    socket.broadcast.emit('update-users', classesUsersArray); //users array is updated and pushed to all users except the sender
   });
 
   //when user disconnects, server updates user list and removes user
@@ -110,3 +111,13 @@ io.on('connection', function (socket) {
     io.emit('update-users', classesUsersArray);
   });
 });
+
+
+//private messaging
+//receive private message from client and emit it to receiver
+// socket.on("private message", ({ message, to }) => {
+//   socket.to(to).emit("private message", {
+//     message,
+//     from: socket.id,
+//   });
+// });

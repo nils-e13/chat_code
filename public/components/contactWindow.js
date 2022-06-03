@@ -6,7 +6,7 @@ app.component('contact-window', {
         <!-- Contact Container -->
         <div class="contact-wrapper"> <!--left wrapper to display different messaging contacts-->
             
-        <!-- list with all online users that can be added-->
+        <!-- window with list with all online users that can be added-->
         <div class="online-users-block" v-if="hide">
             <div class="add-contact-wrapper-menu">
                 
@@ -17,9 +17,13 @@ app.component('contact-window', {
                 
             </div>
 
+            <!-- all online users that can be added-->
+            <select v-model="privateContact">
             <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
-                <p class="message-content" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
+            <option value="{{usersFromServer._userID}}">{{usersFromServer._user}}</option>    
+            <!--<p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID" @click="addContactFromList"> {{usersFromServer._user}} </p>-->
             </div>
+            </select>
 
         </div>
         
@@ -39,7 +43,7 @@ app.component('contact-window', {
 
 
             <div class="contact-block-scroll">
-                <div class="contacts-window-container"> <!--contains the contact selection-->
+                <div class="contacts-window-container" v-for="privateContact in messageContacts"> <!--contains the contact selection-->
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
@@ -50,7 +54,8 @@ app.component('contact-window', {
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
 
-                            <h2> user chat 1</h2>
+                            <h2> {{ privateContact }} </h2>
+                            <!--<h2>{{privateContact.userName}}</h2>-->
                         </div>
                             
                     </div>
@@ -66,6 +71,8 @@ app.component('contact-window', {
     data() {
         return {
             hide: false,
+            privateContact: '',
+            messageContacts: [],
             //input: {
                
             //}
@@ -82,9 +89,19 @@ app.component('contact-window', {
             if (contacts) {
             this.hide = false;
             }
-        }
+        },
+        addContactFromList: function (contacts) {
 
-    },
+            let addPrivateContact = {
+                privateContact: this.messageContent,
+            }
+            this.messageContacts.push(addPrivateContact);
+            console.log("contact added: " + this.privateContact);
+
+            if (contacts) {
+                this.hide = false;
+            }
+        },
         
-
+    },
 });

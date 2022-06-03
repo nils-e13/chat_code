@@ -28,12 +28,11 @@ app.component('contact-window', {
 
         </div>
         
-        
+        <!-- window with list of all contacts that can be messaged-->
         <div class="contact-wrapper-menu">
 
                 <div class="your-profile-block"> <!--v-for="user in users"-->
                     <h2 id="blue-text"> {{ userName }} </h2>
-                    <!--<p> {{ userID }} </p>-->
                 </div>
 
                 <div class="add-contact-block cursor-pointer" @click="showContactList">
@@ -42,8 +41,9 @@ app.component('contact-window', {
                 </div>
             </div>
 
-
+            <!--block for all message options-->
             <div class="contact-block-scroll">
+                
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     <div class="contact-field"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
@@ -51,16 +51,19 @@ app.component('contact-window', {
                         </div>
                             
                     </div>
-                    <div v-for="item in messageContacts">
+
+                    <!--contact list-->
+                    <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
                         <div class="contact-field"> <!--selection field for the messaging contact-->
                             <div class="contact-block"> <!--block for current contact with profile image and name-->
 
-                                <h2>{{item.privateContact}}</h2>
+                                <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
                             </div>
                                 
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="my-profile-block">
@@ -72,11 +75,7 @@ app.component('contact-window', {
     data() {
         return {
             hide: false,
-            //privateContact: '',
-            messageContacts: [],
-            //input: {
-               
-            //}
+            messageContacts: [], //array to store contacts that have been added from online users
 
         }
     },

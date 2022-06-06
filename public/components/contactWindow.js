@@ -1,5 +1,6 @@
 app.component('contact-window', {
     props: ['usersFromServer', 'userName', 'userID'],
+    emits: ['selectContact'],
     template:
     /*html*/
     `
@@ -121,7 +122,7 @@ app.component('contact-window', {
             // console.log("addSelectedUserDetails");
             // console.log(this.selectedUserDetails);
             //doesnt work yet
-            this.$emit('select-contact', this.selectedUserDetails);
+            this.$emit('selectContact', this.selectedUserDetails);
             // this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
         }
 

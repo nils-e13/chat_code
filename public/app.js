@@ -30,13 +30,15 @@ const app = Vue.createApp({
         },
 
         //doesnt work yet
-        selectedContact: function(selectedUserDetails){
+        selectedContactFunction: function(){
             console.log("selectedUserDetails");
-            console.log(selectedUserDetails);
-            //mountedApp.selectedContact = selectedUserDetails;
+            // console.log(selectedUserDetails);
+            //receive from contactWindow
             this.selectedContact = selectedUserDetails;
-            //console.log("App selectedUserDetails: "+ this.selectedContact);
 
+            //mountedApp.selectedContact = selectedUserDetails;
+            // this.selectedContact = selectedUserDetails;
+            //console.log("App selectedUserDetails: "+ this.selectedContact);
         }
 
         // This method is used to scroll the chatbox when a new message is printed

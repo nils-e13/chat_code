@@ -1,6 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['messageFromServer', 'userName', 'userID'],
+    props: ['messageFromServer', 'userName', 'userID', 'selectedContactReceived'],
     template:
     /*html*/
     `
@@ -59,18 +59,30 @@ app.component('chat-window', {
     methods:{
         sendToApp () {
 
-            
             if(this.messageContent.length > 0) {
             //test to store message content from input field and display it as chat bubble
             let sendMessageBubble = {
                 messageContent: this.messageContent,
             }
             this.messageContentFromSender.push(sendMessageBubble);
-            //end of test
-
+            // //send message content to server
+            //     this.$emit('send-message', this.messageContent); //emit messageContent to app.js
+            // //send message content to selected contact
+            //     this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to app.js
+            //     this.messageContent = ''; //reset input field
+            //decide if message is sent to all users or to selected contact
+            
+            if (this.selectedContactReceived == null) {//doesnt work yet to differentiate between all contacts and selected contact
                 this.$emit('send-message', this.messageContent); //emit messageContent to app.js
                 this.messageContent = ''; //reset input field
+                console.log('message sent to all users');
+            } else {
+                this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to app.js
+                this.messageContent = ''; //reset input field
+                console.log('message sent to selected contact');
+                
             }
+            };
 
         },
     

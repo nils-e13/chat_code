@@ -29,7 +29,6 @@ const app = Vue.createApp({
             socket.emit('add-user', {user: this.userName, userID: socket.id}); //send username to server
         },
 
-        //doesnt work yet
         selectedContactFunction: function(selectedUserDetails){
             console.log("selectedUserDetails received in app");
             // console.log(selectedUserDetails);
@@ -37,27 +36,27 @@ const app = Vue.createApp({
             this.selectedContact = selectedUserDetails;
 
             //console.log("App selectedUserDetails: "+ this.selectedContact);
-        }
+        },
+
+        sendMessageToSelectedContact: function(message) { //receives messageContent from input field
+            if(message){
+                socket.emit("private-message", {
+                    message,
+                    to: this.selectedContact.userID,
+                  });
+                //   this.selectedContact.messages.push({
+                //     message,
+                //     fromSelf: true,
+                //   });
+                console.log("private message received in App and sent to server");
+            }
+        },
 
         // This method is used to scroll the chatbox when a new message is printed
         // scrollToEnd: function() {       
         //     var container = this.$el.querySelector("#messages");
         //     container.scrollTop = container.scrollHeight;
         // },
-
-        //private messaging function
-        // privateMessage: function(message) {
-        //     if (this.selectedUser) {
-        //       socket.emit("private message", {
-        //         message,
-        //         to: this.selectedUser.userID,
-        //       });
-        //       this.selectedUser.messages.push({
-        //         message,
-        //         fromSelf: true,
-        //       });
-        //     }
-        //   }
 
 
     },
@@ -77,8 +76,8 @@ socket.on('read-message', function(message) {
     // mountedApp.messages.push({text : message.text, user : message.user, date: message.date}); //once client receives message from server, push to message list array
     mountedApp.messages = message;
     //mountedApp.messages.push({text : message._text, user : message._user, userID : message._userID/*date: message.date*/}); //once client receives message from server, push to message list array
-    console.log("message from server received in app");
-    console.log(message);
+    // console.log("message from server received in app");
+    // console.log(message);
 });
 
 
@@ -93,8 +92,8 @@ socket.on('user-connected', function(userID) {
 socket.on('init-chat', function(messages) {
     //update messages array with messages from server
     mountedApp.messages = messages;
-    console.log("initial chat from server received in app");
-    console.log(messages);
+    // console.log("initial chat from server received in app");
+    // console.log(messages);
 });
 
 //initialize user list, updates initial user list with current users

@@ -1,6 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['messageFromServer', 'userName', 'userID', 'selectedContactReceived'],
+    props: ['messageFromServer', 'userName', 'userID', 'selectedContactFromApp'],
     template:
     /*html*/
     `
@@ -9,7 +9,7 @@ app.component('chat-window', {
         <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
             <div class="contact-block"> <!--block for current contact with profile image and name-->
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                <h2> global chat<!--{{messageData.user}}--> </h2>
+                <h2 v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> {{selectedContactFromApp.privateContact}} </h2>
             </div>
         </div>
 
@@ -65,6 +65,8 @@ app.component('chat-window', {
                 messageContent: this.messageContent,
             }
             this.messageContentFromSender.push(sendMessageBubble);
+            console.log("this.selectedContactReceived");
+            console.log(this.selectedContactReceived);
             // //send message content to server
             //     this.$emit('send-message', this.messageContent); //emit messageContent to app.js
             // //send message content to selected contact
@@ -73,11 +75,11 @@ app.component('chat-window', {
             //decide if message is sent to all users or to selected contact
             
             if (this.selectedContactReceived == null) {//doesnt work yet to differentiate between all contacts and selected contact
-                this.$emit('send-message', this.messageContent); //emit messageContent to app.js
+                this.$emit('send-message', this.messageContent); //emit messageContent for all users to app.js
                 this.messageContent = ''; //reset input field
                 console.log('message sent to all users');
             } else {
-                this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to app.js
+                this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to selected contact to app.js
                 this.messageContent = ''; //reset input field
                 console.log('message sent to selected contact');
                 

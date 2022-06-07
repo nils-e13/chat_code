@@ -9,7 +9,8 @@ app.component('chat-window', {
         <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
             <div class="contact-block"> <!--block for current contact with profile image and name-->
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                <h2 v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> {{selectedContactFromApp.privateContact}} </h2>
+                <h2 v-if="selectedContactFromApp.length > 0" v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> {{selectedContactFromApp.privateContact}} </h2>
+                <h2  v-else> global chat </h2>
             </div>
         </div>
 
@@ -29,7 +30,7 @@ app.component('chat-window', {
                     
                     <!-- p for send/ receive messages -->
                     <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
-                    <p class="send-message-block message-content no-margin" v-else=> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
 
                 </div>
 

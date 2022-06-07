@@ -213,13 +213,15 @@ ul {
     align-items: center;
     padding-top: 8px;
     padding-bottom: 8px;
-    background-color: #2863E4;
+    /* background-color: transparent; */
     border-radius: 16px;
 }
 
-/*.contact-field:hover{
+.contact-field:hover{
     background-color: #7C7E83;
-}*/
+    transition: 0.3s;
+}
+
 
 .add-contact-screen{
     position: relative;

@@ -46,7 +46,7 @@ app.component('contact-window', {
             <div class="contact-block-scroll">
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
-                    <div class="contact-field"> <!--selection field for the messaging contact-->
+                    <div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
                         </div>
@@ -57,7 +57,7 @@ app.component('contact-window', {
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
                         <!--<div class="contact-field">--> <!--selection field for the messaging contact-->
-                        <div class="contact-field cursor-pointer" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
+                        <div class="contact-field cursor-pointer" style="color" @click="selectContact(item.privateContact, item.privateUserID); toggleBlueColor"> <!--store online users and make them clickable for private messaging-->
                             <div class="contact-block"> <!--block for current contact-->
 
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
@@ -80,18 +80,20 @@ app.component('contact-window', {
             hide: false,
             messageContacts: [], //array to store contacts that have been added from online users
             selectedUserDetails: [], //array to store the selected contact + details
+            color: {
+                backgroundColor: 'transparent',
+                colorHover: '#7C7E83',
+            },
         }
     },
     methods:{
-        showContactList: function (contacts) {
-            if (contacts) {
-            this.hide = true;
+        toggleBlueColor: function () {
+            if (this.color.backgroundColor === 'transparent') {
+            this.color.backgroundColor = '#2863E4';
+            } else {
+            this.color.backgroundColor = 'transparent';
             }
-        },
-        hideContactList: function (contacts) {
-            if (contacts) {
-            this.hide = false;
-            }
+            
         },
         //adds online user to messageContacts array and displays in contact list
         addContact: function (userName, userID) {
@@ -124,7 +126,18 @@ app.component('contact-window', {
             //doesnt work yet
             this.$emit('selectContact', this.selectedUserDetails);
             // this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
-        }
+        },
+        showContactList: function (contacts) {
+            if (contacts) {
+            this.hide = true;
+
+            }
+        },
+        hideContactList: function (contacts) {
+            if (contacts) {
+            this.hide = false;
+            }
+        },
 
             
         

@@ -30,14 +30,12 @@ const app = Vue.createApp({
         },
 
         //doesnt work yet
-        selectedContactFunction: function(){
-            console.log("selectedUserDetails");
+        selectedContactFunction: function(selectedUserDetails){
+            console.log("selectedUserDetails received in app");
             // console.log(selectedUserDetails);
             //receive from contactWindow
             this.selectedContact = selectedUserDetails;
 
-            //mountedApp.selectedContact = selectedUserDetails;
-            // this.selectedContact = selectedUserDetails;
             //console.log("App selectedUserDetails: "+ this.selectedContact);
         }
 

@@ -110,14 +110,18 @@ io.on('connection', function (socket) {
     });
     io.emit('update-users', classesUsersArray);
   });
+
+  //private messaging
+  //receive private message from client and emit it to receiver
+  socket.on('private-message', function ({ message, to }) {
+  console.log("private message received in server");
+  socket.to(to).emit('private-read-message', {
+    message,
+    from: socket.id,
+  });
+  console.log("private message sent to client");
+});
+
 });
 
 
-//private messaging
-//receive private message from client and emit it to receiver
-// socket.on("private message", ({ message, to }) => {
-//   socket.to(to).emit("private message", {
-//     message,
-//     from: socket.id,
-//   });
-// });

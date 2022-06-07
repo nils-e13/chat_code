@@ -65,8 +65,6 @@ app.component('chat-window', {
                 messageContent: this.messageContent,
             }
             this.messageContentFromSender.push(sendMessageBubble);
-            console.log("this.selectedContactReceived");
-            console.log(this.selectedContactReceived);
             // //send message content to server
             //     this.$emit('send-message', this.messageContent); //emit messageContent to app.js
             // //send message content to selected contact
@@ -74,14 +72,15 @@ app.component('chat-window', {
             //     this.messageContent = ''; //reset input field
             //decide if message is sent to all users or to selected contact
             
-            if (this.selectedContactReceived == null) {//doesnt work yet to differentiate between all contacts and selected contact
-                this.$emit('send-message', this.messageContent); //emit messageContent for all users to app.js
-                this.messageContent = ''; //reset input field
-                console.log('message sent to all users');
-            } else {
-                this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to selected contact to app.js
+            //send message to either all users or selected contact if selected
+            if(this.selectedContactFromApp.length > 0) {
+                this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent for all users to app.js
                 this.messageContent = ''; //reset input field
                 console.log('message sent to selected contact');
+            } else {
+                this.$emit('send-message', this.messageContent); //emit messageContent to selected contact to app.js
+                this.messageContent = ''; //reset input field
+                console.log('message sent to all users');
                 
             }
             };

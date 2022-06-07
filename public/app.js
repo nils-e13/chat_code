@@ -18,7 +18,7 @@ const app = Vue.createApp({
         sendMessage: function(message) { //receives messageContent from input field and emits it + userName to server
             if(message){
                 socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
-                console.log("messageContent received in App and sent to server");
+                //console.log("messageContent received in App and sent to server");
             }
         },
 
@@ -30,7 +30,7 @@ const app = Vue.createApp({
         },
 
         selectedContactFunction: function(selectedUserDetails){
-            console.log("selectedUserDetails received in app");
+            //console.log("selectedUserDetails received in app");
             // console.log(selectedUserDetails);
             //receive from contactWindow
             this.selectedContact = selectedUserDetails;
@@ -38,17 +38,18 @@ const app = Vue.createApp({
             //console.log("App selectedUserDetails: "+ this.selectedContact);
         },
 
-        sendMessageToSelectedContact: function(message) { //receives messageContent from input field
-            if(message){
-                socket.emit("private-message", {
-                    message,
-                    to: this.selectedContact.userID,
+        //receives privateMessage from App and sends to selected contact userID to Server
+        sendMessageToSelectedContactFunction: function(privateMessage) { //receives messageContent from input field
+            if(privateMessage){
+                socket.emit('private-message', {
+                    privateMessage,
+                    to: this.selectedContact.privateUserID,
                   });
                 //   this.selectedContact.messages.push({
                 //     message,
                 //     fromSelf: true,
                 //   });
-                console.log("private message received in App and sent to server");
+                //console.log("private message received in App and sent to server");
             }
         },
 
@@ -80,6 +81,12 @@ socket.on('read-message', function(message) {
     // console.log(message);
 });
 
+//doesnt work yet
+socket.on('private-read-message', function ({content, from}) {
+    console.log("private message from server received in app");
+    console.log(content);
+    console.log(from);
+});
 
 
 //when new user connects, server emits user-connected event which updates user list

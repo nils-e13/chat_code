@@ -19,6 +19,7 @@ app.component('chat-window', {
         </div>
 
         <!-- Block for chat messages -->
+        
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
 

@@ -47,7 +47,7 @@ app.component('contact-window', {
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     <!--<div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()">--> <!--selection field for the messaging contact-->
-                    <div class="contact-field cursor-pointer"> <!--selection field for the messaging contact-->
+                    <div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
                         </div>

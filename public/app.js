@@ -45,7 +45,7 @@ const app = Vue.createApp({
                     message: privateMessage, user: this.userName, userID: socket.id,
                     to: this.selectedContact[0].privateUserID,
                   });
-                  console.log("private message sent to server");
+                //   console.log("private message sent to server");
                 //   this.selectedContact.messages.push({
                 //     message,
                 //     fromSelf: true,
@@ -63,10 +63,11 @@ socket.on('read-message', function(message) {
 });
 
 //doesnt work yet to receive private message from server
-socket.on('private-read-message', function (privateData) {
+socket.on('private-read-message', function ({ privateData, from }) {
     console.log("private message from server received in app");
     console.log(privateData);
-    mountedApp.messages = privateData;
+    console.log(from);
+    //mountedApp.messages = privateData;
 });
 
 

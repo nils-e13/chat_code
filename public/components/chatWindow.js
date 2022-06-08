@@ -9,8 +9,8 @@ app.component('chat-window', {
         <div class="contact-wrapper-top-chat"> <!--top wrapper to display current contact name-->
             <div class="contact-block"> <!--block for current contact with profile image and name-->
                 <!-- <div class="profile-image-circle"></div> circle for profile image -->
-                <h2 v-if="selectedContactFromApp.length > 0" v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> {{selectedContactFromApp.privateContact}} </h2>
-                <h2  v-else> global chat </h2>
+                <h2 v-if="selectedContactFromApp.length === 0"> global chat </h2>
+                <h2  v-else v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> {{selectedContactFromApp.privateContact}} </h2>
             </div>
         </div>
 

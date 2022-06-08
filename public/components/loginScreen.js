@@ -6,6 +6,7 @@ app.component('login-screen', {
     `
     <!-- Login-Screen -->
     <div class="login-screen" v-if="hide">
+        <img src="./images/logo.png" alt="logo" class="logo-image">
         <form class="login-form" @submit.prevent="checkForm">
             <h2 class="login-title">Welcome</h2>
 

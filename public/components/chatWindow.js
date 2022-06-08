@@ -78,11 +78,11 @@ app.component('chat-window', {
             if(this.selectedContactFromApp.length > 0) {
                 this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent for all users to app.js
                 this.messageContent = ''; //reset input field
-                console.log('message sent to selected contact');
+                // console.log('message sent to selected contact');
             } else {
                 this.$emit('send-message', this.messageContent); //emit messageContent to selected contact to app.js
                 this.messageContent = ''; //reset input field
-                console.log('message sent to all users');
+                // console.log('message sent to all users');
                 
             }
             };

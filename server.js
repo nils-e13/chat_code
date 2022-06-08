@@ -113,13 +113,15 @@ io.on('connection', function (socket) {
 
   //private messaging
   //receive private message from client and emit it to receiver
-  socket.on('private-message', function ({ message, to }) {
-  console.log("private message received in server");
-  socket.to(to).emit('private-read-message', {
-    message,
+  socket.on('private-message', function (privateData) {
+    let newMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    classesMessagesArray.push(newMessageClasses);
+    console.log(privateData);
+  socket.to(privateData.to).emit('private-read-message', {
+    privateData,
     from: socket.id,
+    //console log
   });
-  console.log("private message sent to client");
 });
 
 });

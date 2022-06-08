@@ -11,7 +11,7 @@ app.component('login-screen', {
             <h2 class="login-title">Welcome</h2>
 
             <!--emits username as username when user logs in-->   <!--not sure if input.userName or only user.Name-->
-            <input class="login-input-field" type="text" id="username" v-model="userName" placeholder="Your Name...">
+            <input class="login-input-field" type="text" id="username" v-model="userName" placeholder="Your Name..." autofocus="autofocus">
 
             <button class="login-button" >Log In</button>
         </form>

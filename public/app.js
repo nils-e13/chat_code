@@ -42,9 +42,10 @@ const app = Vue.createApp({
         sendMessageToSelectedContactFunction: function(privateMessage) { //receives messageContent from input field
             if(privateMessage){
                 socket.emit('private-message', {
-                    privateMessage,
-                    to: this.selectedContact.privateUserID,
+                    message: privateMessage, user: this.userName, userID: socket.id,
+                    to: this.selectedContact[0].privateUserID,
                   });
+                  console.log("private message sent to server");
                 //   this.selectedContact.messages.push({
                 //     message,
                 //     fromSelf: true,
@@ -52,40 +53,20 @@ const app = Vue.createApp({
                 //console.log("private message received in App and sent to server");
             }
         },
-
-        // This method is used to scroll the chatbox when a new message is printed
-        // scrollToEnd: function() {       
-        //     var container = this.$el.querySelector("#messages");
-        //     container.scrollTop = container.scrollHeight;
-        // },
-
-
     },
-
-    updated(){
-        //this.scrollToEnd();
-    }
-    // mounted() {
-
-    // }
- 
 });
 
 //Client socket events
 //When server emits message, client updates message list in app
 socket.on('read-message', function(message) {
-    // mountedApp.messages.push({text : message.text, user : message.user, date: message.date}); //once client receives message from server, push to message list array
-    mountedApp.messages = message;
-    //mountedApp.messages.push({text : message._text, user : message._user, userID : message._userID/*date: message.date*/}); //once client receives message from server, push to message list array
-    // console.log("message from server received in app");
-    // console.log(message);
+    mountedApp.messages = message; //update message list in app
 });
 
-//doesnt work yet
-socket.on('private-read-message', function ({content, from}) {
+//doesnt work yet to receive private message from server
+socket.on('private-read-message', function (privateData) {
     console.log("private message from server received in app");
-    console.log(content);
-    console.log(from);
+    console.log(privateData);
+    mountedApp.messages = privateData;
 });
 
 

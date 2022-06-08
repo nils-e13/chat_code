@@ -67,7 +67,8 @@ socket.on('private-read-message', function ({ privateData, from }) {
     console.log("private message from server received in app");
     console.log(privateData);
     console.log(from);
-    //mountedApp.messages = privateData;
+    //push privateData to messages array
+    mountedApp.messages.push(privateData);
 });
 
 

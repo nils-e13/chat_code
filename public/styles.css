@@ -41,6 +41,10 @@ ul {
     list-style-type: none;
 }
 
+.active{
+    background-color: 'grey';
+}
+
 .no-margin{
     margin: 0;
 }
@@ -227,7 +231,6 @@ ul {
     background-color: #7C7E83;
     transition: 0.3s;
 }
-
 
 .add-contact-screen{
     position: relative;

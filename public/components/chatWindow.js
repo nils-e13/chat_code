@@ -42,7 +42,6 @@ app.component('chat-window', {
                     <!-- p for private messages -->
                     <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
                     <!--<p class="send-message-block message-content no-margin" v-if="userID = messageFromServer.userID"> {{messageFromServer.message}} </p>--> <!--displays message text from messageFromServerArray-->
-                
                 </div>
 
             </div>

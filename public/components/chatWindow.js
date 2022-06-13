@@ -33,6 +33,9 @@ app.component('chat-window', {
                     <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
                     <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
 
+                    <!-- conditionally render messages with computed property-->
+                    <p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>
+
                     <!-- p for private messages -->
                     <!--<p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID === messageFromServer.userID"> {{messageFromServer.message}} </p>-->  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
                     <!--<p class="send-message-block message-content no-margin" v-if="userID = messageFromServer.userID"> {{messageFromServer.message}} </p>--> <!--displays message text from messageFromServerArray-->
@@ -94,4 +97,14 @@ app.component('chat-window', {
         },
     
     },
+    //computed property to display either received private message or received global chat message
+    computed: {
+        messageReceivedComputed: function() {
+            if (userID == this.messageFromServer._userID) {
+                return this.messageFromServer._text;
+            } else if (){
+
+            }
+        }
+    }
 });

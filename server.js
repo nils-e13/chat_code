@@ -55,6 +55,9 @@ class Message {
 //array to store messages
 let classesMessagesArray = [];
 
+//array to store private messages
+let classesPrivateMessagesArray = [];
+
 //array to store all users
 let classesUsersArray = [];
 
@@ -113,8 +116,8 @@ io.on('connection', function (socket) {
   //private messaging
   //receive private message from client and emit it to receiver
   socket.on('private-message', function (privateData) {
-    let newMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-    classesMessagesArray.push(newMessageClasses);
+    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    classesPrivateMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
     privateData,
     from: socket.id,

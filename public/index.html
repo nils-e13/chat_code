@@ -27,7 +27,7 @@
 
         <!-- Chat window component-->
         <!--collect send-message emit from component and pass to sendMessage method in app-->
-        <chat-window @send-message="sendMessage" @send-message-to-selected-contact="sendMessageToSelectedContactFunction" :message-from-server="messages" :user-I-D="userID" :selected-contact-from-app="selectedContact"></chat-window>
+        <chat-window @send-message="sendMessage" @send-message-to-selected-contact="sendMessageToSelectedContactFunction" :message-from-server="messages" :private-messages-from-server="privateMessages" :user-I-D="userID" :selected-contact-from-app="selectedContact"></chat-window>
         </div>
     </div>
     

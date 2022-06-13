@@ -1,6 +1,6 @@
 //component for the entire chat window
 app.component('chat-window', {
-    props: ['messageFromServer', 'userName', 'userID', 'selectedContactFromApp'],
+    props: ['messageFromServer', 'privateMessagesFromServer', 'userName', 'userID', 'selectedContactFromApp'],
     template:
     /*html*/
     `
@@ -27,17 +27,20 @@ app.component('chat-window', {
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     
                     <!-- p for user name in group chats -->
-                    <p class="message-user-name no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
+                    <!--<p class="message-user-name no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._user}} </p>--> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
-                    <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
-                    <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
+                    <!--<p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
+                    <!--<p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
+                    
 
+                    <!-- doesnt work yet -->
                     <!-- conditionally render messages with computed property-->
-                    <p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>
-
+                    <!--<p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>-->
+                </div>
+                <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for private messages -->
-                    <!--<p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID === messageFromServer.userID"> {{messageFromServer.message}} </p>-->  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
                     <!--<p class="send-message-block message-content no-margin" v-if="userID = messageFromServer.userID"> {{messageFromServer.message}} </p>--> <!--displays message text from messageFromServerArray-->
                 
                 </div>
@@ -99,12 +102,14 @@ app.component('chat-window', {
     },
     //computed property to display either received private message or received global chat message
     computed: {
-        messageReceivedComputed: function() {
-            if (userID == this.messageFromServer._userID) {
-                return this.messageFromServer._text;
-            } else if (){
+        messageReceivedComputed() {
 
-            }
+            return this.messageFromServer._text;
+            // if (this.userID != this.messageFromServer._userID) {
+            //     return this.messageFromServer._text;
+            // } else {
+            //     return this.messageFromServer._text;
+            // }
         }
     }
 });

@@ -101,6 +101,7 @@ app.component('chat-window', {
     },
     //computed property to display either received private message or received global chat message
     computed: {
+        //1.computed property needed to display all messages from server if possible
         messageReceivedComputed() {
 
             return this.messageFromServer._text;
@@ -110,5 +111,6 @@ app.component('chat-window', {
             //     return this.messageFromServer._text;
             // }
         }
+        //2.computed property needed for v-for loop to display all messages from server if possible
     }
 });

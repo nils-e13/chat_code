@@ -36,11 +36,10 @@ const app = Vue.createApp({
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
             for(let i = 0; i < this.messages.length; i++){ //loop through messages array
-                if(this.messages[i]._userID == this.selectedContact._userID){ //if userID of selectedContact is same as userID of message
+                if(this.messages[i].userID == this.selectedContact.privateUserID){ //if userID of selectedContact is same as userID of message
                     this.privateMessages.push(this.messages[i]); //push message from selected user from messages array to private messages array so it can be rendered
                 }
             }
-            
         
         },
 

@@ -56,7 +56,7 @@ class Message {
 let classesMessagesArray = [];
 
 //array to store private messages
-let classesPrivateMessagesArray = [];
+//let classesPrivateMessagesArray = [];
 
 //array to store all users
 let classesUsersArray = [];

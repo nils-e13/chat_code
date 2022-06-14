@@ -30,13 +30,18 @@ const app = Vue.createApp({
             socket.emit('add-user', {user: this.userName, userID: socket.id}); //send username to server
         },
 
-        selectedContactFunction: function(selectedUserDetails){
-            //console.log("selectedUserDetails received in app");
-            // console.log(selectedUserDetails);
-            //receive from contactWindow
+        selectedContactFunction: function(selectedUserDetails){ //receives selectedUserDetails from chatWindowcomponent
             this.selectedContact = selectedUserDetails;
-
-            //console.log("App selectedUserDetails: "+ this.selectedContact);
+            //this.messages.splice(0, this.messages.length); //clear messages array
+            this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
+            //initialize privateMessages array with messages from selected user
+            for(let i = 0; i < this.messages.length; i++){
+                if(this.messages[i]._userID == this.selectedContact._userID){
+                    this.privateMessages.push(this.messages[i]);
+                }
+            }
+            
+        
         },
 
         //receives privateMessage from App and sends to selected contact userID to Server
@@ -87,6 +92,13 @@ socket.on('init-chat', function(messages) {
     // console.log(messages);
 });
 
+
+// socket.on('init-private-chat', function(privateMessages) {
+//     //update messages array with messages from server
+//     mountedApp.privateMessages = privateMessages;
+// });
+
+
 //initialize user list, updates initial user list with current users
 socket.on('init-users', function(users) {
     //update messages array with messages from server
@@ -98,24 +110,4 @@ socket.on('update-users', function(users) {
     //mountedApp.users.push({user : users._user, userID : users._userID}); //once client receives usersfrom server, push to users array
     mountedApp.users = users;
 });
-
-
-
-//private messaging
-//receive private message from server
-// socket.on("private message", ({ message, from }) => {
-//   for (let i = 0; i < this.users.length; i++) {
-//     const user = this.users[i];
-//     if (user.userID === from) {
-//       user.messages.push({
-//         message,
-//         fromSelf: false,
-//       });
-//       if (user !== this.selectedUser) {
-//         user.hasNewMessages = true;
-//       }
-//       break;
-//     }
-//   }
-// });
 

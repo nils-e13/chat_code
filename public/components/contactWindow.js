@@ -59,7 +59,7 @@ app.component('contact-window', {
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
                                 <!--<span>{{item.privateUserID}}</span>--> <!--displays contact id from messageContactsArray-->
                             </div>
-                                
+
                         </div>
                     </div>
 

@@ -32,12 +32,10 @@ app.component('chat-window', {
                     <p class="message-user-name no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
-                    <!--<p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
-                    <!--<p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
+                    <p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
                     
-                    <!-- p tags to render messages from global chat -->
                     
-
 
                     <!-- doesnt work yet -->
                     <!-- conditionally render messages with computed property-->

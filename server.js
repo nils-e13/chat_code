@@ -41,10 +41,11 @@ class User {
 }
 
 class Message {
-  constructor (text, user, userID) {
+  constructor (text, user, userID, privateKey) {
       this._text = text;
       this._user = user;
       this._userID = userID;
+      this._privateKey = privateKey;
       //this._date = date;
   }
 
@@ -85,9 +86,6 @@ io.on('connection', function (socket) {
 
   //when a user sends a message, server pushes the info to message list and emits an event 
   socket.on('send-message', function(data) { //data is the message content, server receives send message from client and pushes to message list
-    // let newMessage = { text: data.message, user: data.user, /*date: dateFormat(new Date (), 'shortTime')*/}; //create new message object
-    
-    //test with classes
     let newMessageClasses = new Message(data.message, data.user, data.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newMessageClasses);
     //console.log(newMessageClasses);
@@ -125,10 +123,12 @@ io.on('connection', function (socket) {
   //   },
 
   socket.on('private-message', function (privateData) {
-    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID, privateData.privateKey);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    console.log(newPrivateMessageClasses);
+
     classesMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
-    privateData,
+    classesMessagesArray,
     from: socket.id,
     },
 

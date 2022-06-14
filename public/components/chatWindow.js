@@ -32,10 +32,12 @@ app.component('chat-window', {
                     <p class="message-user-name no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
-                    <p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
-                    <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
+                    <!--<p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
+                    <!--<p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
                     
-
+                    <!-- another test -->
+                    <!--<p class="receive-message-block message-content no-margin" v-if="messageFromServer.privateKey != 1"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
+                    <!--<p class="send-message-block message-content no-margin" v-if="messageFromServer.privateKey != 1"> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
 
 
                     <!-- doesnt work yet -->

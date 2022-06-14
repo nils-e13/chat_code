@@ -15,18 +15,13 @@ app.component('contact-window', {
                     <div class="online-users-title">
                         <h2> Online Users </h2>
                     </div>
-                
             </div>
 
             <!-- all online users that can be added-->
-            <div class="online-users-list" v-for="(usersFromServer, index) in usersFromServer" :key="index">
+            <div class="online-users-list cursor-pointer" v-for="(usersFromServer, index) in usersFromServer" :key="index" @click="addContact(usersFromServer._user, usersFromServer._userID)">
                 <!--store online users and make them clickable to add them to data contact list-->
-                <div @click="addContact(usersFromServer._user, usersFromServer._userID)">
-                    <p class="message-content cursor-pointer" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
-                </div>
-
+                <p class="message-content" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
             </div>
-
         </div>
         
         <!-- window with list of all contacts that can be messaged-->

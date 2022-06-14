@@ -25,13 +25,12 @@ app.component('chat-window', {
 
                 <!--div forchat bubbles-->
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
-                    
                     <!-- p for user name in group chats -->
-                    <!--<p class="message-user-name no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._user}} </p>--> <!-- displays user name from messageFromServerArray-->    
+                    <p class="message-user-name no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
-                    <!--<p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
-                    <!--<p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
+                    <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
                     
 
                     <!-- doesnt work yet -->
@@ -39,9 +38,11 @@ app.component('chat-window', {
                     <!--<p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>-->
                 </div>
                 <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
+                    <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> <!-- v-for loop to iterate over selectedContactFromApp array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for private messages -->
                     <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <!--<p class="send-message-block message-content no-margin" v-if="userID = messageFromServer.userID"> {{messageFromServer.message}} </p>--> <!--displays message text from messageFromServerArray-->
+                    <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>
+                    </template>
                 </div>
 
             </div>

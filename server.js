@@ -91,8 +91,7 @@ io.on('connection', function (socket) {
     //console.log(newMessageClasses);
     
     //socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
-    io.sockets.emit('read-message', classesMessagesArray);
-    //io.sockets.emit('read-message', newMessageClasses); //send message to all users including the sender
+    io.sockets.emit('read-message', classesMessagesArray); //send message to all users including the sender
   });
 
   
@@ -121,9 +120,16 @@ io.on('connection', function (socket) {
     socket.to(privateData.to).emit('private-read-message', {
     privateData,
     from: socket.id,
-  });
-});
+    },
+    //also send message to sender
+    socket.emit('private-read-message', { //also emit message to sender so it can be conditionally rendered
+      privateData,
+      from: socket.id,
+    })
 
+  );
+
+});
 });
 
 

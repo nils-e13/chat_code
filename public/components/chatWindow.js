@@ -32,6 +32,7 @@ app.component('chat-window', {
                     <p class="receive-message-block message-content no-margin" v-if="userID != messageFromServer._userID"> {{messageFromServer._text}} </p>  <!--displays message text from messageFromServerArray-->
                     <p class="send-message-block message-content no-margin" v-else> {{messageFromServer._text}} </p> <!--displays message text from messageFromServerArray-->
                     
+
                     <!-- doesnt work yet -->
                     <!-- conditionally render messages with computed property-->
                     <!--<p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>-->

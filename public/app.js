@@ -35,9 +35,9 @@ const app = Vue.createApp({
             //this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
-            for(let i = 0; i < this.messages.length; i++){
-                if(this.messages[i]._userID == this.selectedContact._userID){
-                    this.privateMessages.push(this.messages[i]);
+            for(let i = 0; i < this.messages.length; i++){ //loop through messages array
+                if(this.messages[i]._userID == this.selectedContact._userID){ //if userID of selectedContact is same as userID of message
+                    this.privateMessages.push(this.messages[i]); //push message from selected user from messages array to private messages array so it can be rendered
                 }
             }
             
@@ -74,7 +74,8 @@ socket.on('private-read-message', function ({ privateData, from }) {
     console.log(privateData);
     console.log(from);
     //push privateData to messages array
-    mountedApp.privateMessages.push(privateData);
+    //mountedApp.privateMessages.push(privateData);
+    mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
 
 

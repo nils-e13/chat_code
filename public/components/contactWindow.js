@@ -42,7 +42,7 @@ app.component('contact-window', {
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     <!--<div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()">--> <!--selection field for the messaging contact-->
-                    <div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()"> <!--selection field for the messaging contact-->
+                    <div class="contact-field cursor-pointer"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
                         </div>
@@ -52,8 +52,8 @@ app.component('contact-window', {
                     <!--contact list-->
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
-                        <!--<div class="contact-field">--> <!--selection field for the messaging contact-->
-                        <div class="contact-field cursor-pointer" :style="color" @click="selectContact(item.privateContact, item.privateUserID); toggleBlueColor()"> <!--store online users and make them clickable for private messaging-->
+                        <!--<div class="contact-field cursor-pointer" :style="color" @click="selectContact(item.privateContact, item.privateUserID); toggleBlueColor()">--> <!--store online users and make them clickable for private messaging-->
+                        <div class="contact-field cursor-pointer" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
                             <div class="contact-block"> <!--block for current contact-->
 
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->

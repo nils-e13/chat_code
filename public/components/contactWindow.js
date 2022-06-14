@@ -42,7 +42,7 @@ app.component('contact-window', {
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     <!--<div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()">--> <!--selection field for the messaging contact-->
-                    <div class="contact-field cursor-pointer"> <!--selection field for the messaging contact-->
+                    <div class="contact-field cursor-pointer" @click="selectGlobalChat()"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
                         </div>
@@ -118,9 +118,18 @@ app.component('contact-window', {
             this.selectedUserDetails.push(addSelectedUserDetails); //store only selected details of contact into selectedUserDetails array
             // console.log("addSelectedUserDetails");
             // console.log(this.selectedUserDetails);
-            //doesnt work yet
             this.$emit('selectContact', this.selectedUserDetails);
             // this.$emit('selected-contact', this.selectedUserDetails); //emit event to app.js to display selected contact details
+        },
+        selectGlobalChat: function () {
+            let addSelectedUserDetails = {
+                privateContact: "global chat",
+                privateUserID: "gc123",
+            }
+            this.selectedUserDetails.splice(0); //clear array
+            this.selectedUserDetails.push(addSelectedUserDetails); //store only selected details of contact into selectedUserDetails array
+            this.$emit('selectContact', this.selectedUserDetails);
+
         },
         showContactList: function (contacts) {
             if (contacts) {

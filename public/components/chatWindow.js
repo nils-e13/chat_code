@@ -29,7 +29,7 @@ app.component('chat-window', {
 
 
                     <!--not working properly yet-->
-                    <p class="message-user-name no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._user}} </p> <!-- displays user name from messageFromServerArray-->    
+                    <!--<p class="message-user-name no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._user}} </p>--> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
                     <!--<p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->

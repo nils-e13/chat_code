@@ -41,11 +41,10 @@ class User {
 }
 
 class Message {
-  constructor (text, user, userID, privateKey) {
+  constructor (text, user, userID) {
       this._text = text;
       this._user = user;
       this._userID = userID;
-      this._privateKey = privateKey;
       //this._date = date;
   }
 
@@ -123,12 +122,10 @@ io.on('connection', function (socket) {
   //   },
 
   socket.on('private-message', function (privateData) {
-    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID, privateData.privateKey);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-    console.log(newPrivateMessageClasses);
-
+    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
-    classesMessagesArray,
+    privateData,
     from: socket.id,
     },
 

@@ -12,7 +12,6 @@ const app = Vue.createApp({
             userName: '',
             userID: '',
             selectedContact: [],
-            privateKey: '1',
             
         }
     },
@@ -48,7 +47,7 @@ const app = Vue.createApp({
         sendMessageToSelectedContactFunction: function(privateMessage) { //receives messageContent from input field
             if(privateMessage){
                 socket.emit('private-message', {
-                    message: privateMessage, user: this.userName, userID: socket.id, privateKey: this.privateKey, //private key is used to late identify private message from public
+                    message: privateMessage, user: this.userName, userID: socket.id,
                     to: this.selectedContact[0].privateUserID,
                   });
                 //   console.log("private message sent to server");

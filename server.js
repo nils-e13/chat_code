@@ -56,7 +56,7 @@ class Message {
 let classesMessagesArray = [];
 
 //array to store private messages
-//let classesPrivateMessagesArray = [];
+let classesPrivateMessagesArray = [];
 
 //array to store all users
 let classesUsersArray = [];
@@ -77,7 +77,7 @@ io.on('connection', function (socket) {
 
   socket.emit('init-chat', classesMessagesArray); //send all messages to new user
 
-  //socket.emit('init-private-chat', classesPrivateMessagesArray); //send all private messages to new user
+  socket.emit('init-private-chat', classesPrivateMessagesArray); //send all private messages to new user
   
   socket.emit('init-users', classesUsersArray); //send all users to new user
 
@@ -94,7 +94,6 @@ io.on('connection', function (socket) {
   });
 
   
-
   //when new user connects, server pushes the info to user list and emits an event
   socket.on('add-user', function(data) {
     let newUsersClasses = new User(data.user, data.userID); //create new user object
@@ -111,23 +110,24 @@ io.on('connection', function (socket) {
     });
     io.emit('update-users', classesUsersArray);
   });
+
   //private messaging
   //receive private message from client and emit it to receiver
-  // socket.on('private-message', function (privateData) {
-  //   let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-  //   classesPrivateMessagesArray.push(newPrivateMessageClasses);
-  //   socket.to(privateData.to).emit('private-read-message', {
-  //   privateData,
-  //   from: socket.id,
-  //   },
-
   socket.on('private-message', function (privateData) {
     let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-    classesMessagesArray.push(newPrivateMessageClasses);
+    classesPrivateMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
     privateData,
     from: socket.id,
     },
+
+  // socket.on('private-message', function (privateData) {
+  //   let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+  //   classesMessagesArray.push(newPrivateMessageClasses);
+  //   socket.to(privateData.to).emit('private-read-message', {
+  //   privateData,
+  //   from: socket.id,
+  //   },
 
 
 

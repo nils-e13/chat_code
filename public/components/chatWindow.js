@@ -44,12 +44,12 @@ app.component('chat-window', {
                     <!-- conditionally render messages with computed property-->
                     <!--<p class="receive-message-block message-content no-margin"> {{messageReceivedComputed}} </p>-->
                 
-                <!--</div>-->
-                <!--<div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index">--> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
+                </div>
+                <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> <!-- v-for loop to iterate over selectedContactFromApp array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for private messages -->
-                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == messageFromServer.userID"> {{messageFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <p class="send-message-block message-content no-margin" v-if="userID == messageFromServer.userID"> {{messageFromServer.message}} </p>
+                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>
                     </template>
                 </div>
 

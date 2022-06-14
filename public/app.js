@@ -8,10 +8,12 @@ const app = Vue.createApp({
             //messages: sendMessages, //not sure if needed
             messages: [], //received messages from server for all clients except sender
             privateMessages: [], //received messages from server for selected client
+            storageMessages: [],
             users: [],
             userName: '',
             userID: '',
             selectedContact: [],
+            
             
         }
     },
@@ -36,10 +38,11 @@ const app = Vue.createApp({
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
             for(let i = 0; i < this.messages.length; i++){ //loop through messages array
-                if(this.messages[i].userID == this.selectedContact.privateUserID){ //if userID of selectedContact is same as userID of message
-                    this.privateMessages.push(this.messages[i]); //push message from selected user from messages array to private messages array so it can be rendered
-                }
-            }
+
+                //muss noch angepasst werden
+                if(this.messages[i]._userID == this.selectedContact._userID){ //if message belongs to selected user
+                    this.privateMessages.push(this.messages[i]); //push message to privateMessages array
+            }};
         
         },
 
@@ -73,8 +76,9 @@ socket.on('private-read-message', function ({ privateData, from }) {
     console.log(privateData);
     console.log(from);
     //push privateData to messages array
-    //mountedApp.privateMessages.push(privateData);
+    mountedApp.privateMessages.push(privateData);
     mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
+    mountedApp.storageMessages.push(privateData);
 });
 
 
@@ -93,10 +97,10 @@ socket.on('init-chat', function(messages) {
 });
 
 
-// socket.on('init-private-chat', function(privateMessages) {
-//     //update messages array with messages from server
-//     mountedApp.privateMessages = privateMessages;
-// });
+socket.on('init-private-chat', function(privateMessages) {
+    //update messages array with messages from server
+    mountedApp.privateMessages = privateMessages;
+});
 
 
 //initialize user list, updates initial user list with current users

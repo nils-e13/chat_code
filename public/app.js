@@ -37,12 +37,24 @@ const app = Vue.createApp({
             //this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
-            for(let i = 0; i < this.messages.length; i++){ //loop through messages array
 
-                //muss noch angepasst werden
-                if(this.messages[i]._userID == this.selectedContact._userID){ //if message belongs to selected user
-                    this.privateMessages.push(this.messages[i]); //push message to privateMessages array
-            }};
+            //send selected userID to server
+            socket.emit('load-messages', selectedUserDetails[0].privateUserID);
+
+            //receive filtered messages from selected UserID from server
+            socket.on('selected-messages', function(selectedUserMessages){
+                console.log(selectedUserMessages);
+                this.privateMessages = selectedUserMessages;
+            }
+            );
+
+            // for(let i = 0; i < this.messages.length; i++){ //loop through messages array
+            //     console.log("app messages")
+            //     console.log(this.messages[i]); // not working yet
+            //     //muss noch angepasst werden
+            //     if(this.messages[i]._userID == (this.selectedContact._userID && this.messages[i]._to)){ //if message belongs to selected user
+            //         this.privateMessages.push(this.messages[i]); //push message to privateMessages array
+            // }
         
         },
 

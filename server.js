@@ -41,10 +41,11 @@ class User {
 }
 
 class Message {
-  constructor (text, user, userID) {
+  constructor (text, user, userID, to) {
       this._text = text;
       this._user = user;
       this._userID = userID;
+      this._to = to;
       //this._date = date;
   }
 
@@ -103,6 +104,33 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('update-users', classesUsersArray); //users array is updated and pushed to all users except the sender
   });
 
+
+
+  socket.on('load-messages', function(selectedUserID) {
+    //filter classesPrivateMessagesArray to only include messages from selectedUserID
+    // selectedUserMessages = classesPrivateMessagesArray.filter(function(message) {
+    //   return message._userID === selectedUserID;
+    // }
+    // );
+    //empty selectedUserMessages array
+    let selectedUserMessages = [];
+
+    for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
+      if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
+        selectedUserMessages.push(classesPrivateMessagesArray[i]);
+      }
+    }
+    console.log(selectedUserMessages);
+    
+    //send selected messages to client
+    socket.emit('selected-messages', selectedUserMessages);
+  
+    // io.to(socket.id).emit('load-messages', selectedUserMessages);
+
+  });
+
+
+
   //when user disconnects, server updates user list and removes user
   socket.on('disconnect', function() {
     classesUsersArray = classesUsersArray.filter(function(user) {
@@ -114,7 +142,8 @@ io.on('connection', function (socket) {
   //private messaging
   //receive private message from client and emit it to receiver
   socket.on('private-message', function (privateData) {
-    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID, privateData.to);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    //console.log(newPrivateMessageClasses);
     classesPrivateMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
     privateData,

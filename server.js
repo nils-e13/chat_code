@@ -112,13 +112,13 @@ io.on('connection', function (socket) {
     //empty selectedUserMessages array
     let selectedUserMessages = [];
 
-    console.log(selectedConvoUserID.selectedUserID);
-    console.log(selectedConvoUserID.userID);
+    // console.log(selectedConvoUserID.selectedUserID); //log selected user id
+    // console.log(selectedConvoUserID.userID); //log own user id (socket.id)
    
     //select all messages that were sent to selectedUserID and that were received from user ID
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
       //if statement for received messages
-      if(selectedConvoUserID.selectedUserID === classesPrivateMessagesArray[i]._userID && selectedConvoUserID.userID === classesPrivateMessagesArray[i]._to) {
+      if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
         console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }

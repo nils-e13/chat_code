@@ -8,7 +8,6 @@ const app = Vue.createApp({
             //messages: sendMessages, //not sure if needed
             messages: [], //received messages from server for all clients except sender
             privateMessages: [], //received messages from server for selected client
-            storageMessages: [],
             users: [],
             userName: '',
             userID: '',
@@ -84,15 +83,11 @@ socket.on('read-message', function(message) {
     mountedApp.messages = message; //update message list in app
 });
 
-//doesnt work yet to receive private message from server
+
 socket.on('private-read-message', function ({ privateData, from }) {
-    // console.log("private message from server received in app");
-    // console.log(privateData);
-    // console.log(from);
     //push privateData to messages array
     mountedApp.privateMessages.push(privateData);
-    mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
-    mountedApp.storageMessages.push(privateData);
+    //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
 
 

@@ -13,6 +13,7 @@ const app = Vue.createApp({
             userName: '',
             userID: '',
             selectedContact: [],
+            test: [],
             
             
         }
@@ -43,8 +44,9 @@ const app = Vue.createApp({
 
             //receive filtered messages from selected UserID from server
             socket.on('selected-messages', function(selectedUserMessages){
-                console.log(selectedUserMessages);
-                this.privateMessages = selectedUserMessages;
+            console.log(selectedUserMessages);
+            mountedApp.privateMessages = selectedUserMessages;
+
             }
             );
 
@@ -84,9 +86,9 @@ socket.on('read-message', function(message) {
 
 //doesnt work yet to receive private message from server
 socket.on('private-read-message', function ({ privateData, from }) {
-    console.log("private message from server received in app");
-    console.log(privateData);
-    console.log(from);
+    // console.log("private message from server received in app");
+    // console.log(privateData);
+    // console.log(from);
     //push privateData to messages array
     mountedApp.privateMessages.push(privateData);
     mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users

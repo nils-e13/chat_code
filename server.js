@@ -108,33 +108,39 @@ io.on('connection', function (socket) {
 
   socket.on('load-messages', function(selectedUserID) {
     //filter classesPrivateMessagesArray to only include messages from selectedUserID
-    // selectedUserMessages = classesPrivateMessagesArray.filter(function(message) {
-    //   return message._userID === selectedUserID;
-    // }
-    // );
+  
     //empty selectedUserMessages array
     let selectedUserMessages = [];
-    
 
+    console.log(selectedUserID);
+   
+    //select all messages that were sent to selectedUserID and that were received from user ID
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
-        // console.log("selectedUserID received in server");
-        //console.log(selectedUserID);
-      // if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
+      //if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
       //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
       // }
-      console.log("test")
-      console.log(classesPrivateMessagesArray[i]._userID)
-      console.log(selectedUserID);
-      // if(selectedUserID) {
+      //all messages from sender
+      // if(selectedUserID === classesPrivateMessagesArray[i]._to || classesPrivateMessagesArray[i]._userID) {
+      //   console.log(classesPrivateMessagesArray[i]);
       //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
       // }
+
+      //if statement for received messages
+      if(selectedUserID === classesPrivateMessagesArray[i]._userID) {
+        console.log(classesPrivateMessagesArray[i]);
+        selectedUserMessages.push(classesPrivateMessagesArray[i]);
+      }
+      //if statement for send messages
+      if(classesPrivateMessagesArray[i]._userID === socket.id && classesPrivateMessagesArray[i]._to === selectedUserID) {
+        console.log(classesPrivateMessagesArray[i]);
+        selectedUserMessages.push(classesPrivateMessagesArray[i]);
+      }
     }
+
     //console.log(selectedUserMessages);
-    
+    //console.log(selectedUserMessages);
     //send selected messages to client
     socket.emit('selected-messages', selectedUserMessages);
-  
-    // io.to(socket.id).emit('load-messages', selectedUserMessages);
 
   });
 

@@ -106,32 +106,24 @@ io.on('connection', function (socket) {
 
 
 
-  socket.on('load-messages', function(selectedUserID) {
+  socket.on('load-messages', function(selectedConvoUserID) {
     //filter classesPrivateMessagesArray to only include messages from selectedUserID
   
     //empty selectedUserMessages array
     let selectedUserMessages = [];
 
-    console.log(selectedUserID);
+    console.log(selectedConvoUserID.selectedUserID);
+    console.log(selectedConvoUserID.userID);
    
     //select all messages that were sent to selectedUserID and that were received from user ID
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
-      //if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
-      //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
-      // }
-      //all messages from sender
-      // if(selectedUserID === classesPrivateMessagesArray[i]._to || classesPrivateMessagesArray[i]._userID) {
-      //   console.log(classesPrivateMessagesArray[i]);
-      //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
-      // }
-
       //if statement for received messages
-      if(selectedUserID === classesPrivateMessagesArray[i]._userID) {
+      if(selectedConvoUserID.selectedUserID === classesPrivateMessagesArray[i]._userID && selectedConvoUserID.userID === classesPrivateMessagesArray[i]._to) {
         console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
       //if statement for send messages
-      if(classesPrivateMessagesArray[i]._userID === socket.id && classesPrivateMessagesArray[i]._to === selectedUserID) {
+      if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.userID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
         console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }

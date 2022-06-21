@@ -39,7 +39,7 @@ const app = Vue.createApp({
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
 
-            //send selected userID to server
+            //send selected userID to server + userID to server
             socket.emit('load-messages', selectedUserDetails[0].privateUserID);
 
             //receive filtered messages from selected UserID from server

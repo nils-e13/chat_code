@@ -114,13 +114,22 @@ io.on('connection', function (socket) {
     // );
     //empty selectedUserMessages array
     let selectedUserMessages = [];
+    
 
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
-      if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
-        selectedUserMessages.push(classesPrivateMessagesArray[i]);
-      }
+        // console.log("selectedUserID received in server");
+        //console.log(selectedUserID);
+      // if(classesPrivateMessagesArray[i]._userID === selectedUserID && classesPrivateMessagesArray[i]._to === socket.id) {
+      //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
+      // }
+      console.log("test")
+      console.log(classesPrivateMessagesArray[i]._userID)
+      console.log(selectedUserID);
+      // if(selectedUserID) {
+      //   selectedUserMessages.push(classesPrivateMessagesArray[i]);
+      // }
     }
-    console.log(selectedUserMessages);
+    //console.log(selectedUserMessages);
     
     //send selected messages to client
     socket.emit('selected-messages', selectedUserMessages);

@@ -111,9 +111,7 @@ io.on('connection', function (socket) {
     let selectedUserMessages = [];
     let globalChatMessages = [];
    
-    //select all private messages that were sent to selectedUserID and that were received from user ID
-    
-    if(classesPrivateMessagesArray.length > 0) {
+    //for loop to filter selected and global messages
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
       //if statement for received messages
       if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
@@ -121,27 +119,23 @@ io.on('connection', function (socket) {
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
       //if statement for send messages
-      if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.userID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
+      else if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.userID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
         //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
+      else if(classesPrivateMessagesArray[i]._to === 'gc123') {
+        globalChatMessages.push(classesPrivateMessagesArray[i]);
+      }
     }
-    } else {
-      globalChatMessages.push(classesMessagesArray);
-    };
-    // console.log("globalChatMessages");
-    // console.log(globalChatMessages);
 
-    // console.log("selectedUserMessages");
-    // console.log(selectedUserMessages);
-    console.log("private");
-    console.log(classesPrivateMessagesArray);
-    console.log("global");
-    console.log(classesMessagesArray);
+    console.log("selectedUserMessages");
+    console.log(selectedUserMessages);
+    console.log("globalChatMessages");
+    console.log(globalChatMessages);
     
     //send selected messages to client
     socket.emit('selected-messages', selectedUserMessages);
-    //socket.emit('global-messages', globalChatMessages);
+    socket.emit('global-messages', globalChatMessages);
 
   });
 

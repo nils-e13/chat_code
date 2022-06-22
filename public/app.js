@@ -34,6 +34,10 @@ const app = Vue.createApp({
 
         selectedContactFunction: function(selectedUserDetails){ //receives selectedUserDetails from chatWindowcomponent
             this.selectedContact = selectedUserDetails;
+
+            //weiche ob global oder private hier im client schon stellen
+
+
             this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
@@ -41,16 +45,8 @@ const app = Vue.createApp({
             //send selected userID to server + userID to server
             socket.emit('load-messages', {selectedUserID: selectedUserDetails[0].privateUserID, userID: socket.id});
 
-            //receive filtered messages from selected UserID from server
-            socket.on('selected-messages', function(selectedUserMessages){
-            console.log(selectedUserMessages);
-            mountedApp.privateMessages = selectedUserMessages;
-            });
-
-            socket.on('global-messages', function(globalChatMessages){
-            console.log(globalChatMessages);
-            mountedApp.messages = globalChatMessages;
-            });
+            //socket on ausserhalb von funktion definieren
+           
 
             // for(let i = 0; i < this.messages.length; i++){ //loop through messages array
             //     console.log("app messages")
@@ -93,6 +89,16 @@ socket.on('private-read-message', function ({ privateData, from }) {
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
 
+ //receive filtered messages from selected UserID from server
+ socket.on('selected-messages', function(selectedUserMessages){
+    console.log(selectedUserMessages);
+    mountedApp.privateMessages = selectedUserMessages;
+});
+
+socket.on('global-messages', function(globalChatMessages){
+    console.log(globalChatMessages);
+    mountedApp.messages = globalChatMessages;
+});
 
 //when new user connects, server emits user-connected event which updates user list
 socket.on('user-connected', function(userID) {

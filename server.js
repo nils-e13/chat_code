@@ -108,31 +108,40 @@ io.on('connection', function (socket) {
 
   socket.on('load-messages', function(selectedConvoUserID) {
     //filter classesPrivateMessagesArray to only include messages from selectedUserID
-  
-    //empty selectedUserMessages array
     let selectedUserMessages = [];
-
-    // console.log(selectedConvoUserID.selectedUserID); //log selected user id
-    // console.log(selectedConvoUserID.userID); //log own user id (socket.id)
+    let globalChatMessages = [];
    
-    //select all messages that were sent to selectedUserID and that were received from user ID
+    //select all private messages that were sent to selectedUserID and that were received from user ID
+    
+    if(classesPrivateMessagesArray.length > 0) {
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
       //if statement for received messages
       if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
-        console.log(classesPrivateMessagesArray[i]);
+        //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
       //if statement for send messages
       if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.userID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
-        console.log(classesPrivateMessagesArray[i]);
+        //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
     }
+    } else {
+      globalChatMessages.push(classesMessagesArray);
+    };
+    // console.log("globalChatMessages");
+    // console.log(globalChatMessages);
 
-    //console.log(selectedUserMessages);
-    //console.log(selectedUserMessages);
+    // console.log("selectedUserMessages");
+    // console.log(selectedUserMessages);
+    console.log("private");
+    console.log(classesPrivateMessagesArray);
+    console.log("global");
+    console.log(classesMessagesArray);
+    
     //send selected messages to client
     socket.emit('selected-messages', selectedUserMessages);
+    //socket.emit('global-messages', globalChatMessages);
 
   });
 

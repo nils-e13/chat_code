@@ -34,7 +34,7 @@ const app = Vue.createApp({
 
         selectedContactFunction: function(selectedUserDetails){ //receives selectedUserDetails from chatWindowcomponent
             this.selectedContact = selectedUserDetails;
-            //this.messages.splice(0, this.messages.length); //clear messages array
+            this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
             //initialize privateMessages array with messages from selected user
 
@@ -45,9 +45,12 @@ const app = Vue.createApp({
             socket.on('selected-messages', function(selectedUserMessages){
             console.log(selectedUserMessages);
             mountedApp.privateMessages = selectedUserMessages;
+            });
 
-            }
-            );
+            socket.on('global-messages', function(globalChatMessages){
+            console.log(globalChatMessages);
+            mountedApp.messages = globalChatMessages;
+            });
 
             // for(let i = 0; i < this.messages.length; i++){ //loop through messages array
             //     console.log("app messages")

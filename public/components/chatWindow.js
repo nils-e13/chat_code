@@ -46,12 +46,12 @@ app.component('chat-window', {
                     <!-- p for private messages -->
 
                     <!--work when switching contacts-->
-                    <p class="receive-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <p class="send-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p>
+                    <!--<p class="receive-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p>--> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <!--<p class="send-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p>-->
                     
                     <!--works on page load-->
-                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>  <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>
+                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.to"> {{privateMessagesFromServer._message}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer._message}} </p>
                     </template>
                 </div>
 

@@ -103,8 +103,8 @@ app.component('chat-window', {
                 this.$emit('send-message', this.messageContent); //emit messageContent to selected contact to app.js
                 this.messageContent = ''; //reset input field
                 // console.log('message sent to all users');
-                
             }
+            
             };
 
         },

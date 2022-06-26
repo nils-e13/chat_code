@@ -153,26 +153,16 @@ io.on('connection', function (socket) {
   //receive private message from client and emit it to receiver
   socket.on('private-message', function (privateData) {
     let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID, privateData.to);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-    //console.log(newPrivateMessageClasses);
+    // console.log(newPrivateMessageClasses);
     classesPrivateMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
-    privateData,
+    classesPrivateMessagesArray,
     from: socket.id,
     },
 
-  // socket.on('private-message', function (privateData) {
-  //   let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-  //   classesMessagesArray.push(newPrivateMessageClasses);
-  //   socket.to(privateData.to).emit('private-read-message', {
-  //   privateData,
-  //   from: socket.id,
-  //   },
-
-
-
     //also send message to sender
     socket.emit('private-read-message', { //also emit message to sender so it can be conditionally rendered
-      privateData,
+      classesPrivateMessagesArray, //problem is here
       from: socket.id,
     })
 

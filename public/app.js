@@ -85,6 +85,7 @@ socket.on('read-message', function(message) {
 
 socket.on('private-read-message', function ({ privateData, from }) {
     //push privateData to messages array
+    console.log(privateData);
     mountedApp.privateMessages.push(privateData);
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });

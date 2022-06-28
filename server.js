@@ -113,8 +113,11 @@ io.on('connection', function (socket) {
    
     //for loop to filter selected and global messages
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
+      if(selectedConvoUserID.selectedUserID === 'gc123' && classesPrivateMessagesArray[i]._to === 'gc123') {
+        globalChatMessages.push(classesPrivateMessagesArray[i]);
+      }
       //if statement for received messages
-      if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
+      else if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
         //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
@@ -123,10 +126,8 @@ io.on('connection', function (socket) {
         //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
-      else if(classesPrivateMessagesArray[i]._to === 'gc123') {
-        globalChatMessages.push(classesPrivateMessagesArray[i]);
-      }
     }
+    
 
     console.log("selectedUserMessages");
     console.log(selectedUserMessages);

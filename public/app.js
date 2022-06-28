@@ -11,7 +11,7 @@ const app = Vue.createApp({
             users: [],
             userName: '',
             userID: '',
-            selectedContact: [],
+            selectedContact: [], //selected contact from app.js
             
         }
     },
@@ -70,8 +70,6 @@ socket.on('private-read-message', function (privateData) {
 
 socket.on('private-read-message-sender', function (privateData) {
     //push privateData to messages array
-    console.log("private-read-message-sender");
-    console.log(privateData);
     mountedApp.privateMessages.push(privateData);
 });
 
@@ -82,6 +80,7 @@ socket.on('private-read-message-sender', function (privateData) {
 });
 
 socket.on('global-messages', function(globalChatMessages){
+    console.log("globaltest");
     console.log(globalChatMessages);
     mountedApp.privateMessages = globalChatMessages;
 });

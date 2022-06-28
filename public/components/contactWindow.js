@@ -41,13 +41,13 @@ app.component('contact-window', {
             <div class="contact-block-scroll">
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
-                    <!--<div class="contact-field cursor-pointer" :style="color" @click="toggleBlueColor()">--> <!--selection field for the messaging contact-->
+                    
                     <div class="contact-field cursor-pointer" @click="selectGlobalChat()"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
-                        </div>
-                            
+                        </div>    
                     </div>
+                    
 
                     <!--contact list-->
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
@@ -59,7 +59,6 @@ app.component('contact-window', {
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
                                 <!--<span>{{item.privateUserID}}</span>--> <!--displays contact id from messageContactsArray-->
                             </div>
-
                         </div>
                     </div>
 

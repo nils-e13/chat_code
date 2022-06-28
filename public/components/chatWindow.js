@@ -26,10 +26,8 @@ app.component('chat-window', {
                 <!--div forchat bubbles-->
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for user name in group chats -->
-
-
                     <!--not working properly yet-->
-                    <!--<p class="message-user-name no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._user}} </p>--> <!-- displays user name from messageFromServerArray-->    
+                    <!--<p class="message-user-name no-margin" v-if="messageFromServer._to == 'gc123'"> {{messageFromServer._user}} </p>--> <!-- displays user name from messageFromServerArray-->    
                     
                     <!-- p for send/ receive messages -->
                     <!--<p class="receive-message-block message-content no-margin" v-if="userID != (messageFromServer._userID || messageFromServer.userID)"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
@@ -39,6 +37,7 @@ app.component('chat-window', {
                     <!--<p class="receive-message-block message-content no-margin" v-if="messageFromServer.privateKey != 1"> {{messageFromServer._text}} </p>-->  <!--displays message text from messageFromServerArray-->
                     <!--<p class="send-message-block message-content no-margin" v-if="messageFromServer.privateKey != 1"> {{messageFromServer._text}} </p>--> <!--displays message text from messageFromServerArray-->
 
+                    <!--<p class="receive-message-block message-content no-margin" v-if="messageFromServer._to == 'gc123'"> {{messageFromServer._text}}-->
                 </div>
 
                 <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
@@ -54,8 +53,8 @@ app.component('chat-window', {
                     <!--<p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>-->
                     
                     
-                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer._to"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer._userID"> {{privateMessagesFromServer._text}} </p>
+                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer._userID"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <p class="send-message-block message-content no-margin" v-if="userID != selectedContactFromApp.privateUserID"> {{privateMessagesFromServer._text}} </p>
                     </template>
                 </div>
 

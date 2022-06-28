@@ -46,16 +46,6 @@ const app = Vue.createApp({
             socket.emit('load-messages', {selectedUserID: selectedUserDetails[0].privateUserID, userID: socket.id});
 
             //socket on ausserhalb von funktion definieren
-           
-
-            // for(let i = 0; i < this.messages.length; i++){ //loop through messages array
-            //     console.log("app messages")
-            //     console.log(this.messages[i]); // not working yet
-            //     //muss noch angepasst werden
-            //     if(this.messages[i]._userID == (this.selectedContact._userID && this.messages[i]._to)){ //if message belongs to selected user
-            //         this.privateMessages.push(this.messages[i]); //push message to privateMessages array
-            // }
-        
         },
 
         //receives privateMessage from App and sends to selected contact userID to Server
@@ -65,12 +55,6 @@ const app = Vue.createApp({
                     message: privateMessage, user: this.userName, userID: socket.id,
                     to: this.selectedContact[0].privateUserID,
                   });
-                //   console.log("private message sent to server");
-                //   this.selectedContact.messages.push({
-                //     message,
-                //     fromSelf: true,
-                //   });
-                //console.log("private message received in App and sent to server");
             }
         },
     },
@@ -85,8 +69,6 @@ socket.on('read-message', function(message) {
 
 socket.on('private-read-message', function ({ privateData, from }) {
     //push privateData to messages array
-    // console.log("private-read-message");
-    // console.log(privateData);
     mountedApp.privateMessages.push(privateData);
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
@@ -97,9 +79,6 @@ socket.on('private-read-message-sender', function (privateData) {
     console.log(privateData);
     mountedApp.privateMessages.push(privateData);
 });
-
-
-
 
  //receive filtered messages from selected UserID from server
  socket.on('selected-messages', function(selectedUserMessages){

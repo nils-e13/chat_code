@@ -53,7 +53,7 @@ app.component('chat-window', {
                     <!--<p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>-->
                     
                     
-                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer._userID && selectedContactFromApp.privateUserID != privateMessagesFromServer._to"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
+                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer._userID && selectedContactFromApp.privateUserID != privateMessagesFromServer._to || privateMessagesFromServer._to == 'gc123' && privateMessagesFromServer._userID != userID"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
                     <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer._userID && userID != privateMessagesFromServer._to"> {{privateMessagesFromServer._text}} </p>
                     </template>
                 </div>

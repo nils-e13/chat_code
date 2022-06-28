@@ -12,16 +12,13 @@ const app = Vue.createApp({
             userName: '',
             userID: '',
             selectedContact: [],
-            test: [],
-            
             
         }
     },
     methods: {
         sendMessage: function(message) { //receives messageContent from input field and emits it + userName to server
             if(message){
-                socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
-                //console.log("messageContent received in App and sent to server");
+                socket.emit('send-message', {text: message, user: this.userName, userID: socket.id}); //send message content + username to server
             }
         },
 
@@ -34,9 +31,7 @@ const app = Vue.createApp({
 
         selectedContactFunction: function(selectedUserDetails){ //receives selectedUserDetails from chatWindowcomponent
             this.selectedContact = selectedUserDetails;
-
             //weiche ob global oder private hier im client schon stellen
-
 
             this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
@@ -88,7 +83,7 @@ socket.on('private-read-message-sender', function (privateData) {
 
 socket.on('global-messages', function(globalChatMessages){
     console.log(globalChatMessages);
-    mountedApp.messages = globalChatMessages;
+    mountedApp.privateMessages = globalChatMessages;
 });
 
 //when new user connects, server emits user-connected event which updates user list

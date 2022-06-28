@@ -86,7 +86,7 @@ io.on('connection', function (socket) {
 
   //when a user sends a message, server pushes the info to message list and emits an event 
   socket.on('send-message', function(data) { //data is the message content, server receives send message from client and pushes to message list
-    let newMessageClasses = new Message(data.message, data.user, data.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
+    let newMessageClasses = new Message(data.text, data.user, data.userID);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesMessagesArray.push(newMessageClasses);
     //console.log(newMessageClasses);
     

@@ -161,9 +161,8 @@ io.on('connection', function (socket) {
     },
 
     //also send message to sender
-    socket.emit('private-read-message', { //also emit message to sender so it can be conditionally rendered
-      classesPrivateMessagesArray, //problem is here
-      from: socket.id,
+    socket.emit('private-read-message-sender', { //also emit message to sender so it can be conditionally rendered
+      selectedUserMessages
     })
 
   );

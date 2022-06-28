@@ -85,10 +85,21 @@ socket.on('read-message', function(message) {
 
 socket.on('private-read-message', function ({ privateData, from }) {
     //push privateData to messages array
-    console.log(privateData);
+    // console.log("private-read-message");
+    // console.log(privateData);
     mountedApp.privateMessages.push(privateData);
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
+
+socket.on('private-read-message-sender', function (privateData) {
+    //push privateData to messages array
+    console.log("private-read-message-sender");
+    console.log(privateData);
+    mountedApp.privateMessages.push(privateData);
+});
+
+
+
 
  //receive filtered messages from selected UserID from server
  socket.on('selected-messages', function(selectedUserMessages){

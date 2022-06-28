@@ -156,17 +156,21 @@ io.on('connection', function (socket) {
     // console.log(newPrivateMessageClasses);
     classesPrivateMessagesArray.push(newPrivateMessageClasses);
     socket.to(privateData.to).emit('private-read-message', {
-    classesPrivateMessagesArray,
-    from: socket.id,
+      message: newPrivateMessageClasses._text,
+      user: newPrivateMessageClasses._user,
+      userID: newPrivateMessageClasses._userID,
+      to: newPrivateMessageClasses._to
+    // from: socket.id,
     },
-
     //also send message to sender
     socket.emit('private-read-message-sender', { //also emit message to sender so it can be conditionally rendered
-      selectedUserMessages
+      //send message to sender
+      _text: newPrivateMessageClasses._text,
+      _user: newPrivateMessageClasses._user,
+      _userID: newPrivateMessageClasses._userID,
+      _to: newPrivateMessageClasses._to
     })
-
   );
-
 });
 });
 

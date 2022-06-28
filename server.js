@@ -140,7 +140,6 @@ io.on('connection', function (socket) {
   });
 
 
-
   //when user disconnects, server updates user list and removes user
   socket.on('disconnect', function() {
     classesUsersArray = classesUsersArray.filter(function(user) {
@@ -149,18 +148,19 @@ io.on('connection', function (socket) {
     io.emit('update-users', classesUsersArray);
   });
 
+
   //private messaging
   //receive private message from client and emit it to receiver
   socket.on('private-message', function (privateData) {
-    let newPrivateMessageClasses = new Message(privateData.message, privateData.user, privateData.userID, privateData.to);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
-    // console.log(newPrivateMessageClasses);
+    let newPrivateMessageClasses = new Message(privateData._text, privateData._user, privateData._userID, privateData._to);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesPrivateMessagesArray.push(newPrivateMessageClasses);
-    socket.to(privateData.to).emit('private-read-message', {
-      message: newPrivateMessageClasses._text,
-      user: newPrivateMessageClasses._user,
-      userID: newPrivateMessageClasses._userID,
-      to: newPrivateMessageClasses._to
-    // from: socket.id,
+
+    //send message to receiver
+    socket.to(privateData._to).emit('private-read-message', {
+      _text: newPrivateMessageClasses._text,
+      _user: newPrivateMessageClasses._user,
+      _userID: newPrivateMessageClasses._userID,
+      _to: newPrivateMessageClasses._to
     },
     //also send message to sender
     socket.emit('private-read-message-sender', { //also emit message to sender so it can be conditionally rendered

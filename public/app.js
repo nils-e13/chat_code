@@ -52,8 +52,8 @@ const app = Vue.createApp({
         sendMessageToSelectedContactFunction: function(privateMessage) { //receives messageContent from input field
             if(privateMessage){
                 socket.emit('private-message', {
-                    message: privateMessage, user: this.userName, userID: socket.id,
-                    to: this.selectedContact[0].privateUserID,
+                    _text: privateMessage, _user: this.userName, _userID: socket.id,
+                    _to: this.selectedContact[0].privateUserID,
                   });
             }
         },
@@ -67,7 +67,7 @@ socket.on('read-message', function(message) {
 });
 
 
-socket.on('private-read-message', function ({ privateData, from }) {
+socket.on('private-read-message', function (privateData) {
     //push privateData to messages array
     mountedApp.privateMessages.push(privateData);
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users

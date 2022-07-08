@@ -84,6 +84,7 @@ app.component('contact-window', {
     },
     methods:{
         toggleBlueColor: function () {
+            //theoretisch so: if (selectedUserDetails(contactwindow) == selectedContactfromApp(chatwindow))
             if (this.color.backgroundColor === 'transparent') {
             this.color.backgroundColor = '#2863E4';
             } else {

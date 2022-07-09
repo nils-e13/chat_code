@@ -66,28 +66,33 @@ socket.on('read-message', function(message) {
     mountedApp.messages = message; //update message list in app
 });
 
-
 socket.on('private-read-message', function (privateData) {
     //push privateData to messages array
     mountedApp.privateMessages.push(privateData);
     //mountedApp.messages.push(privateData); //push privateData to messages array that includes all messages from all users
 });
 
+socket.on('global-read-message', function (globalData) {
+    console.log("globalData");
+    console.log(globalData);
+    mountedApp.messages.push(globalData);
+});
+
 socket.on('private-read-message-sender', function (privateData) {
     //push privateData to messages array
-    console.log("private-read-message-sender");
-    console.log(privateData);
+    //console.log("private-read-message-sender");
+    //console.log(privateData);
     mountedApp.privateMessages.push(privateData);
 });
 
  //receive filtered messages from selected UserID from server
  socket.on('selected-messages', function(selectedUserMessages){
-    console.log(selectedUserMessages);
+    //console.log(selectedUserMessages);
     mountedApp.privateMessages = selectedUserMessages;
 });
 
 socket.on('global-messages', function(globalChatMessages){
-    console.log(globalChatMessages);
+    //console.log(globalChatMessages);
     mountedApp.messages = globalChatMessages;
 });
 

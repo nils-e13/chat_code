@@ -232,6 +232,14 @@ ul {
     transition: 0.3s;
 }
 
+#grey{
+    background-color: #3E3F41;
+}
+
+#blue{
+    background-color: #2863E4;
+}
+
 .add-contact-screen{
     position: relative;
 }

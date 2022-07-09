@@ -91,7 +91,7 @@ io.on('connection', function (socket) {
     //console.log(newMessageClasses);
     
     //socket.broadcast.emit('read-message', newMessageClasses); //send message to all users except the sender
-    io.sockets.emit('read-message', classesMessagesArray); //send message to all users including the sender
+    //io.sockets.emit('read-message', classesMessagesArray); //send message to all users including the sender
   });
 
   
@@ -155,6 +155,15 @@ io.on('connection', function (socket) {
     let newPrivateMessageClasses = new Message(privateData._text, privateData._user, privateData._userID, privateData._to);//takes message content and user from app emit and also adds socket.id to message all according to classes blueprint Messages
     classesPrivateMessagesArray.push(newPrivateMessageClasses);
 
+    //send message to all users including the sender
+  if(privateData._to === 'gc123') {
+    socket.broadcast.emit('global-read-message', {
+      _text: newPrivateMessageClasses._text,
+      _user: newPrivateMessageClasses._user,
+      _userID: newPrivateMessageClasses._userID,
+      _to: "gc123"
+    }); 
+  }
     //send message to receiver
     socket.to(privateData._to).emit('private-read-message', {
       _text: newPrivateMessageClasses._text,
@@ -170,8 +179,19 @@ io.on('connection', function (socket) {
       _userID: newPrivateMessageClasses._userID,
       _to: newPrivateMessageClasses._to
     })
-  );
+    );
 });
 });
+
+
+// //send message to all users including the sender
+// if(privateData._to === 'gc123') {
+//   io.sockets.emit('global-read-message', {
+//     _text: newPrivateMessageClasses._text,
+//     _user: newPrivateMessageClasses._user,
+//     _userID: newPrivateMessageClasses._userID,
+//     _to: newPrivateMessageClasses._to
+//   }); 
+// }
 
 

@@ -83,6 +83,7 @@ socket.on('private-read-message-sender', function (privateData) {
     //console.log("private-read-message-sender");
     //console.log(privateData);
     mountedApp.privateMessages.push(privateData);
+   // mountedApp.messages.push(privateData);
 });
 
  //receive filtered messages from selected UserID from server

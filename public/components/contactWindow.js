@@ -21,6 +21,7 @@ app.component('contact-window', {
             <div class="online-users-list cursor-pointer" v-for="(usersFromServer, index) in usersFromServer" :key="index" @click="addContact(usersFromServer._user, usersFromServer._userID)">
                 <!--store online users and make them clickable to add them to data contact list-->
                 <p class="message-content" v-if="userID != usersFromServer._userID"> {{usersFromServer._user}} </p>
+                <div class="green-circle" v-if="userID != usersFromServer._userID"></div> <!--green circle for online users-->
             </div>
         </div>
         

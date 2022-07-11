@@ -228,14 +228,17 @@ ul {
 }
 
 .contact-field:hover{
-    background-color: #7c7e83;
+    background-color: #7C7E83;
     transition: 0.3s;
 }
 
-/*.contact-field-hover:hover{
-    background-color: #7C7E83;
-    border-radius: 16px;
-}*/
+#grey{
+    background-color: #3E3F41;
+}
+
+#blue{
+    background-color: #2863E4;
+}
 
 .add-contact-screen{
     position: relative;

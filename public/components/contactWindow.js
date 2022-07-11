@@ -53,7 +53,7 @@ app.component('contact-window', {
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
                         <!--<div class="contact-field cursor-pointer" :style="color" @click="selectContact(item.privateContact, item.privateUserID); toggleBlueColor()">--> <!--store online users and make them clickable for private messaging-->
-                        <div class="contact-field cursor-pointer" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
+                        <div class="contact-field cursor-pointer" id="grey" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
                             <div class="contact-block"> <!--block for current contact-->
 
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
@@ -83,11 +83,19 @@ app.component('contact-window', {
     },
     methods:{
         toggleBlueColor: function () {
-            if (this.color.backgroundColor === 'transparent') {
-            this.color.backgroundColor = '#2863E4';
-            } else {
-            this.color.backgroundColor = 'transparent';
+            //if selectedUserDetails.privateUserID is equal to messageContacts.privateUserID, then change color to blue
+            if (this.selectedUserDetails.privateUserID == this.messageContacts.privateUserID) {
+                this.color = {
+                    backgroundColor: '#2863E4',
+                }
             }
+                
+
+            // if (this.color.backgroundColor === 'transparent') {
+            // this.color.backgroundColor = '#2863E4';
+            // } else {
+            // this.color.backgroundColor = 'transparent';
+            // }
         },
         //adds online user to messageContacts array and displays in contact list
         addContact: function (userName, userID) {
@@ -95,10 +103,27 @@ app.component('contact-window', {
             let addPrivateContact = {
                 privateContact: userName,
                 privateUserID: userID,
+                // contactCount: 0,
 
             }
-             
-            this.messageContacts.push(addPrivateContact);
+           //only add user if not already in messageContacts array
+            if (this.messageContacts.length === 0) {
+                this.messageContacts.push(addPrivateContact);
+            } else {
+                for (let i = 0; i < this.messageContacts.length; i++) {
+                    if (this.messageContacts[i].privateUserID === userID) {
+                        break;
+                    } else if (i === this.messageContacts.length - 1) {
+                        this.messageContacts.push(addPrivateContact);
+                    }
+                }
+            }
+
+            //increase contact count for each contact added
+            // for (let i = 0; i < this.messageContacts.length; i++) {
+            //     this.messageContacts[i].contactCount++;
+            // }
+
             console.log(this.messageContacts);
             console.log("contact added: " + "userName:" + userName + "userID: "+ userID);
             
@@ -107,7 +132,6 @@ app.component('contact-window', {
             }
         },
         //selecting contact stores contact details in selectedUserDetails array
-        //not sure if its better to push it into app.js and store details of selected contact also there, probably better
         selectContact: function (userName, userID) {
             let addSelectedUserDetails = {
                 privateContact: userName,

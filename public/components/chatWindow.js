@@ -27,7 +27,8 @@ app.component('chat-window', {
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index">
                     <!--<p class="receive-message-block message-content no-margin" v-if="messageFromServer[0]._to == 'gc123' && selectedContactFromApp.privateUserID == 'gc123'"> {{messageFromServer[0]._text}}-->
-                    <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == 'gc123'"> {{messageFromServer._text}} </p>
+                    <p class="receive-message-block message-content no-margin" v-if="messageFromServer._userID !== userID"> {{messageFromServer._text}} </p>
+                    <p class="send-message-block message-content no-margin" v-else-if="messageFromServer._userID === userID"> {{messageFromServer._text}} </p>
                     </template>
                 </div>
 

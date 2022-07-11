@@ -113,25 +113,28 @@ io.on('connection', function (socket) {
    
     //for loop to filter selected and global messages
     for(let i = 0; i < classesPrivateMessagesArray.length; i++) {
+      //if statement for global messages
+      if(classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
+        globalChatMessages.push(classesPrivateMessagesArray[i]);
+      }
       //if statement for received messages
-      if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
+      else if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.selectedUserID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.userID) {
         //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
-      //if statement for send messages
+      //if statement for private send messages
       else if(classesPrivateMessagesArray[i]._userID === selectedConvoUserID.userID && classesPrivateMessagesArray[i]._to === selectedConvoUserID.selectedUserID) {
         //console.log(classesPrivateMessagesArray[i]);
         selectedUserMessages.push(classesPrivateMessagesArray[i]);
       }
-      else if(classesPrivateMessagesArray[i]._to === 'gc123') {
-        globalChatMessages.push(classesPrivateMessagesArray[i]);
-      }
+     
     }
 
     console.log("selectedUserMessages");
     console.log(selectedUserMessages);
     console.log("globalChatMessages");
     console.log(globalChatMessages);
+    console.log(classesPrivateMessagesArray);
     
     //send selected messages to client
     socket.emit('selected-messages', selectedUserMessages);
@@ -157,13 +160,13 @@ io.on('connection', function (socket) {
 
     //send message to all users including the sender
   if(privateData._to === 'gc123') {
-    socket.broadcast.emit('global-read-message', {
+    io.emit('global-read-message', {
       _text: newPrivateMessageClasses._text,
       _user: newPrivateMessageClasses._user,
       _userID: newPrivateMessageClasses._userID,
       _to: "gc123"
     }); 
-  }
+  } else {
     //send message to receiver
     socket.to(privateData._to).emit('private-read-message', {
       _text: newPrivateMessageClasses._text,
@@ -180,18 +183,9 @@ io.on('connection', function (socket) {
       _to: newPrivateMessageClasses._to
     })
     );
+  }
 });
 });
 
-
-// //send message to all users including the sender
-// if(privateData._to === 'gc123') {
-//   io.sockets.emit('global-read-message', {
-//     _text: newPrivateMessageClasses._text,
-//     _user: newPrivateMessageClasses._user,
-//     _userID: newPrivateMessageClasses._userID,
-//     _to: newPrivateMessageClasses._to
-//   }); 
-// }
 
 

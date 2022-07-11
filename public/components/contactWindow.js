@@ -133,7 +133,6 @@ app.component('contact-window', {
             }
         },
         //selecting contact stores contact details in selectedUserDetails array
-        //not sure if its better to push it into app.js and store details of selected contact also there, probably better
         selectContact: function (userName, userID) {
             let addSelectedUserDetails = {
                 privateContact: userName,

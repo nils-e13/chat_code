@@ -36,15 +36,6 @@ app.component('chat-window', {
                 <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> <!-- v-for loop to iterate over selectedContactFromApp array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for private messages -->
-
-                    <!--work when switching contacts-->
-                    <!--<p class="receive-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p>--> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <!--<p class="send-message-block message-content no-margin"> {{privateMessagesFromServer._text}} </p>-->
-                    
-                    <!--works on page load-->
-                    <!--<p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer.to"> {{privateMessagesFromServer.message}} </p>--> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
-                    <!--<p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer.userID"> {{privateMessagesFromServer.message}} </p>-->
-                    
                     <p class="receive-message-block message-content no-margin" v-if="selectedContactFromApp.privateUserID == privateMessagesFromServer._userID && selectedContactFromApp.privateUserID !== privateMessagesFromServer._to"> {{privateMessagesFromServer._text}} </p> <!--displays private message text if selectedUID and receivedMessage UID are the same-->
                     <p class="send-message-block message-content no-margin" v-if="userID == privateMessagesFromServer._userID && userID != privateMessagesFromServer._to"> {{privateMessagesFromServer._text}} </p>
                     </template>

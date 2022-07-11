@@ -42,7 +42,7 @@ app.component('contact-window', {
                 
                 <div class="contacts-window-container"> <!--contains the contact selection-->
                     
-                    <div class="contact-field cursor-pointer" @click="selectGlobalChat()"> <!--selection field for the messaging contact-->
+                    <div :class="{toggleColor: blue}" class="contact-field cursor-pointer" @click="selectGlobalChat(); blue = !blue"> <!--selection field for the messaging contact-->
                         <div class="contact-block"> <!--block for current contact with profile image and name-->
                             <h2> global chat</h2>
                         </div>    
@@ -53,7 +53,7 @@ app.component('contact-window', {
                     <div v-for="item in messageContacts"> <!--v-for loop to iterate over messageContacts array and :key="index" is used to prevent duplicate messages from being displayed -->
 
                         <!--<div class="contact-field cursor-pointer" :style="color" @click="selectContact(item.privateContact, item.privateUserID); toggleBlueColor()">--> <!--store online users and make them clickable for private messaging-->
-                        <div class="contact-field cursor-pointer" id="grey" @click="selectContact(item.privateContact, item.privateUserID)"> <!--store online users and make them clickable for private messaging-->
+                        <div :class="{toggleColorPrivate: blue}" class="contact-field cursor-pointer" @click="selectContact(item.privateContact, item.privateUserID); blue = !blue"> <!--store online users and make them clickable for private messaging-->
                             <div class="contact-block"> <!--block for current contact-->
 
                                 <h2>{{item.privateContact}}</h2> <!--displays contact name from messageContactsArray-->
@@ -79,16 +79,17 @@ app.component('contact-window', {
                 backgroundColor: 'transparent',
                 
             },
+            blue: false,
         }
     },
     methods:{
         toggleBlueColor: function () {
             //if selectedUserDetails.privateUserID is equal to messageContacts.privateUserID, then change color to blue
-            if (this.selectedUserDetails.privateUserID == this.messageContacts.privateUserID) {
-                this.color = {
-                    backgroundColor: '#2863E4',
-                }
-            }
+            // if (this.selectedUserDetails.privateUserID == this.messageContacts.privateUserID) {
+            //     this.color = {
+            //         backgroundColor: '#2863E4',
+            //     }
+            // }
                 
 
             // if (this.color.backgroundColor === 'transparent') {

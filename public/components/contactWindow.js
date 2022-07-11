@@ -79,8 +79,8 @@ app.component('contact-window', {
             color: {
                 backgroundColor: 'transparent',
                 
-            },
-            blue: false,
+            }
+            //blue: false,
         }
     },
     methods:{

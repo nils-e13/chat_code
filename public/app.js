@@ -20,8 +20,12 @@ const app = Vue.createApp({
     methods: {
         sendMessage: function(message) { //receives messageContent from input field and emits it + userName to server
             if(message){
-                socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
-                //console.log("messageContent received in App and sent to server");
+                socket.emit('private-message', {
+                    _text: message, _user: this.userName, _userID: socket.id,
+                    _to: 'gc123',
+                  });
+            //     socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
+            //     //console.log("messageContent received in App and sent to server");
             }
         },
 
@@ -76,6 +80,7 @@ socket.on('global-read-message', function (globalData) {
     console.log("globalData");
     console.log(globalData);
     mountedApp.messages.push(globalData);
+    
 });
 
 socket.on('private-read-message-sender', function (privateData) {

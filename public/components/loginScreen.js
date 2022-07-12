@@ -22,9 +22,7 @@ app.component('login-screen', {
         return {
             hide: true,
             userName: '',
-            //password: ''
             }
-
         },
     methods:{
         //checks if userName is entered and if so, hides login screen and shows chat screen
@@ -43,9 +41,6 @@ app.component('login-screen', {
                 this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
                 console.log("userName: " + this.userName + " just joined");
             }
-        
         },
         },
-        
-
 });

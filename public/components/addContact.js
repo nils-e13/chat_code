@@ -24,8 +24,6 @@ app.component('add-contact', {
     data() {
         return {
             hide: true,
-            //userName: '',
-            //password: ''
             }
 
         },
@@ -39,13 +37,5 @@ app.component('add-contact', {
             }
         
         },
-        
-        //   setName (userName) {
-        //     this.userName = userName;
-        //     socket.emit('add-user', this.userName);
-        // },
-
         },
-        
-
 });

@@ -19,20 +19,18 @@ app.component('chat-window', {
         </div>
 
         <!-- Block for chat messages -->
-        
         <div id=#messages class="message-block-scroll">
             <div class="message-window-container"> <!--container for chat messages-->
 
-                <!--div forchat bubbles-->
+                <!--global chat messages-->
                 <div class="chat-bubbles" v-for="(messageFromServer, index) in messageFromServer" :key="index"> <!-- v-for loop to iterate over messageFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
-                    <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index">
-                    <!--<p class="receive-message-block message-content no-margin" v-if="messageFromServer[0]._to == 'gc123' && selectedContactFromApp.privateUserID == 'gc123'"> {{messageFromServer[0]._text}}-->
-                    <p class="message-user-name no-margin" v-if="messageFromServer._userID !== userID"> {{messageFromServer._user}} </p>
-                    <p class="receive-message-block message-content no-margin" v-if="messageFromServer._userID !== userID"> {{messageFromServer._text}} </p>
-                    <p class="send-message-block message-content no-margin" v-else-if="messageFromServer._userID === userID"> {{messageFromServer._text}} </p>
-                    </template>
+                    <!-- p for global messages-->
+                    <p class="message-user-name no-margin" v-if="messageFromServer._userID !== userID"> {{messageFromServer._user}} </p> <!--displays user name from messageFromServer-->
+                    <p class="receive-message-block message-content no-margin" v-if="messageFromServer._userID !== userID"> {{messageFromServer._text}} </p> <!--displays receive message from messageFromServer-->
+                    <p class="send-message-block message-content no-margin" v-else-if="messageFromServer._userID === userID"> {{messageFromServer._text}} </p> <!--displays send message from messageFromServer-->
                 </div>
 
+                <!--private chat messages-->
                 <div class="chat-bubbles" v-for="(privateMessagesFromServer, index) in privateMessagesFromServer" :key="index"> <!-- v-for loop to iterate over privateMessagesFromServer array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <template v-for="(selectedContactFromApp, index) in selectedContactFromApp" :key="index"> <!-- v-for loop to iterate over selectedContactFromApp array and :key="index" is used to prevent duplicate messages from being displayed -->
                     <!-- p for private messages -->
@@ -52,16 +50,12 @@ app.component('chat-window', {
                 <button class ="btn" type="submit" value="Submit"><i class="ph-paper-plane-right-fill"></i></button>
             </div>
         </form>
-
     </div>
     `,
     data() {
         return {
             messageContent: '', //stores message content from input field until submit button is clicked
             messageContentFromSender: [], //stores message content from input field after submit button is clicked
-
-            //content: '',
-
         }
     },
     methods:{
@@ -73,12 +67,6 @@ app.component('chat-window', {
                 messageContent: this.messageContent,
             }
             this.messageContentFromSender.push(sendMessageBubble);
-            // //send message content to server
-            //     this.$emit('send-message', this.messageContent); //emit messageContent to app.js
-            // //send message content to selected contact
-            //     this.$emit('send-message-to-selected-contact', this.messageContent); //emit messageContent to app.js
-            //     this.messageContent = ''; //reset input field
-            //decide if message is sent to all users or to selected contact
             
             //send message to either all users or selected contact if selected
             if(this.selectedContactFromApp.length > 0) {
@@ -96,18 +84,4 @@ app.component('chat-window', {
         },
     
     },
-    //computed property to display either received private message or received global chat message
-    computed: {
-        //1.computed property needed to display all messages from server if possible
-        messageReceivedComputed() {
-
-            return this.messageFromServer._text;
-            // if (this.userID != this.messageFromServer._userID) {
-            //     return this.messageFromServer._text;
-            // } else {
-            //     return this.messageFromServer._text;
-            // }
-        }
-        //2.computed property needed for v-for loop to display all messages from server if possible
-    }
 });

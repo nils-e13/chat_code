@@ -12,9 +12,6 @@ const app = Vue.createApp({
             userName: '',
             userID: '',
             selectedContact: [],
-            test: [],
-            
-            
         }
     },
     methods: {
@@ -24,8 +21,6 @@ const app = Vue.createApp({
                     _text: message, _user: this.userName, _userID: socket.id,
                     _to: 'gc123',
                   });
-            //     socket.emit('send-message', {message: message, user: this.userName, userID: socket.id}); //send message content + username to server
-            //     //console.log("messageContent received in App and sent to server");
             }
         },
 
@@ -36,11 +31,9 @@ const app = Vue.createApp({
             socket.emit('add-user', {user: this.userName, userID: socket.id}); //send username to server
         },
 
+        //receives selectedContact from chatWindowcomponent from parent which passes it to setSelectedContact method here
         selectedContactFunction: function(selectedUserDetails){ //receives selectedUserDetails from chatWindowcomponent
             this.selectedContact = selectedUserDetails;
-
-            //weiche ob global oder private hier im client schon stellen
-
 
             this.messages.splice(0, this.messages.length); //clear messages array
             this.privateMessages.splice(0, this.privateMessages.length); //clear privateMessages array
@@ -48,8 +41,6 @@ const app = Vue.createApp({
 
             //send selected userID to server + userID to server
             socket.emit('load-messages', {selectedUserID: selectedUserDetails[0].privateUserID, userID: socket.id});
-
-            //socket on ausserhalb von funktion definieren
         },
 
         //receives privateMessage from App and sends to selected contact userID to Server
@@ -70,6 +61,7 @@ socket.on('read-message', function(message) {
     mountedApp.messages = message; //update message list in app
 });
 
+//When server emits private message, client updates private message list in app
 socket.on('private-read-message', function (privateData) {
     //push privateData to messages array
     mountedApp.privateMessages.push(privateData);
@@ -77,43 +69,34 @@ socket.on('private-read-message', function (privateData) {
 });
 
 socket.on('global-read-message', function (globalData) {
-    console.log("globalData");
-    console.log(globalData);
     mountedApp.messages.push(globalData);
     
 });
 
 socket.on('private-read-message-sender', function (privateData) {
     //push privateData to messages array
-    //console.log("private-read-message-sender");
-    //console.log(privateData);
     mountedApp.privateMessages.push(privateData);
    // mountedApp.messages.push(privateData);
 });
 
  //receive filtered messages from selected UserID from server
  socket.on('selected-messages', function(selectedUserMessages){
-    //console.log(selectedUserMessages);
     mountedApp.privateMessages = selectedUserMessages;
 });
 
 socket.on('global-messages', function(globalChatMessages){
-    //console.log(globalChatMessages);
     mountedApp.messages = globalChatMessages;
 });
 
 //when new user connects, server emits user-connected event which updates user list
 socket.on('user-connected', function(userID) {
     app.users.push(userID);
-    // console.log(userID);
 });
 
 //initialize chat window, updates initial chat with current messages
 socket.on('init-chat', function(messages) {
     //update messages array with messages from server
     mountedApp.messages = messages;
-    // console.log("initial chat from server received in app");
-    // console.log(messages);
 });
 
 

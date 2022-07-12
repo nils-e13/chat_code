@@ -17,7 +17,7 @@
     <!-- Log In Screen component-->
     <!--parent listens for v-on:set-name from child component which emits userName to this, on checkForm function if true-->
     <!--parent passes this.userName from set-name to setName method-->
-    <login-screen @set-name="setName"></login-screen>
+    <login-screen @set-name="setName" :users-from-server="users"></login-screen>
 
     <div class="main-container" id="mainContainer">
         <!-- Contact window component-->

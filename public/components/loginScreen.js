@@ -1,6 +1,6 @@
 //component to log contacts
 app.component('login-screen', {
-
+    props: ['usersFromServer'],
     template:
     /*html*/
     `
@@ -29,19 +29,22 @@ app.component('login-screen', {
     methods:{
         //checks if userName is entered and if so, hides login screen and shows chat screen
         checkForm () {
+            //check if username is alread in user, display error messages, else add user to user list
             if (this.userName.length > 0 ) {
+                //if username is already in usersFromServer, display error message
+                for(var i = 0; i < this.usersFromServer.length; i++){
+                    if(this.userName === this.usersFromServer[i]._user){
+                        alert("Username already exists");
+                        return;
+                    }
+                }
+                //if username is not in usersFromServer, add user to usersFromServer
                 this.hide = false;
                 this.$emit('set-name', this.userName); //input.userName is passed as payload to set-name event
                 console.log("userName: " + this.userName + " just joined");
             }
         
         },
-        
-        //   setName (userName) {
-        //     this.userName = userName;
-        //     socket.emit('add-user', this.userName);
-        // },
-
         },
         
 

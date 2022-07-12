@@ -17,5 +17,5 @@ For the best experience, start by adding a couple users in first and then begin 
 ### Whats next:
 - initialize global chat messages history on page load for completely new users
 - turn selected contact card on the left blue once selected
-
+- rewrite naming conventions to enable other programmers a better understanding
 
